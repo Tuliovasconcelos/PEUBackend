@@ -1,0 +1,39 @@
+Tabela TipoUsuario: Armazena os tipos de usuários, como "administrador", "médico" ou "paciente".
+
+Tabela Usuario: Armazena informações básicas do usuário, como nome, email, senha e status. Também possui uma chave estrangeira para a tabela TipoUsuario para definir o tipo de usuário.
+
+Tabela Paciente: Armazena informações específicas do paciente, como nome, data de nascimento, gênero e status. Possui uma chave estrangeira para a tabela Usuario para estabelecer a relação entre paciente e usuário.
+
+Tabela ContatoPaciente: Armazena os contatos do paciente, como telefone, e-mail ou outros tipos de contato. Possui uma chave estrangeira para a tabela Paciente.
+
+Tabela EnderecoPaciente: Armazena o endereço do paciente, incluindo informações como endereço, cidade, estado e CEP. Também possui uma chave estrangeira para a tabela Paciente.
+
+Tabela Especialidade: Armazena as especialidades médicas disponíveis, como cardiologia, pediatria, etc.
+
+Tabela Medico: Armazena informações específicas do médico, como nome, CRM (registro médico) e status. Possui uma chave estrangeira para a tabela Usuario e para a tabela Especialidade.
+
+Tabela MedicoEspecialidade: Estabelece uma relação entre médicos e especialidades, permitindo que um médico tenha várias especialidades.
+
+Tabela Prontuario: Armazena informações do prontuário médico de um paciente, como status e data de alteração. Possui uma chave estrangeira para a tabela Paciente.
+
+Tabela PacienteConvenio: Registra a relação entre paciente e convênio de saúde, incluindo o número da carteira do paciente. Possui chaves estrangeiras para as tabelas Paciente e Convenio.
+
+Tabela Convenio: Armazena informações sobre os convênios de saúde disponíveis, como nome e status.
+
+Tabela Receitas: Armazena informações sobre as receitas médicas, incluindo descrição e status. Possui uma chave estrangeira para a tabela Prontuario.
+
+Tabela Encaminhamentos: Armazena informações sobre os encaminhamentos médicos, incluindo descrição e status. Possui uma chave estrangeira para a tabela Prontuario.
+
+Tabela HistoricoSaude: Armazena informações sobre o histórico de saúde do paciente, incluindo data de registro, descrição e status. Possui uma chave estrangeira para a tabela Prontuario.
+
+Tabela QueixasSaude: Armazena informações sobre as queixas de saúde registradas pelo paciente, incluindo data de registro, descrição e status. Possui uma chave estrangeira para a tabela Prontuario.
+
+Tabela HabitosVida: Armazena informações sobre os hábitos de vida do paciente, incluindo data de registro, descrição e status. Possui uma chave estrangeira para a tabela Prontuario.
+
+Tabela Agendamento: Armazena informações sobre os agendamentos de consultas ou procedimentos médicos, incluindo data, hora, status e observações. Possui chaves estrangeiras para as tabelas Paciente e Medico.
+
+Tabela Exame: Armazena informações sobre os exames médicos solicitados aos pacientes, incluindo nome, data, resultado e status. Possui uma chave estrangeira para a tabela Prontuario.
+
+Tabela ResultadoExame: Armazena os resultados dos exames médicos realizados pelos pacientes, incluindo descrição, data de realização e status. Possui uma chave estrangeira para a tabela Exame.
+
+Tabela Clinica: Armazena informações sobre as clínicas médicas, como nome, endereço e status.

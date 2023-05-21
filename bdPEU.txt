@@ -1,0 +1,354 @@
+-- Tabela TipoUsuario
+CREATE TABLE TipoUsuario (
+    idTipoUsuario INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(100) NOT NULL
+);
+
+-- Tabela Usuario
+CREATE TABLE Usuario (
+    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    status ENUM('ativo', 'inativo') NOT NULL,
+    foto VARCHAR(255),
+    dataCriacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    idTipoUsuario INT,
+    FOREIGN KEY (idTipoUsuario) REFERENCES TipoUsuario(idTipoUsuario)
+);
+
+CREATE TABLE user_tokens (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  token VARCHAR(255) NOT NULL,
+  usuario_id VARCHAR(255) NOT NULL,
+  dataCriacao DATETIME NOT NULL,
+  dataAlteracao DATETIME NOT NULL
+);
+
+-- Tabela Paciente
+CREATE TABLE Paciente (
+  idPaciente INT PRIMARY KEY AUTO_INCREMENT,
+  idUsuario INT,
+  nome VARCHAR(100) NOT NULL,
+  dataNascimento DATE NOT NULL,
+  genero ENUM('masculino', 'feminino', 'outro') NOT NULL,
+  status ENUM('ativo', 'inativo') NOT NULL,
+  dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
+);
+
+-- Tabela Contato
+CREATE TABLE ContatoPaciente (
+  idContato INT PRIMARY KEY AUTO_INCREMENT,
+  idPaciente INT,
+  tipoContato ENUM('telefone', 'email', 'outro') NOT NULL,
+  valorContato VARCHAR(100) NOT NULL,
+  FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente)
+);
+
+-- Tabela Endereco
+CREATE TABLE EnderecoPaciente (
+  idEndereco INT PRIMARY KEY AUTO_INCREMENT,
+  idPaciente INT,
+  endereco VARCHAR(200) NOT NULL,
+  cidade VARCHAR(100) NOT NULL,
+  estado VARCHAR(100) NOT NULL,
+  cep VARCHAR(10) NOT NULL,
+  FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente)
+);
+
+
+-- Tabela Especialidade
+CREATE TABLE Especialidade (
+idEspecialidade INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(100) NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabela Medico
+CREATE TABLE Medico (
+idMedico INT PRIMARY KEY AUTO_INCREMENT,
+idUsuario INT,
+nome VARCHAR(100) NOT NULL,
+crm VARCHAR(20) NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
+FOREIGN KEY (especialidade_id) REFERENCES Especialidade(idEspecialidade)
+);
+
+-- Tabela MedicoEspecialidade
+CREATE TABLE MedicoEspecialidade (
+idMedicoEspecialidade INT PRIMARY KEY AUTO_INCREMENT,
+medico_id INT,
+especialidade_id INT,
+FOREIGN KEY (medico_id) REFERENCES Medico(idMedico),
+FOREIGN KEY (especialidade_id) REFERENCES Especialidade(idEspecialidade)
+);
+
+-- Tabela Prontuario
+CREATE TABLE Prontuario (
+idProntuario INT PRIMARY KEY AUTO_INCREMENT,
+idPaciente INT,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente)
+);
+
+-- Tabela PacienteConvenio
+CREATE TABLE PacienteConvenio (
+idPacienteConvenio INT PRIMARY KEY AUTO_INCREMENT,
+idPaciente INT,
+idConvenio INT,
+numeroCarteira VARCHAR(50) NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente),
+FOREIGN KEY (idConvenio) REFERENCES Convenio(idConvenio)
+);
+
+-- Tabela Convenio
+CREATE TABLE Convenio (
+idConvenio INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(100) NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabela Receitas
+CREATE TABLE Receitas (
+idReceita INT PRIMARY KEY AUTO_INCREMENT,
+idProntuario INT,
+descricao TEXT NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario)
+);
+
+-- Tabela Encaminhamentos
+CREATE TABLE Encaminhamentos (
+idEncaminhamento INT PRIMARY KEY AUTO_INCREMENT,
+idProntuario INT,
+descricao TEXT NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario)
+);
+
+-- Tabela HistoricoSaude
+CREATE TABLE HistoricoSaude (
+idHistoricoSaude INT PRIMARY KEY AUTO_INCREMENT,
+idProntuario INT,
+dataRegistro DATE NOT NULL,
+descricao TEXT NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario)
+);
+
+-- Tabela QueixasSaude
+CREATE TABLE QueixasSaude (
+idQueixaSaude INT PRIMARY KEY AUTO_INCREMENT,
+idProntuario INT,
+dataRegistro DATE NOT NULL,
+descricao TEXT NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario)
+);
+
+-- Tabela HabitosVida
+CREATE TABLE HabitosVida (
+idHabitoVida INT PRIMARY KEY AUTO_INCREMENT,
+idProntuario INT,
+dataRegistro DATE NOT NULL,
+descricao TEXT NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario)
+);
+
+-- Tabela DadosExamesFisicos
+CREATE TABLE DadosExamesFisicos (
+idDadoExameFisico INT PRIMARY KEY AUTO_INCREMENT,
+idProntuario INT,
+dataRegistro DATE NOT NULL,
+descricao TEXT NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario)
+);
+
+-- Tabela Atendimento
+CREATE TABLE Atendimento (
+idAtendimento INT PRIMARY KEY AUTO_INCREMENT,
+idPaciente INT,
+idMedico INT,
+idProntuario INT,
+idClinica INT,
+idTipoAgendamento INT,
+dataAtendimento DATE NOT NULL,
+horaAtendimento TIME NOT NULL,
+conclusao TEXT NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente),
+FOREIGN KEY (idMedico) REFERENCES Medico(idMedico),
+FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario),
+FOREIGN KEY (idClinica) REFERENCES Clinicas(idClinica),
+FOREIGN KEY (idTipoAgendamento) REFERENCES TiposAgendamentos(idTipoAgendamento)
+);
+
+-- Tabela Procedimentos
+CREATE TABLE Procedimentos (
+idProcedimento INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(100) NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabela AtendimentoProcedimentos
+CREATE TABLE AtendimentoProcedimentos (
+idAtendimentoProcedimento INT PRIMARY KEY AUTO_INCREMENT,
+idAtendimento INT,
+idProcedimento INT,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idAtendimento) REFERENCES Atendimento(idAtendimento),
+FOREIGN KEY (idProcedimento) REFERENCES Procedimentos(idProcedimento)
+);
+
+-- Tabela DocumentosMedicos
+CREATE TABLE DocumentosMedicos (
+idDocumentoMedico INT PRIMARY KEY AUTO_INCREMENT,
+idAtendimento INT,
+idTipoDocumento INT,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idAtendimento) REFERENCES Atendimento(idAtendimento),
+FOREIGN KEY (idTipoDocumento) REFERENCES TiposDocumentos(idTipoDocumento)
+);
+
+-- Tabela TiposDocumentos
+CREATE TABLE TiposDocumentos (
+idTipoDocumento INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(100) NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabela Agendamentos
+CREATE TABLE Agendamentos (
+idAgendamento INT PRIMARY KEY AUTO_INCREMENT,
+idPaciente INT,
+idMedico INT,
+idClinica INT,
+idTipoAgendamento INT,
+dataAgendamento DATE NOT NULL,
+horaAgendamento TIME NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente),
+FOREIGN KEY (idMedico) REFERENCES Medico(idMedico),
+FOREIGN KEY (idClinica) REFERENCES Clinicas(idClinica),
+FOREIGN KEY (idTipoAgendamento) REFERENCES TiposAgendamentos(idTipoAgendamento)
+);
+
+-- Tabela TiposAgendamentos
+CREATE TABLE TiposAgendamentos (
+idTipoAgendamento INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(100) NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabela Clinicas
+CREATE TABLE Clinicas (
+idClinica INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(100) NOT NULL,
+endereco VARCHAR(200) NOT NULL,
+telefone VARCHAR(20) NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabela MedicoClinica
+CREATE TABLE MedicoClinica (
+idRelacaoMedicoClinica INT PRIMARY KEY AUTO_INCREMENT,
+idMedico INT,
+idClinica INT,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idMedico) REFERENCES Medico(idMedico),
+FOREIGN KEY (idClinica) REFERENCES Clinicas(idClinica)
+);
+
+-- Tabela Solicitacoes
+CREATE TABLE Solicitacoes (
+idSolicitacao INT PRIMARY KEY AUTO_INCREMENT,
+idPaciente INT,
+idMedico INT,
+idClinica INT,
+dataSolicitacao DATE NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente),
+FOREIGN KEY (idMedico) REFERENCES Medico(idMedico),
+FOREIGN KEY (idClinica) REFERENCES Clinicas(idClinica)
+);
+
+-- Tabela ItensSolicitacao
+CREATE TABLE ItensSolicitacao (
+idItemSolicitacao INT PRIMARY KEY AUTO_INCREMENT,
+idSolicitacao INT,
+descricao TEXT NOT NULL,
+status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (idSolicitacao) REFERENCES Solicitacoes(idSolicitacao)
+);
+
+-- Tabela Programas
+CREATE TABLE Programas (
+  idPrograma INT PRIMARY KEY AUTO_INCREMENT,
+  descricao TEXT NOT NULL
+);
+
+-- Tabela ProgramaClinica (relação entre Programa e Clinica)
+CREATE TABLE ProgramaClinica (
+  idProgramaClinica INT PRIMARY KEY AUTO_INCREMENT,
+  idPrograma INT,
+  idClinica INT,
+  status ENUM('ativo', 'inativo') NOT NULL,
+  dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (idPrograma) REFERENCES Programas(idPrograma),
+  FOREIGN KEY (idClinica) REFERENCES Clinicas(idClinica)
+);
+
+-- Acrescentar campo id_Programa na tabela Atendimento
+ALTER TABLE Atendimento
+ADD COLUMN id_Programa INT,
+ADD FOREIGN KEY (id_Programa) REFERENCES Programas(idPrograma);
+
+-- Tabela PacientePrograma (relação entre Paciente e Programa)
+CREATE TABLE PacientePrograma (
+  idPacientePrograma INT PRIMARY KEY AUTO_INCREMENT,
+  idPaciente INT,
+  idPrograma INT,
+  status ENUM('ativo', 'inativo') NOT NULL,
+  dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente),
+  FOREIGN KEY (idPrograma) REFERENCES Programas(idPrograma)
+);
+
+-- Tabela ProcedimentoPrograma (relação entre Procedimento e Programa)
+CREATE TABLE ProcedimentoPrograma (
+  idProcedimentoPrograma INT PRIMARY KEY AUTO_INCREMENT,
+  idProcedimento INT,
+  idPrograma INT,
+  dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  qtdeDiasConvocacao INT,
+  FOREIGN KEY (idProcedimento) REFERENCES Procedimentos(idProcedimento),
+  FOREIGN KEY (idPrograma) REFERENCES Programas(idPrograma)
+);
