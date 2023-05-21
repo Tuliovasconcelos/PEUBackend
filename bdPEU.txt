@@ -211,6 +211,7 @@ idMedico INT,
 idProntuario INT,
 idClinica INT,
 idTipoAgendamento INT,
+id_Programa INT,
 dataAtendimento DATE NOT NULL,
 horaAtendimento TIME NOT NULL,
 conclusao TEXT NOT NULL,
@@ -221,6 +222,7 @@ FOREIGN KEY (idMedico) REFERENCES Medico(idMedico),
 FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario),
 FOREIGN KEY (idClinica) REFERENCES Clinicas(idClinica),
 FOREIGN KEY (idTipoAgendamento) REFERENCES TiposAgendamentos(idTipoAgendamento)
+FOREIGN KEY (id_Programa) REFERENCES Programas(idPrograma)
 );
 
 -- Tabela Procedimentos
@@ -348,11 +350,6 @@ CREATE TABLE ProgramaClinica (
   FOREIGN KEY (idClinica) REFERENCES Clinicas(idClinica)
 );
 
--- Acrescentar campo id_Programa na tabela Atendimento
-ALTER TABLE Atendimento
-ADD COLUMN id_Programa INT,
-ADD FOREIGN KEY (id_Programa) REFERENCES Programas(idPrograma);
-
 -- Tabela PacientePrograma (relação entre Paciente e Programa)
 CREATE TABLE PacientePrograma (
   idPacientePrograma INT PRIMARY KEY AUTO_INCREMENT,
@@ -364,13 +361,14 @@ CREATE TABLE PacientePrograma (
   FOREIGN KEY (idPrograma) REFERENCES Programas(idPrograma)
 );
 
--- Tabela ProcedimentoPrograma (relação entre Procedimento e Programa)
-CREATE TABLE ProcedimentoPrograma (
-  idProcedimentoPrograma INT PRIMARY KEY AUTO_INCREMENT,
-  idProcedimento INT,
+CREATE TABLE ProcedimentoPorClassificacao (
   idPrograma INT,
-  dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  qtdeDiasConvocacao INT,
+  idPatologia INT,
+  idRisco INT,
+  idProcedimento INT,
+  FOREIGN KEY (idPrograma) REFERENCES Programas(idPrograma),
+  FOREIGN KEY (idPatologia) REFERENCES Patologia(ID),
+  FOREIGN KEY (idRisco) REFERENCES Riscos(ID),
   FOREIGN KEY (idProcedimento) REFERENCES Procedimentos(idProcedimento),
-  FOREIGN KEY (idPrograma) REFERENCES Programas(idPrograma)
+  PRIMARY KEY (idPrograma, idPatologia, idRisco, idProcedimento)
 );
