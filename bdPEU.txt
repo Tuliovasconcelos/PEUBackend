@@ -58,6 +58,28 @@ CREATE TABLE EnderecoPaciente (
   FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente)
 );
 
+-- Criação da tabela "Patologia"
+CREATE TABLE Patologia (
+  ID INT PRIMARY KEY AUTO_INCREMENT,
+  Descricao VARCHAR(255)
+);
+
+-- Criação da tabela "Riscos"
+CREATE TABLE Riscos (
+  ID INT PRIMARY KEY AUTO_INCREMENT,
+  Descricao VARCHAR(255)
+);
+
+
+CREATE TABLE PacientePatologiaRisco (
+  idPaciente INT,
+  idPatologia INT,
+  idRisco INT,
+  PRIMARY KEY (idPaciente , idPatologia, idRisco),
+  FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente ),
+  FOREIGN KEY (idPatologia) REFERENCES Patologia(ID),
+  FOREIGN KEY (idRisco) REFERENCES Riscos(ID)
+);
 
 -- Tabela Especialidade
 CREATE TABLE Especialidade (
