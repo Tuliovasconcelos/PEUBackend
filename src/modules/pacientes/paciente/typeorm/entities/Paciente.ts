@@ -5,7 +5,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import Usuario from '../../../../users/typeorm/entities/Usuario';
+import Usuario from '@modules/users/typeorm/entities/Usuario';
 
 @Entity('Paciente')
 export default class Paciente {

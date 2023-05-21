@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
-import Medico from './Medico';
-import Especialidade from './Especialidade';
+import Medico from '@modules/medicos/typeorm/entities/Medico';
+import Especialidade from '@modules/especialidades/typeorm/entities/Especialidade';
 
 @Entity('MedicoEspecialidade')
 export default class MedicoEspecialidade {
