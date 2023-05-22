@@ -59,7 +59,7 @@ CREATE TABLE EnderecoPaciente (
   FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente)
 );
 
--- Criação da tabela "Patologia"
+-- Criação da tabela Patologia
 CREATE TABLE Patologia (
   idPatologia INT PRIMARY KEY AUTO_INCREMENT,
   Descricao VARCHAR(255),
@@ -68,7 +68,7 @@ dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 
 );
 
--- Criação da tabela "Riscos"
+-- Criação da tabela Riscos
 CREATE TABLE Risco (
   idRisco INT PRIMARY KEY AUTO_INCREMENT,
   Descricao VARCHAR(255),
@@ -146,9 +146,9 @@ status ENUM('ativo', 'inativo') NOT NULL,
 dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Tabela HistoricoSaude
-CREATE TABLE HistoricoSaude (
-idHistoricoSaude INT PRIMARY KEY AUTO_INCREMENT,
+-- Tabela ProntuarioHistoricoSaude
+CREATE TABLE ProntuarioHistoricoSaude (
+idProntuarioHistoricoSaude INT PRIMARY KEY AUTO_INCREMENT,
 idProntuario INT,
 dataRegistro DATE NOT NULL,
 descricao TEXT NOT NULL,
@@ -157,8 +157,8 @@ dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario)
 );
 
--- Tabela QueixasSaude
-CREATE TABLE QueixasSaude (
+-- Tabela ProntuarioQueixaSaude
+CREATE TABLE ProntuarioQueixaSaude (
 idQueixaSaude INT PRIMARY KEY AUTO_INCREMENT,
 idProntuario INT,
 dataRegistro DATE NOT NULL,
@@ -168,8 +168,8 @@ dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario)
 );
 
--- Tabela HabitosVida
-CREATE TABLE HabitosVida (
+-- Tabela ProntuarioHabitosVida
+CREATE TABLE ProntuarioHabitoVida (
 idHabitoVida INT PRIMARY KEY AUTO_INCREMENT,
 idProntuario INT,
 dataRegistro DATE NOT NULL,
@@ -179,8 +179,8 @@ dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario)
 );
 
--- Tabela DadosExamesFisicos
-CREATE TABLE DadosExamesFisicos (
+-- Tabela ProntuarioExamesFisicos
+CREATE TABLE ProntuarioExameFisico (
 idDadoExameFisico INT PRIMARY KEY AUTO_INCREMENT,
 idProntuario INT,
 dataRegistro DATE NOT NULL,
