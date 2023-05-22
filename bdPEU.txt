@@ -62,13 +62,19 @@ CREATE TABLE EnderecoPaciente (
 -- Criação da tabela "Patologia"
 CREATE TABLE Patologia (
   ID INT PRIMARY KEY AUTO_INCREMENT,
-  Descricao VARCHAR(255)
+  Descricao VARCHAR(255),
+  status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
 );
 
 -- Criação da tabela "Riscos"
 CREATE TABLE Riscos (
   ID INT PRIMARY KEY AUTO_INCREMENT,
-  Descricao VARCHAR(255)
+  Descricao VARCHAR(255),
+  status ENUM('ativo', 'inativo') NOT NULL,
+dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
 );
 
 
