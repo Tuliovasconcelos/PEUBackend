@@ -146,26 +146,6 @@ status ENUM('ativo', 'inativo') NOT NULL,
 dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Tabela Receitas
-CREATE TABLE Receitas (
-idReceita INT PRIMARY KEY AUTO_INCREMENT,
-idProntuario INT,
-descricao TEXT NOT NULL,
-status ENUM('ativo', 'inativo') NOT NULL,
-dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario)
-);
-
--- Tabela Encaminhamentos
-CREATE TABLE Encaminhamentos (
-idEncaminhamento INT PRIMARY KEY AUTO_INCREMENT,
-idProntuario INT,
-descricao TEXT NOT NULL,
-status ENUM('ativo', 'inativo') NOT NULL,
-dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario)
-);
-
 -- Tabela HistoricoSaude
 CREATE TABLE HistoricoSaude (
 idHistoricoSaude INT PRIMARY KEY AUTO_INCREMENT,
