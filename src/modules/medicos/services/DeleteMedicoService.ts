@@ -1,5 +1,5 @@
 import { getCustomRepository } from 'typeorm';
-import { MedicoRepository } from '../typeorm/repositories/MedicoRepository';
+import MedicoRepository from '../typeorm/repositories/MedicoRepository';
 
 interface DeleteMedicoDTO {
   id: number;

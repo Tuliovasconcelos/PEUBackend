@@ -5,7 +5,7 @@ import User from '../typeorm/entities/Usuario';
 import UsersRepository from '../typeorm/repositories/UsersRepository';
 
 interface IRequest {
-  user_id: string;
+  idUsuario: number;
   name: string;
   email: string;
   password?: string;
@@ -14,15 +14,15 @@ interface IRequest {
 
 export default class UpdateProfileService {
   public async execute({
-    user_id,
+    idUsuario,
     name,
     email,
     password,
     old_password,
   }: IRequest): Promise<User> {
-    const usersRepository = getCustomRepository(UsersRepository,"mysql");
+    const usersRepository = getCustomRepository(UsersRepository, "mysql");
 
-    const user = await usersRepository.findById(user_id);
+    const user = await usersRepository.findById(idUsuario);
 
     if (!user) {
       throw new AppError('User not found.');
@@ -30,7 +30,7 @@ export default class UpdateProfileService {
 
     const userUpdateEmail = await usersRepository.findByEmail(email);
 
-    if (userUpdateEmail && userUpdateEmail.id !== user_id) {
+    if (userUpdateEmail && userUpdateEmail.idUsuario !== idUsuario) {
       throw new AppError('There is already one user with this email.');
     }
 
@@ -39,16 +39,16 @@ export default class UpdateProfileService {
     }
 
     if (password && old_password) {
-      const checkOldPassword = await compare(old_password, user.password);
+      const checkOldPassword = await compare(old_password, user.senha);
 
       if (!checkOldPassword) {
         throw new AppError('Old password does not match.');
       }
 
-      user.password = await hash(password, 8);
+      user.senha = await hash(password, 8);
     }
 
-    user.name = name;
+    user.nome = name;
     user.email = email;
 
     await usersRepository.save(user);

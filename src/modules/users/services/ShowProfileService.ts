@@ -1,17 +1,17 @@
 import AppError from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
-import User from '../typeorm/entities/Usuario';
+import Usuario from '../typeorm/entities/Usuario';
 import UsersRepository from '../typeorm/repositories/UsersRepository';
 
 interface IRequest {
-  user_id: string;
+  idUsuario: number;
 }
 
 export default class ShowProfileService {
-  public async execute({ user_id }: IRequest): Promise<User> {
-    const usersRepository = getCustomRepository(UsersRepository,"mysql");
+  public async execute({ idUsuario }: IRequest): Promise<Usuario> {
+    const usersRepository = getCustomRepository(UsersRepository);
 
-    const user = await usersRepository.findById(user_id);
+    const user = await usersRepository.findById(idUsuario);
 
     if (!user) {
       throw new AppError('User not found.');

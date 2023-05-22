@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import MedicoController from '../controllers/MedicoController';
+import MedicosController from '../controllers/MedicosController';
 import {
   createMedicoValidation,
   updateMedicoValidation,
@@ -8,7 +8,7 @@ import {
 } from '../validators/MedicoValidator';
 
 const medicoRoutes = Router();
-const medicoController = new MedicoController();
+const medicoController = new MedicosController();
 
 medicoRoutes.get('/', medicoController.index);
 medicoRoutes.get('/:id', showMedicoValidation, medicoController.show);

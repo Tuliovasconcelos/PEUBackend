@@ -19,17 +19,18 @@ export default class ContatoPacienteController {
 
     const showContatoPaciente = new ShowContatoPacienteService();
 
-    const contatoPaciente = await showContatoPaciente.execute({ id });
+    const contatoPaciente = await showContatoPaciente.execute({ id: Number(id) });
 
     return response.json(contatoPaciente);
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const { tipoContato, valorContato } = request.body;
+    const { idPaciente, tipoContato, valorContato } = request.body;
 
     const createContatoPaciente = new CreateContatoPacienteService();
 
     const contatoPaciente = await createContatoPaciente.execute({
+      idPaciente,
       tipoContato,
       valorContato,
     });
@@ -44,7 +45,7 @@ export default class ContatoPacienteController {
     const updateContatoPaciente = new UpdateContatoPacienteService();
 
     const contatoPaciente = await updateContatoPaciente.execute({
-      id,
+      id: Number(id),
       tipoContato,
       valorContato,
     });
@@ -57,7 +58,7 @@ export default class ContatoPacienteController {
 
     const deleteContatoPaciente = new DeleteContatoPacienteService();
 
-    await deleteContatoPaciente.execute({ id });
+    await deleteContatoPaciente.execute({ id: Number(id) });
 
     return response.json([]);
   }

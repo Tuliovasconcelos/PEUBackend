@@ -6,7 +6,7 @@ import authConfig from '@config/auth';
 interface ITokenPayload {
   iat: number;
   exp: number;
-  sub: string;
+  sub: number;
 }
 
 export default function isAuthenticated(
@@ -28,7 +28,7 @@ export default function isAuthenticated(
     const { sub } = decodedToken as ITokenPayload;
 
     request.user = {
-      id: sub,
+      idUsuario: sub,
     };
 
     return next();

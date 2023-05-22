@@ -7,15 +7,15 @@ import DiskStorageProvider from '@shared/providers/StorageProvider/DiskStoragePr
 import S3StorageProvider from '@shared/providers/StorageProvider/S3StorageProvider';
 
 interface IRequest {
-  user_id: string;
+  idUsuario: number;
   avatarFilename: string;
 }
 
 export default class UpdateUserAvatarService {
-  public async execute({ user_id, avatarFilename }: IRequest): Promise<User> {
-    const usersRepository = getCustomRepository(UsersRepository,"mysql");
+  public async execute({ idUsuario, avatarFilename }: IRequest): Promise<User> {
+    const usersRepository = getCustomRepository(UsersRepository, "mysql");
 
-    const user = await usersRepository.findById(user_id);
+    const user = await usersRepository.findById(idUsuario);
 
     if (!user) {
       throw new AppError('User not found.');
@@ -23,18 +23,18 @@ export default class UpdateUserAvatarService {
 
     if (uploadConfig.driver === 's3') {
       const s3Provider = new S3StorageProvider();
-      if (user.avatar) {
-        await s3Provider.deleteFile(user.avatar);
+      if (user.foto) {
+        await s3Provider.deleteFile(user.foto);
       }
       const filename = await s3Provider.saveFile(avatarFilename);
-      user.avatar = filename;
+      user.foto = filename;
     } else {
       const diskProvider = new DiskStorageProvider();
-      if (user.avatar) {
-        await diskProvider.deleteFile(user.avatar);
+      if (user.foto) {
+        await diskProvider.deleteFile(user.foto);
       }
       const filename = await diskProvider.saveFile(avatarFilename);
-      user.avatar = filename;
+      user.foto = filename;
     }
 
     await usersRepository.save(user);

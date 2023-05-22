@@ -1,12 +1,11 @@
 import { getCustomRepository } from 'typeorm';
-import { Medico } from '../typeorm/entities/Medico';
-import { MedicoRepository } from '../typeorm/repositories/MedicoRepository';
+import Medico from '../typeorm/entities/Medico';
+import MedicoRepository from '../typeorm/repositories/MedicoRepository';
 
 interface CreateMedicoDTO {
   idUsuario: number;
   nome: string;
   crm: string;
-  especialidadeId: number;
 }
 
 export default class CreateMedicoService {

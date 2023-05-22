@@ -23,14 +23,13 @@ export default class MedicoEspecialidadeRepository extends Repository<MedicoEspe
     return medicosEspecialidades;
   }
 
-  public async findByMedicoAndEspecialidade(medicoId: number, especialidadeId: number): Promise<MedicoEspecialidade | undefined> {
+  public async findByMedicoAndEspecialidade(id: number): Promise<MedicoEspecialidade | null> {
     const medicoEspecialidade = await this.findOne({
       where: {
-        medico: { idMedico: medicoId },
-        especialidade: { idEspecialidade: especialidadeId },
+        idMedicoEspecialidade: id
       },
     });
 
-    return medicoEspecialidade;
+    return medicoEspecialidade || null;
   }
 }

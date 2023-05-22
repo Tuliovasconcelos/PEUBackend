@@ -11,9 +11,14 @@ export default class ShowContatoPacienteService {
     const contatoPacienteRepository = getCustomRepository(
       ContatoPacienteRepository
     );
-
     const contatoPaciente = await contatoPacienteRepository.findById(id);
 
-    return contatoPaciente;
+    return contatoPaciente || undefined;
   }
 }
+
+
+
+
+
+

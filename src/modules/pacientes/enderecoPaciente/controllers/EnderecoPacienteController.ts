@@ -15,22 +15,20 @@ export default class EnderecoPacienteController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
-
     const showEnderecoPaciente = new ShowEnderecoPacienteService();
 
-    const endereco = await showEnderecoPaciente.execute({ id });
+    const endereco = await showEnderecoPaciente.execute({ id: Number(request.params.id) });
 
     return response.json(endereco);
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const { pacienteId, endereco, cidade, estado, cep } = request.body;
+    const { idPaciente, endereco, cidade, estado, cep } = request.body;
 
     const createEnderecoPaciente = new CreateEnderecoPacienteService();
 
     const enderecoPaciente = await createEnderecoPaciente.execute({
-      pacienteId,
+      idPaciente,
       endereco,
       cidade,
       estado,
@@ -41,14 +39,13 @@ export default class EnderecoPacienteController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { pacienteId, endereco, cidade, estado, cep } = request.body;
-    const { id } = request.params;
+    const { idPaciente, endereco, cidade, estado, cep } = request.body;
 
     const updateEnderecoPaciente = new UpdateEnderecoPacienteService();
 
     const enderecoPaciente = await updateEnderecoPaciente.execute({
-      id,
-      pacienteId,
+      id: Number(request.params.id),
+      idPaciente,
       endereco,
       cidade,
       estado,
@@ -63,7 +60,7 @@ export default class EnderecoPacienteController {
 
     const deleteEnderecoPaciente = new DeleteEnderecoPacienteService();
 
-    await deleteEnderecoPaciente.execute({ id });
+    await deleteEnderecoPaciente.execute({ id: Number(request.params.id) });
 
     return response.json([]);
   }

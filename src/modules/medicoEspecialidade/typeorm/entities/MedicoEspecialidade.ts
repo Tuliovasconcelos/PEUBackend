@@ -4,7 +4,7 @@ import Especialidade from '@modules/especialidades/typeorm/entities/Especialidad
 
 @Entity('MedicoEspecialidade')
 export default class MedicoEspecialidade {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   idMedicoEspecialidade: number;
 
   @ManyToOne(() => Medico)

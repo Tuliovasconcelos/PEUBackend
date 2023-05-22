@@ -15,11 +15,11 @@ export default class EspecialidadesController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
+    const idFormated = Number(request.params.id);
 
     const showEspecialidade = new ShowEspecialidadeService();
 
-    const especialidade = await showEspecialidade.execute({ id });
+    const especialidade = await showEspecialidade.execute({ id: idFormated });
 
     return response.json(especialidade);
   }
@@ -39,12 +39,12 @@ export default class EspecialidadesController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const { nome, status } = request.body;
-    const { id } = request.params;
+    const idFormated = Number(request.params.id);
 
     const updateEspecialidade = new UpdateEspecialidadeService();
 
     const especialidade = await updateEspecialidade.execute({
-      id,
+      id: idFormated,
       nome,
       status,
     });
@@ -53,11 +53,10 @@ export default class EspecialidadesController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
 
     const deleteEspecialidade = new DeleteEspecialidadeService();
 
-    await deleteEspecialidade.execute({ id });
+    await deleteEspecialidade.execute({ id: Number(request.params.id) });
 
     return response.json([]);
   }

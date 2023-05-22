@@ -10,13 +10,12 @@ export default class DeletePacienteService {
   public async execute({ id }: IRequest): Promise<void> {
     const pacientesRepository = getCustomRepository(PacienteRepository);
 
-    const paciente = await pacientesRepository.findOne(id);
+    const paciente = await pacientesRepository.findById(id);
 
     if (!paciente) {
-      throw new AppError('Paciente not found.');
+      throw new AppError('Paciente not found.', 404);
     }
 
-    await pacientesRepository.remove(paciente);
+    await pacientesRepository.delete(id);
   }
 }
-

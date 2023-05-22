@@ -15,11 +15,10 @@ export default class MedicoEspecialidadeController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
 
     const showMedicoEspecialidade = new ShowMedicoEspecialidadeService();
 
-    const medicoEspecialidade = await showMedicoEspecialidade.execute({ id });
+    const medicoEspecialidade = await showMedicoEspecialidade.execute({ id: Number(request.params.id) });
 
     return response.json(medicoEspecialidade);
   }
@@ -44,7 +43,7 @@ export default class MedicoEspecialidadeController {
     const updateMedicoEspecialidade = new UpdateMedicoEspecialidadeService();
 
     const medicoEspecialidade = await updateMedicoEspecialidade.execute({
-      id,
+      medicoEspecialidadeId: Number(id),
       medicoId,
       especialidadeId,
     });
@@ -57,7 +56,7 @@ export default class MedicoEspecialidadeController {
 
     const deleteMedicoEspecialidade = new DeleteMedicoEspecialidadeService();
 
-    await deleteMedicoEspecialidade.execute({ id });
+    await deleteMedicoEspecialidade.execute({ medicoEspecialidadeId: Number(id) });
 
     return response.json([]);
   }

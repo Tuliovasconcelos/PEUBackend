@@ -15,51 +15,43 @@ export default class MedicosController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
-
     const showMedico = new ShowMedicoService();
 
-    const medico = await showMedico.execute({ id });
+    const medico = await showMedico.execute({ id: Number(request.params.id) });
 
     return response.json(medico);
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const { nome, crm, especialidade_id } = request.body;
-
+    const { idUsuario, nome, crm } = request.body;
     const createMedico = new CreateMedicoService();
 
     const medico = await createMedico.execute({
+      idUsuario,
       nome,
       crm,
-      especialidade_id,
     });
 
     return response.json(medico);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { nome, crm, especialidade_id } = request.body;
-    const { id } = request.params;
-
+    const { nome, crm } = request.body;
     const updateMedico = new UpdateMedicoService();
 
     const medico = await updateMedico.execute({
-      id,
+      id: Number(request.params.id),
       nome,
-      crm,
-      especialidade_id,
+      crm
     });
 
     return response.json(medico);
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
-
     const deleteMedico = new DeleteMedicoService();
 
-    await deleteMedico.execute({ id });
+    await deleteMedico.execute({ id: Number(request.params.id) });
 
     return response.json([]);
   }

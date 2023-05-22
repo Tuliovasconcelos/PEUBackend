@@ -1,9 +1,10 @@
 import { getCustomRepository } from 'typeorm';
 import EnderecoPaciente from '../typeorm/entities/EnderecoPaciente';
 import EnderecoPacienteRepository from '../typeorm/repositories/EnderecoPacienteRepository';
+import PacienteRepository from '@modules/pacientes/paciente/typeorm/repositories/PacienteRepository';
 
 interface IRequest {
-  pacienteId: number;
+  idPaciente: number;
   endereco: string;
   cidade: string;
   estado: string;
@@ -12,7 +13,7 @@ interface IRequest {
 
 export default class CreateEnderecoPacienteService {
   public async execute({
-    pacienteId,
+    idPaciente,
     endereco,
     cidade,
     estado,
@@ -22,16 +23,27 @@ export default class CreateEnderecoPacienteService {
       EnderecoPacienteRepository
     );
 
-    const enderecoPaciente = enderecoPacienteRepository.create({
-      pacienteId,
-      endereco,
-      cidade,
-      estado,
-      cep,
-    });
+    const pacienteRepository = getCustomRepository(PacienteRepository);
+    const paciente = await pacienteRepository.findById(idPaciente);
 
-    await enderecoPacienteRepository.save(enderecoPaciente);
+    if (!paciente) {
+      throw new Error('Paciente não encontrado.');
+    }
 
-    return enderecoPaciente;
+    const enderecoPaciente = enderecoPacienteRepository.create([
+      {
+        idPaciente: paciente,
+        endereco,
+        cidade,
+        estado,
+        cep,
+      },
+    ]);
+
+    const createdEnderecoPaciente = await enderecoPacienteRepository.save(
+      enderecoPaciente
+    );
+
+    return createdEnderecoPaciente[0];
   }
 }

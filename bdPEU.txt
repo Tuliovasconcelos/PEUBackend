@@ -18,12 +18,13 @@ CREATE TABLE Usuario (
     FOREIGN KEY (idTipoUsuario) REFERENCES TipoUsuario(idTipoUsuario)
 );
 
-CREATE TABLE user_tokens (
+CREATE TABLE userTokens (
   id INT AUTO_INCREMENT PRIMARY KEY,
   token VARCHAR(255) NOT NULL,
-  usuario_id VARCHAR(255) NOT NULL,
-  dataCriacao DATETIME NOT NULL,
-  dataAlteracao DATETIME NOT NULL
+  idUsuario INT NOT NULL,
+  dataCriacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
 );
 
 -- Tabela Paciente

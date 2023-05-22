@@ -15,11 +15,10 @@ export default class PacientesController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
 
     const showPaciente = new ShowPacienteService();
 
-    const paciente = await showPaciente.execute({ id });
+    const paciente = await showPaciente.execute({ id: Number(request.params.id) });
 
     return response.json(paciente);
   }
@@ -40,12 +39,11 @@ export default class PacientesController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const { nome, dataNascimento, genero } = request.body;
-    const { id } = request.params;
 
     const updatePaciente = new UpdatePacienteService();
 
     const paciente = await updatePaciente.execute({
-      id,
+      id: Number(request.params.id),
       nome,
       dataNascimento,
       genero,
@@ -55,11 +53,12 @@ export default class PacientesController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
 
     const deletePaciente = new DeletePacienteService();
 
-    await deletePaciente.execute({ id });
+    await deletePaciente.execute({
+      id: Number(request.params.id)
+    });
 
     return response.json([]);
   }

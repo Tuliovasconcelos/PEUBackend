@@ -13,16 +13,16 @@ interface IRequest {
 
 export default class SendForgotPasswordEmailService {
   public async execute({ email }: IRequest): Promise<void> {
-    const usersRepository = getCustomRepository(UsersRepository,"mysql");
-    const userTokensRepository = getCustomRepository(UserTokensRepository,"mysql");
+    const usersRepository = getCustomRepository(UsersRepository);
+    const userTokensRepository = getCustomRepository(UserTokensRepository);
 
     const user = await usersRepository.findByEmail(email);
 
     if (!user) {
-      throw new AppError('User does not exists.');
+      throw new AppError('User does not exist.', 400);
     }
 
-    const { token } = await userTokensRepository.generate(user.id);
+    const { token } = await userTokensRepository.generate(user.idUsuario);
 
     const forgotPasswordTemplate = path.resolve(
       __dirname,
@@ -34,34 +34,33 @@ export default class SendForgotPasswordEmailService {
     if (mailConfig.driver === 'ses') {
       await SESMail.sendMail({
         to: {
-          name: user.name,
+          name: user.nome,
           email: user.email,
         },
-        subject: '[API Vendas] Recuperação de Senha',
+        subject: '[API PEU] Recuperação de Senha',
         templateData: {
           file: forgotPasswordTemplate,
           variables: {
-            name: user.name,
+            name: user.nome,
             link: `${process.env.APP_WEB_URL}/reset_password?token=${token}`,
           },
         },
       });
-      return;
-    }
-
-    await EtherealMail.sendMail({
-      to: {
-        name: user.name,
-        email: user.email,
-      },
-      subject: '[API Vendas] Recuperação de Senha',
-      templateData: {
-        file: forgotPasswordTemplate,
-        variables: {
-          name: user.name,
-          link: `${process.env.APP_WEB_URL}/reset_password?token=${token}`,
+    } else {
+      await EtherealMail.sendMail({
+        to: {
+          name: user.nome,
+          email: user.email,
         },
-      },
-    });
+        subject: '[API PEU] Recuperação de Senha',
+        templateData: {
+          file: forgotPasswordTemplate,
+          variables: {
+            name: user.nome,
+            link: `${process.env.APP_WEB_URL}/reset_password?token=${token}`,
+          },
+        },
+      });
+    }
   }
 }

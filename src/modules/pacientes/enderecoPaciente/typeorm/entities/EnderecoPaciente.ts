@@ -1,24 +1,23 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import Paciente from '@modules/paciente/paciente/typeorm/entities/Paciente';
+import Paciente from '@modules/pacientes/paciente/typeorm/entities/Paciente';
 
 @Entity('EnderecoPaciente')
 export default class EnderecoPaciente {
-    @PrimaryGeneratedColumn()
-    idEndereco: number;
+  @PrimaryGeneratedColumn('increment')
+  idEndereco: number;
 
-    @ManyToOne(() => Paciente, (paciente: Paciente) => paciente.enderecos)
-    paciente: Paciente;
+  @ManyToOne(() => Paciente, paciente => paciente.idPaciente)
+  idPaciente: Paciente;
 
-    @Column()
-    endereco: string;
+  @Column()
+  endereco: string;
 
-    @Column()
-    cidade: string;
+  @Column()
+  cidade: string;
 
-    @Column()
-    estado: string;
+  @Column()
+  estado: string;
 
-    @Column()
-    cep: string;
+  @Column()
+  cep: string;
 }
-

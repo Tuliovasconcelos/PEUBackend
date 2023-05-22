@@ -6,21 +6,21 @@ export default class UsersRepository extends Repository<User> {
   public async findByName(name: string): Promise<User | undefined> {
     const user = await this.findOne({
       where: {
-        name,
+        nome: name,
       },
     });
 
-    return user;
+    return user || undefined;
   }
 
-  public async findById(id: string): Promise<User | undefined> {
+  public async findById(id: number): Promise<User | undefined> {
     const user = await this.findOne({
       where: {
-        id,
+        idUsuario: id,
       },
     });
 
-    return user;
+    return user || undefined;
   }
 
   public async findByEmail(email: string): Promise<User | undefined> {
@@ -30,6 +30,6 @@ export default class UsersRepository extends Repository<User> {
       },
     });
 
-    return user;
+    return user || undefined;
   }
 }

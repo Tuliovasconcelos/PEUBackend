@@ -13,7 +13,7 @@ export default class UpdateEspecialidadeService {
   public async execute({ id, nome, status }: IRequest): Promise<Especialidade> {
     const especialidadeRepository = getCustomRepository(EspecialidadeRepository);
 
-    const especialidade = await especialidadeRepository.findOne(id);
+    const especialidade = await especialidadeRepository.findById(id);
 
     if (!especialidade) {
       throw new AppError('Especialidade not found');

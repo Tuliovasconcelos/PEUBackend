@@ -7,7 +7,7 @@ interface IRequest {
 }
 
 export default class ShowEnderecoPacienteService {
-  public async execute({ id }: IRequest): Promise<EnderecoPaciente | undefined> {
+  public async execute({ id }: IRequest): Promise<EnderecoPaciente | null> {
     const enderecoPacienteRepository = getCustomRepository(
       EnderecoPacienteRepository
     );

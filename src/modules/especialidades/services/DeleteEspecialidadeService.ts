@@ -10,7 +10,7 @@ export default class DeleteEspecialidadeService {
   public async execute({ id }: IRequest): Promise<void> {
     const especialidadeRepository = getCustomRepository(EspecialidadeRepository);
 
-    const especialidade = await especialidadeRepository.findOne(id);
+    const especialidade = await especialidadeRepository.findById(id);
 
     if (!especialidade) {
       throw new AppError('Especialidade not found');
@@ -19,4 +19,3 @@ export default class DeleteEspecialidadeService {
     await especialidadeRepository.remove(especialidade);
   }
 }
-

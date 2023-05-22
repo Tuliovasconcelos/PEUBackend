@@ -1,6 +1,7 @@
 import { getCustomRepository } from 'typeorm';
-import { Medico } from '../typeorm/entities/Medico';
-import { MedicoRepository } from '../typeorm/repositories/MedicoRepository';
+import Medico from '../typeorm/entities/Medico';
+import MedicoRepository from '../typeorm/repositories/MedicoRepository';
+import EspecialidadeRepository from '@modules/especialidades/typeorm/repositories/EspecialidadeRepository';
 
 interface UpdateMedicoDTO {
   id: number;
@@ -25,10 +26,6 @@ export default class UpdateMedicoService {
 
     if (data.crm) {
       medico.crm = data.crm;
-    }
-
-    if (data.especialidadeId) {
-      medico.especialidadeId = data.especialidadeId;
     }
 
     await medicoRepository.save(medico);

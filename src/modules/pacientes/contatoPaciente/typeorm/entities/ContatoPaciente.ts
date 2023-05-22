@@ -1,17 +1,17 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import Paciente from '@modules/paciente/paciente/typeorm/entities/Paciente';
+import Paciente from '@modules/pacientes/paciente/typeorm/entities/Paciente';
 
 @Entity('ContatoPaciente')
 export default class ContatoPaciente {
-    @PrimaryGeneratedColumn()
-    idContato: number;
+  @PrimaryGeneratedColumn('increment')
+  idContato: number;
 
-    @ManyToOne(() => Paciente, (paciente: Paciente) => paciente.contatos)
-    paciente: Paciente;
+  @ManyToOne(() => Paciente, (paciente: Paciente) => paciente.idPaciente)
+  paciente: Paciente;
 
-    @Column({ type: 'enum', enum: ['telefone', 'email', 'outro'] })
-    tipoContato: 'telefone' | 'email' | 'outro';
+  @Column({ type: 'enum', enum: ['telefone', 'email', 'outro'] })
+  tipoContato: 'telefone' | 'email' | 'outro';
 
-    @Column()
-    valorContato: string;
+  @Column()
+  valorContato: string;
 }

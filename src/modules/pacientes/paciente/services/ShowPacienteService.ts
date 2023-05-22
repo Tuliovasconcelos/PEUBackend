@@ -11,7 +11,7 @@ export default class ShowPacienteService {
   public async execute({ id }: IRequest): Promise<Paciente> {
     const pacientesRepository = getCustomRepository(PacienteRepository);
 
-    const paciente = await pacientesRepository.findOne(id);
+    const paciente = await pacientesRepository.findById(id);
 
     if (!paciente) {
       throw new AppError('Paciente not found.');

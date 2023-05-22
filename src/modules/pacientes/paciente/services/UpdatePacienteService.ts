@@ -14,7 +14,7 @@ export default class UpdatePacienteService {
   public async execute({ id, nome, dataNascimento, genero }: IRequest): Promise<Paciente> {
     const pacientesRepository = getCustomRepository(PacienteRepository);
 
-    const paciente = await pacientesRepository.findOne(id);
+    const paciente = await pacientesRepository.findById(id);
 
     if (!paciente) {
       throw new AppError('Paciente not found.');
@@ -28,4 +28,4 @@ export default class UpdatePacienteService {
 
     return paciente;
   }
-} 
+}

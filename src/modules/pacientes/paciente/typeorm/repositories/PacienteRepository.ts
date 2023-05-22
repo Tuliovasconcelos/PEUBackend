@@ -2,19 +2,30 @@ import { EntityRepository, In, Repository } from 'typeorm';
 import Paciente from '../entities/Paciente';
 
 interface IFindPacientes {
-  id: string;
+  id: number;
 }
 
 @EntityRepository(Paciente)
 export default class PacienteRepository extends Repository<Paciente> {
-  public async findByName(name: string): Promise<Paciente | undefined> {
+
+  public async findById(id: number): Promise<Paciente | null> {
+    const paciente = await this.findOne({
+      where: {
+        idPaciente: id,
+      },
+    });
+
+    return paciente || null;
+  }
+
+  public async findByName(name: string): Promise<Paciente | null> {
     const paciente = await this.findOne({
       where: {
         nome: name,
       },
     });
 
-    return paciente;
+    return paciente || null;
   }
 
   public async findAllByIds(pacientes: IFindPacientes[]): Promise<Paciente[]> {
@@ -29,4 +40,3 @@ export default class PacienteRepository extends Repository<Paciente> {
     return existentPacientes;
   }
 }
-

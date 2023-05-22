@@ -22,11 +22,13 @@ export default class Paciente {
   dataNascimento: Date;
 
   @Column({
+    type: 'enum',
     enum: ['masculino', 'feminino', 'outro'],
   })
   genero: string;
 
   @Column({
+    type: 'enum',
     enum: ['ativo', 'inativo'],
   })
   status: string;
@@ -38,4 +40,3 @@ export default class Paciente {
   @JoinColumn({ name: 'idUsuario' })
   usuario: Usuario;
 }
-

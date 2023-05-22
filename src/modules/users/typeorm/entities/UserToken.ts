@@ -1,28 +1,20 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  Generated,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import User from './Usuario';
 
-@Entity('user_tokens')
+@Entity('userTokens')
 export default class UserToken {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column()
-  @Generated('increment')
-  token: number;
+  token: string;
 
-  @Column()
-  usuario_id: string;
+  @ManyToOne(() => User, user => user.idUsuario)
+  idUsuario: User | number;
 
-  @CreateDateColumn()
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   dataCriacao: Date;
 
-  @UpdateDateColumn()
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   dataAlteracao: Date;
 }
-
