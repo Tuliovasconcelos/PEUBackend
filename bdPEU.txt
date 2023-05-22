@@ -69,7 +69,7 @@ dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Criação da tabela "Riscos"
-CREATE TABLE Riscos (
+CREATE TABLE Risco (
   idRisco INT PRIMARY KEY AUTO_INCREMENT,
   Descricao VARCHAR(255),
   status ENUM('ativo', 'inativo') NOT NULL,
