@@ -1,15 +1,16 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity('Especialidade')
-export default class Especialidade {
+@Entity('Risco')
+export default class Risco {
   @PrimaryGeneratedColumn('increment')
-  idEspecialidade: number;
+  idRisco: number;
 
   @Column()
-  nome: string;
+  descricao: string;
 
   @Column({
     enum: ['ativo', 'inativo'],
+    default: 'ativo'
   })
   status: string;
 

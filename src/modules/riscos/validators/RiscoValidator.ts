@@ -1,29 +1,29 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 
-export const createEspecialidadeValidation = celebrate({
+export const createRiscoValidation = celebrate({
   [Segments.BODY]: {
-    nome: Joi.string().required(),
+    descricao: Joi.string().required(),
     status: Joi.string().valid('ativo', 'inativo').required(),
   },
 });
 
-export const updateEspecialidadeValidation = celebrate({
+export const updateRiscoValidation = celebrate({
   [Segments.PARAMS]: {
     id: Joi.number().integer().required(),
   },
   [Segments.BODY]: {
-    nome: Joi.string(),
+    descricao: Joi.string(),
     status: Joi.string().valid('ativo', 'inativo'),
   },
 });
 
-export const showEspecialidadeValidation = celebrate({
+export const showRiscoValidation = celebrate({
   [Segments.PARAMS]: {
     id: Joi.number().integer().required(),
   },
 });
 
-export const deleteEspecialidadeValidation = celebrate({
+export const deleteRiscoValidation = celebrate({
   [Segments.PARAMS]: {
     id: Joi.number().integer().required(),
   },
