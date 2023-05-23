@@ -3,24 +3,25 @@ import ProntuarioQueixaSaude from '../entities/ProntuarioQueixaSaude';
 
 @EntityRepository(ProntuarioQueixaSaude)
 export default class ProntuarioQueixaSaudeRepository extends Repository<ProntuarioQueixaSaude> {
-  public async findByProntuarioId(prontuarioId: number): Promise<ProntuarioQueixaSaude[]> {
-    const queixasSaude = await this.find({
+
+  public async findById(idQueixaSaude: number): Promise<ProntuarioQueixaSaude | null> {
+    const queixaSaude = await this.findOne({
       where: {
-        idProntuario: prontuarioId,
+        idQueixaSaude: idQueixaSaude,
       },
     });
 
-    return queixasSaude;
+    return queixaSaude || null;
   }
 
-  public async findByStatus(status: 'ativo' | 'inativo'): Promise<ProntuarioQueixaSaude[]> {
-    const queixasSaude = await this.find({
+  public async findByIdProntuario(idProntuario: number): Promise<ProntuarioQueixaSaude[]> {
+    const queixaSaude = await this.find({
       where: {
-        status,
+        idProntuario: idProntuario,
       },
     });
 
-    return queixasSaude;
+    return queixaSaude;
   }
 
 }

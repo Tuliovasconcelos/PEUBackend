@@ -1,31 +1,43 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import Prontuario from '@modules/prontuarios/prontuario/typeorm/entities/Prontuario';
 
 @Entity('ProntuarioQueixaSaude')
-export default class ProntuarioQueixaSaude {
-  @PrimaryGeneratedColumn('increment')
+export default class ProntuarioQueixaSaude extends BaseEntity {
+  @PrimaryGeneratedColumn()
   idQueixaSaude: number;
 
   @Column()
   idProntuario: number;
 
+  @ManyToOne(() => Prontuario)
+  @JoinColumn({ name: 'idProntuario' })
+  prontuario: Prontuario;
+
   @Column()
   dataRegistro: Date;
 
-  @Column()
+  @Column('text')
   descricao: string;
 
   @Column({
     type: 'enum',
     enum: ['ativo', 'inativo'],
-    default: 'ativo'
+    default: 'ativo',
   })
   status: string;
 
-  @Column({ default: () => 'CURRENT_TIMESTAMP' })
-  dataAlteracao: Date;
+  @CreateDateColumn()
+  dataCriacao: Date;
 
-  @ManyToOne(() => Prontuario, prontuario => prontuario.idProntuario)
-  @JoinColumn({ name: 'idProntuario' })
-  prontuario: Prontuario;
+  @UpdateDateColumn()
+  dataAlteracao: Date;
 }

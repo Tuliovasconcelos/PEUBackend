@@ -41,7 +41,6 @@ export default class PacientePatologiaRiscoController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { idPaciente, idPatologia, idRisco } = request.body;
 
     const updatePacientePatologiaRisco = new UpdatePacientePatologiaRiscoService();
 
