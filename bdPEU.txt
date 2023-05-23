@@ -168,7 +168,7 @@ dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario)
 );
 
--- Tabela ProntuarioHabitosVida
+-- Tabela ProntuarioHabitoVida
 CREATE TABLE ProntuarioHabitoVida (
 idHabitoVida INT PRIMARY KEY AUTO_INCREMENT,
 idProntuario INT,
@@ -179,7 +179,7 @@ dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario)
 );
 
--- Tabela ProntuarioExamesFisicos
+-- Tabela ProntuarioExameFisico
 CREATE TABLE ProntuarioExameFisico (
 idDadoExameFisico INT PRIMARY KEY AUTO_INCREMENT,
 idProntuario INT,
@@ -213,7 +213,7 @@ FOREIGN KEY (id_Programa) REFERENCES Programas(idPrograma)
 );
 
 -- Tabela Procedimentos
-CREATE TABLE Procedimentos (
+CREATE TABLE Procedimento (
 idProcedimento INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(100) NOT NULL,
 status ENUM('ativo', 'inativo') NOT NULL,
@@ -267,8 +267,8 @@ FOREIGN KEY (idClinica) REFERENCES Clinicas(idClinica),
 FOREIGN KEY (idTipoAgendamento) REFERENCES TiposAgendamentos(idTipoAgendamento)
 );
 
--- Tabela TiposAgendamentos
-CREATE TABLE TiposAgendamentos (
+-- Tabela TipoAgendamento
+CREATE TABLE TipoAgendamento (
 idTipoAgendamento INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(100) NOT NULL,
 status ENUM('ativo', 'inativo') NOT NULL,
@@ -276,7 +276,7 @@ dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Tabela Clinicas
-CREATE TABLE Clinicas (
+CREATE TABLE Clinica (
 idClinica INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(100) NOT NULL,
 endereco VARCHAR(200) NOT NULL,
@@ -320,10 +320,12 @@ dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 FOREIGN KEY (idSolicitacao) REFERENCES Solicitacoes(idSolicitacao)
 );
 
--- Tabela Programas
-CREATE TABLE Programas (
+-- Tabela Programa
+CREATE TABLE Programa (
   idPrograma INT PRIMARY KEY AUTO_INCREMENT,
-  descricao TEXT NOT NULL
+  descricao TEXT NOT NULL,
+  status ENUM('ativo', 'inativo') NOT NULL,
+  dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 );
 
 -- Tabela ProgramaClinica (relação entre Programa e Clinica)
