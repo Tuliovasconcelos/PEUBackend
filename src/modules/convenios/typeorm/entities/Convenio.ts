@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('Convenio')
 class Convenio {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   idConvenio: number;
 
   @Column()

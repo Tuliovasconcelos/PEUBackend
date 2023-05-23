@@ -19,12 +19,12 @@ export const updateMedicoEspecialidadeValidation = celebrate({
 
 export const showMedicoEspecialidadeValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().required(),
+    idMedicoEspecialidade: Joi.number().required(),
   },
 });
 
 export const deleteMedicoEspecialidadeValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().required(),
+    idMedicoEspecialidade: Joi.number().required(),
   },
 });

@@ -4,14 +4,14 @@ import Paciente from '../typeorm/entities/Paciente';
 import PacienteRepository from '../typeorm/repositories/PacienteRepository';
 
 interface IRequest {
-  id: number;
+  idPaciente: number;
 }
 
 export default class ShowPacienteService {
-  public async execute({ id }: IRequest): Promise<Paciente> {
+  public async execute({ idPaciente }: IRequest): Promise<Paciente> {
     const pacientesRepository = getCustomRepository(PacienteRepository);
 
-    const paciente = await pacientesRepository.findById(id);
+    const paciente = await pacientesRepository.findById(idPaciente);
 
     if (!paciente) {
       throw new AppError('Paciente not found.');

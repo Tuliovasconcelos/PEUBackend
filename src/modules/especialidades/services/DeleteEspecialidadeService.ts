@@ -3,14 +3,14 @@ import AppError from '@shared/errors/AppError';
 import EspecialidadeRepository from '../typeorm/repositories/EspecialidadeRepository';
 
 interface IRequest {
-  id: number;
+  idEspecialidade: number;
 }
 
 export default class DeleteEspecialidadeService {
-  public async execute({ id }: IRequest): Promise<void> {
+  public async execute({ idEspecialidade }: IRequest): Promise<void> {
     const especialidadeRepository = getCustomRepository(EspecialidadeRepository);
 
-    const especialidade = await especialidadeRepository.findById(id);
+    const especialidade = await especialidadeRepository.findById(idEspecialidade);
 
     if (!especialidade) {
       throw new AppError('Especialidade not found');

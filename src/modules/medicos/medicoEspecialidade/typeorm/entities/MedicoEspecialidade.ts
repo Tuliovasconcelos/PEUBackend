@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
-import Medico from '@modules/medicos/typeorm/entities/Medico';
+import Medico from '@modules/medicos/medico/typeorm/entities/Medico';
 import Especialidade from '@modules/especialidades/typeorm/entities/Especialidade';
 
 @Entity('MedicoEspecialidade')
@@ -8,11 +8,11 @@ export default class MedicoEspecialidade {
   idMedicoEspecialidade: number;
 
   @ManyToOne(() => Medico)
-  @JoinColumn({ name: 'medico_id' })
+  @JoinColumn({ name: 'idMedico' })
   medico: Medico;
 
   @ManyToOne(() => Especialidade)
-  @JoinColumn({ name: 'especialidade_id' })
+  @JoinColumn({ name: 'idMedico' })
   especialidade: Especialidade;
 }
 

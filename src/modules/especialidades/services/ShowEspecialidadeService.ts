@@ -4,14 +4,14 @@ import Especialidade from '../typeorm/entities/Especialidade';
 import EspecialidadeRepository from '../typeorm/repositories/EspecialidadeRepository';
 
 interface IRequest {
-  id: number;
+  idEspecialidade: number;
 }
 
 export default class ShowEspecialidadeService {
-  public async execute({ id }: IRequest): Promise<Especialidade> {
+  public async execute({ idEspecialidade }: IRequest): Promise<Especialidade> {
     const especialidadeRepository = getCustomRepository(EspecialidadeRepository);
 
-    const especialidade = await especialidadeRepository.findById(id);
+    const especialidade = await especialidadeRepository.findById(idEspecialidade);
 
     if (!especialidade) {
       throw new AppError('Especialidade not found');

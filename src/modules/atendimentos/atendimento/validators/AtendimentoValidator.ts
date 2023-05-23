@@ -17,7 +17,7 @@ export const createAtendimentoValidation = celebrate({
 
 export const updateAtendimentoValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idAtendimento: Joi.number().integer().required(),
   },
   [Segments.BODY]: {
     idPaciente: Joi.number().integer(),
@@ -35,12 +35,12 @@ export const updateAtendimentoValidation = celebrate({
 
 export const showAtendimentoValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idAtendimento: Joi.number().integer().required(),
   },
 });
 
 export const deleteAtendimentoValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idAtendimento: Joi.number().integer().required(),
   },
 });

@@ -4,7 +4,7 @@ import Paciente from '@modules/pacientes/paciente/typeorm/entities/Paciente';
 @Entity('PacienteContato')
 export default class PacienteContato {
   @PrimaryGeneratedColumn('increment')
-  idContato: number;
+  idPacienteContato: number;
 
   @ManyToOne(() => Paciente, (paciente: Paciente) => paciente.idPaciente)
   paciente: Paciente;

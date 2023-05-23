@@ -18,45 +18,43 @@ export default class MedicoEspecialidadeController {
 
     const showMedicoEspecialidade = new ShowMedicoEspecialidadeService();
 
-    const medicoEspecialidade = await showMedicoEspecialidade.execute({ id: Number(request.params.id) });
+    const medicoEspecialidade = await showMedicoEspecialidade.execute({ idMedicoEspecialidade: Number(request.params.idMedicoEspecialidade) });
 
     return response.json(medicoEspecialidade);
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const { medicoId, especialidadeId } = request.body;
+    const { idMedico, idEspecialidade } = request.body;
 
     const createMedicoEspecialidade = new CreateMedicoEspecialidadeService();
 
     const medicoEspecialidade = await createMedicoEspecialidade.execute({
-      medicoId,
-      especialidadeId,
+      idMedico,
+      idEspecialidade,
     });
 
     return response.json(medicoEspecialidade);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { medicoId, especialidadeId } = request.body;
-    const { id } = request.params;
+    const { idMedico, idEspecialidade } = request.body;
 
     const updateMedicoEspecialidade = new UpdateMedicoEspecialidadeService();
 
     const medicoEspecialidade = await updateMedicoEspecialidade.execute({
-      medicoEspecialidadeId: Number(id),
-      medicoId,
-      especialidadeId,
+      idMedicoEspecialidade: Number(request.params.idMedicoEspecialidade),
+      idMedico,
+      idEspecialidade,
     });
 
     return response.json(medicoEspecialidade);
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
 
     const deleteMedicoEspecialidade = new DeleteMedicoEspecialidadeService();
 
-    await deleteMedicoEspecialidade.execute({ medicoEspecialidadeId: Number(id) });
+    await deleteMedicoEspecialidade.execute({ idMedicoEspecialidade: Number(request.params.idMedicoEspecialidade) });
 
     return response.json([]);
   }

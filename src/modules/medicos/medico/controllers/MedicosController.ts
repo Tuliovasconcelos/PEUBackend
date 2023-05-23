@@ -17,7 +17,7 @@ export default class MedicosController {
   public async show(request: Request, response: Response): Promise<Response> {
     const showMedico = new ShowMedicoService();
 
-    const medico = await showMedico.execute({ id: Number(request.params.id) });
+    const medico = await showMedico.execute({ idMedico: Number(request.params.idMedico) });
 
     return response.json(medico);
   }
@@ -40,7 +40,7 @@ export default class MedicosController {
     const updateMedico = new UpdateMedicoService();
 
     const medico = await updateMedico.execute({
-      id: Number(request.params.id),
+      idMedico: Number(request.params.idMedico),
       nome,
       crm
     });
@@ -51,7 +51,7 @@ export default class MedicosController {
   public async delete(request: Request, response: Response): Promise<Response> {
     const deleteMedico = new DeleteMedicoService();
 
-    await deleteMedico.execute({ id: Number(request.params.id) });
+    await deleteMedico.execute({ idMedico: Number(request.params.idMedico) });
 
     return response.json([]);
   }

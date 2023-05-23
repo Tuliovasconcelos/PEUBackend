@@ -3,30 +3,30 @@ import MedicoEspecialidade from '../entities/MedicoEspecialidade';
 
 @EntityRepository(MedicoEspecialidade)
 export default class MedicoEspecialidadeRepository extends Repository<MedicoEspecialidade> {
-  public async findByMedicoId(medicoId: number): Promise<MedicoEspecialidade[]> {
+  public async findByMedicoId(idMedico: number): Promise<MedicoEspecialidade[]> {
     const medicosEspecialidades = await this.find({
       where: {
-        medico: { idMedico: medicoId },
+        medico: { idMedico: idMedico },
       },
     });
 
     return medicosEspecialidades;
   }
 
-  public async findByEspecialidadeId(especialidadeId: number): Promise<MedicoEspecialidade[]> {
+  public async findByEspecialidadeId(idEspecialidade: number): Promise<MedicoEspecialidade[]> {
     const medicosEspecialidades = await this.find({
       where: {
-        especialidade: { idEspecialidade: especialidadeId },
+        especialidade: { idEspecialidade: idEspecialidade },
       },
     });
 
     return medicosEspecialidades;
   }
 
-  public async findByMedicoAndEspecialidade(id: number): Promise<MedicoEspecialidade | null> {
+  public async findByMedicoAndEspecialidade(idMedicoEspecialidade: number): Promise<MedicoEspecialidade | null> {
     const medicoEspecialidade = await this.findOne({
       where: {
-        idMedicoEspecialidade: id
+        idMedicoEspecialidade: idMedicoEspecialidade
       },
     });
 

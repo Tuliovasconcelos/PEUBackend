@@ -3,14 +3,14 @@ import AppError from '@shared/errors/AppError';
 import PacienteContatoRepository from '../typeorm/repositories/PacienteContatoRepository';
 
 interface IRequest {
-  idContato: number;
+  idPacienteContato: number;
 }
 
 export default class DeletePacienteContatoService {
-  public async execute({ idContato }: IRequest): Promise<void> {
+  public async execute({ idPacienteContato }: IRequest): Promise<void> {
     const pacienteContatoRepository = getCustomRepository(PacienteContatoRepository);
 
-    const PacienteContato = await pacienteContatoRepository.findById(idContato);
+    const PacienteContato = await pacienteContatoRepository.findById(idPacienteContato);
 
     if (!PacienteContato) {
       throw new AppError('PacienteContato not found.');

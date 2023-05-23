@@ -4,7 +4,7 @@ import MedicoRepository from '../typeorm/repositories/MedicoRepository';
 import EspecialidadeRepository from '@modules/especialidades/typeorm/repositories/EspecialidadeRepository';
 
 interface UpdateMedicoDTO {
-  id: number;
+  idMedico: number;
   nome?: string;
   crm?: string;
   especialidadeId?: number;
@@ -14,7 +14,7 @@ export default class UpdateMedicoService {
   public async execute(data: UpdateMedicoDTO): Promise<Medico | undefined> {
     const medicoRepository = getCustomRepository(MedicoRepository);
 
-    const medico = await medicoRepository.findById(data.id);
+    const medico = await medicoRepository.findById(data.idMedico);
 
     if (!medico) {
       return undefined;

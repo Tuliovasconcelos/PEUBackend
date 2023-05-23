@@ -18,12 +18,12 @@ export const updateMedicoValidation = celebrate({
 
 export const showMedicoValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idMedico: Joi.number().integer().required(),
   },
 });
 
 export const deleteMedicoValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idMedico: Joi.number().integer().required(),
   },
 });

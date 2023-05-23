@@ -4,23 +4,23 @@ import MedicoEspecialidade from '../typeorm/entities/MedicoEspecialidade';
 import AppError from '@shared/errors/AppError';
 
 interface IRequest {
-  medicoEspecialidadeId: number;
-  medicoId: number;
-  especialidadeId: number;
+  idMedicoEspecialidade: number;
+  idMedico: number;
+  idEspecialidade: number;
 }
 
 export default class UpdateMedicoEspecialidadeService {
-  public async execute({ medicoEspecialidadeId, medicoId, especialidadeId }: IRequest): Promise<MedicoEspecialidade | undefined> {
+  public async execute({ idMedicoEspecialidade, idMedico, idEspecialidade }: IRequest): Promise<MedicoEspecialidade | undefined> {
     const medicoEspecialidadeRepository = getCustomRepository(MedicoEspecialidadeRepository);
 
-    const medicoEspecialidade = await medicoEspecialidadeRepository.findByMedicoAndEspecialidade(medicoEspecialidadeId);
+    const medicoEspecialidade = await medicoEspecialidadeRepository.findByMedicoAndEspecialidade(idMedicoEspecialidade);
 
     if (!medicoEspecialidade) {
       throw new AppError('Associação não encontrada');
     }
 
-    medicoEspecialidade.medico.idMedico = medicoId;
-    medicoEspecialidade.especialidade.idEspecialidade = especialidadeId;
+    medicoEspecialidade.medico.idMedico = idMedico;
+    medicoEspecialidade.especialidade.idEspecialidade = idEspecialidade;
 
     await medicoEspecialidadeRepository.save(medicoEspecialidade);
 

@@ -11,7 +11,7 @@ export const createClinicaValidation = celebrate({
 
 export const updateClinicaValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idClinica: Joi.number().integer().required(),
   },
   [Segments.BODY]: {
     nome: Joi.string(),
@@ -23,12 +23,12 @@ export const updateClinicaValidation = celebrate({
 
 export const showClinicaValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idClinica: Joi.number().integer().required(),
   },
 });
 
 export const deleteClinicaValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idClinica: Joi.number().integer().required(),
   },
 });

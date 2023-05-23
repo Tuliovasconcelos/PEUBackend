@@ -3,14 +3,14 @@ import MedicoEspecialidadeRepository from '../typeorm/repositories/MedicoEspecia
 import MedicoEspecialidade from '../typeorm/entities/MedicoEspecialidade';
 
 interface IRequest {
-  id: number;
+  idMedicoEspecialidade: number;
 }
 
 export default class ShowMedicoEspecialidadeService {
-  public async execute({ id }: IRequest): Promise<MedicoEspecialidade | null> {
+  public async execute({ idMedicoEspecialidade }: IRequest): Promise<MedicoEspecialidade | null> {
     const medicoEspecialidadeRepository = getCustomRepository(MedicoEspecialidadeRepository);
 
-    const medicoEspecialidade = await medicoEspecialidadeRepository.findByMedicoAndEspecialidade(id);
+    const medicoEspecialidade = await medicoEspecialidadeRepository.findByMedicoAndEspecialidade(idMedicoEspecialidade);
 
     return medicoEspecialidade || null;
   }

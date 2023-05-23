@@ -4,14 +4,14 @@ import PacienteContatoRepository from '../typeorm/repositories/PacienteContatoRe
 import PacienteContato from '../typeorm/entities/PacienteContato';
 
 interface IRequest {
-  id: number;
+  idPacienteContato: number;
   tipoContato: 'telefone' | 'email' | 'outro';
   valorContato: string;
 }
 
 export default class UpdatePacienteContatoService {
   public async execute({
-    id,
+    idPacienteContato,
     tipoContato,
     valorContato,
   }: IRequest): Promise<PacienteContato> {
@@ -19,7 +19,7 @@ export default class UpdatePacienteContatoService {
       PacienteContatoRepository
     );
 
-    const PacienteContato = await pacienteContatoRepository.findById(id);
+    const PacienteContato = await pacienteContatoRepository.findById(idPacienteContato);
 
     if (!PacienteContato) {
       throw new AppError('PacienteContato not found.');

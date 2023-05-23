@@ -9,7 +9,7 @@ export const createEspecialidadeValidation = celebrate({
 
 export const updateEspecialidadeValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idEspecialidade: Joi.number().integer().required(),
   },
   [Segments.BODY]: {
     nome: Joi.string(),
@@ -19,12 +19,12 @@ export const updateEspecialidadeValidation = celebrate({
 
 export const showEspecialidadeValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idEspecialidade: Joi.number().integer().required(),
   },
 });
 
 export const deleteEspecialidadeValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    iidEspecialidaded: Joi.number().integer().required(),
   },
 });

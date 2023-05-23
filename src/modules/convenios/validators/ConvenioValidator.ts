@@ -9,7 +9,7 @@ export const createConvenioValidation = celebrate({
 
 export const updateConvenioValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idConvenio: Joi.number().integer().required(),
   },
   [Segments.BODY]: {
     nome: Joi.string(),
@@ -19,12 +19,12 @@ export const updateConvenioValidation = celebrate({
 
 export const showConvenioValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idConvenio: Joi.number().integer().required(),
   },
 });
 
 export const deleteConvenioValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idConvenio: Joi.number().integer().required(),
   },
 });

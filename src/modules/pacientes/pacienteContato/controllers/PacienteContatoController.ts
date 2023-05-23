@@ -15,11 +15,10 @@ export default class PacienteContatoController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
 
     const showPacienteContato = new ShowPacienteContatoService();
 
-    const PacienteContato = await showPacienteContato.execute({ id: Number(id) });
+    const PacienteContato = await showPacienteContato.execute({ idPacienteContato: Number(request.params.idPacienteContato) });
 
     return response.json(PacienteContato);
   }
@@ -45,7 +44,7 @@ export default class PacienteContatoController {
     const updatePacienteContato = new UpdatePacienteContatoService();
 
     const PacienteContato = await updatePacienteContato.execute({
-      id: Number(id),
+      idPacienteContato: Number(request.params.idPacienteContato),
       tipoContato,
       valorContato,
     });
@@ -58,7 +57,7 @@ export default class PacienteContatoController {
 
     const deletePacienteContato = new DeletePacienteContatoService();
 
-    await deletePacienteContato.execute({ id: Number(id) });
+    await deletePacienteContato.execute({ idPacienteContato: Number(request.params.idPacienteContato) });
 
     return response.json([]);
   }

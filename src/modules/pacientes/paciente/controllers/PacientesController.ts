@@ -18,7 +18,7 @@ export default class PacientesController {
 
     const showPaciente = new ShowPacienteService();
 
-    const paciente = await showPaciente.execute({ id: Number(request.params.id) });
+    const paciente = await showPaciente.execute({ idPaciente: Number(request.params.id) });
 
     return response.json(paciente);
   }
@@ -43,7 +43,7 @@ export default class PacientesController {
     const updatePaciente = new UpdatePacienteService();
 
     const paciente = await updatePaciente.execute({
-      id: Number(request.params.id),
+      idPaciente: Number(request.params.idPaciente),
       nome,
       dataNascimento,
       genero,
@@ -57,7 +57,7 @@ export default class PacientesController {
     const deletePaciente = new DeletePacienteService();
 
     await deletePaciente.execute({
-      id: Number(request.params.id)
+      idPaciente: Number(request.params.idPaciente)
     });
 
     return response.json([]);

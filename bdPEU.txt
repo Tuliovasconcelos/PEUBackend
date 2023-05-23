@@ -41,7 +41,7 @@ CREATE TABLE Paciente (
 
 -- Tabela Contato
 CREATE TABLE ContatoPaciente (
-  idContato INT PRIMARY KEY AUTO_INCREMENT,
+  idPacienteContato INT PRIMARY KEY AUTO_INCREMENT,
   idPaciente INT,
   tipoContato ENUM('telefone', 'email', 'outro') NOT NULL,
   valorContato VARCHAR(100) NOT NULL,
@@ -111,8 +111,8 @@ FOREIGN KEY (especialidade_id) REFERENCES Especialidade(idEspecialidade)
 -- Tabela MedicoEspecialidade
 CREATE TABLE MedicoEspecialidade (
 idMedicoEspecialidade INT PRIMARY KEY AUTO_INCREMENT,
-medico_id INT,
-especialidade_id INT,
+idMedico INT,
+idEspecialidade INT,
 FOREIGN KEY (medico_id) REFERENCES Medico(idMedico),
 FOREIGN KEY (especialidade_id) REFERENCES Especialidade(idEspecialidade)
 );
