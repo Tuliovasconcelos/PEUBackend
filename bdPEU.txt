@@ -220,8 +220,8 @@ status ENUM('ativo', 'inativo') NOT NULL,
 dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Tabela AtendimentoProcedimentos
-CREATE TABLE AtendimentoProcedimentos (
+-- Tabela AtendimentoProcedimento
+CREATE TABLE AtendimentoProcedimento (
 idAtendimentoProcedimento INT PRIMARY KEY AUTO_INCREMENT,
 idAtendimento INT,
 idProcedimento INT,
@@ -232,7 +232,7 @@ FOREIGN KEY (idProcedimento) REFERENCES Procedimentos(idProcedimento)
 );
 
 -- Tabela DocumentosMedicos
-CREATE TABLE DocumentosMedicos (
+CREATE TABLE DocumentoMedico (
 idDocumentoMedico INT PRIMARY KEY AUTO_INCREMENT,
 idAtendimento INT,
 idTipoDocumento INT,
