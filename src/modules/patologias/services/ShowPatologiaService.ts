@@ -15,7 +15,7 @@ export default class ShowPatologiaService {
     const patologia = await patologiaRepository.findById(idPatologia);
 
     if (!patologia) {
-      throw new AppError('Especialidade not found');
+      throw new AppError('Patologia not found');
     }
 
     return patologia;

@@ -21,6 +21,10 @@ export default class ShowPacientePatologiaRiscoService {
       },
     });
 
+    if (!pacientePatologiaRisco) {
+      throw new AppError('Paciente Patologia Risco not found');
+    }
+
     return pacientePatologiaRisco || null;
   }
 }

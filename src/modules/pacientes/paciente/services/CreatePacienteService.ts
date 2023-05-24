@@ -12,6 +12,7 @@ interface IRequest {
 export default class CreatePacienteService {
   public async execute({ nome, dataNascimento, genero }: IRequest): Promise<Paciente> {
     const pacientesRepository = getCustomRepository(PacienteRepository);
+
     const pacienteExists = await pacientesRepository.findByName(nome);
 
     if (pacienteExists) {

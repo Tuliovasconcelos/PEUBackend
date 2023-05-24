@@ -13,6 +13,18 @@ export default class CreatePacientePatologiaRiscoService {
   public async execute({ idPaciente, idPatologia, idRisco }: ICreatePacientePatologiaRisco): Promise<PacientePatologiaRisco> {
     const pacientePatologiaRiscoRepository = getCustomRepository(PacientePatologiaRiscoRepository);
 
+    const pacientePatologiaRiscoFound = await pacientePatologiaRiscoRepository.findOne({
+      where: {
+        idPaciente,
+        idPatologia,
+        idRisco,
+      },
+    });
+
+    if (pacientePatologiaRiscoFound) {
+      throw new AppError('Paciente Patologia Risco has been found');
+    }
+
     const pacientePatologiaRisco = pacientePatologiaRiscoRepository.create({
       idPaciente,
       idPatologia,

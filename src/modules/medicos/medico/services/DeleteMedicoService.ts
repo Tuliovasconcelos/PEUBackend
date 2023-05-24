@@ -1,15 +1,23 @@
 import { getCustomRepository } from 'typeorm';
 import MedicoRepository from '../typeorm/repositories/MedicoRepository';
+import AppError from '@shared/errors/AppError';
 
-interface DeleteMedicoDTO {
+interface IRequest {
   idMedico: number;
 }
 
 export default class DeleteMedicoService {
-  public async execute(data: DeleteMedicoDTO): Promise<void> {
+  public async execute({ idMedico }: IRequest): Promise<void> {
     const medicoRepository = getCustomRepository(MedicoRepository);
 
-    await medicoRepository.delete(data.idMedico);
+    const medico = await medicoRepository.findById(idMedico);
+
+    if (!medico) {
+      throw new AppError('Clinica not found.');
+    }
+
+
+    await medicoRepository.delete(idMedico);
   }
 }
 

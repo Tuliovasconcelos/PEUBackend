@@ -1,7 +1,7 @@
 import { getCustomRepository } from 'typeorm';
 import Medico from '../typeorm/entities/Medico';
 import MedicoRepository from '../typeorm/repositories/MedicoRepository';
-import EspecialidadeRepository from '@modules/especialidades/typeorm/repositories/EspecialidadeRepository';
+import AppError from '@shared/errors/AppError';
 
 interface UpdateMedicoDTO {
   idMedico: number;
@@ -17,7 +17,7 @@ export default class UpdateMedicoService {
     const medico = await medicoRepository.findById(data.idMedico);
 
     if (!medico) {
-      return undefined;
+      throw new AppError('Clinica not found.');
     }
 
     if (data.nome) {

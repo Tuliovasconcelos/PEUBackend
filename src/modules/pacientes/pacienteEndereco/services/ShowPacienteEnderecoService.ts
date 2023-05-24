@@ -1,6 +1,7 @@
 import { getCustomRepository } from 'typeorm';
 import PacienteEndereco from '../typeorm/entities/PacienteEndereco';
 import PacienteEnderecoRepository from '../typeorm/repositories/PacienteEnderecoRepository';
+import AppError from '@shared/errors/AppError';
 
 interface IRequest {
   idPacienteEndereco: number;
@@ -13,6 +14,10 @@ export default class ShowPacienteEnderecoService {
     );
 
     const pacienteEndereco = await pacienteEnderecoRepository.findById(idPacienteEndereco);
+
+    if (!pacienteEndereco) {
+      throw new AppError('PacienteEndereco is not found!')
+    }
 
     return pacienteEndereco;
   }

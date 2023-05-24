@@ -13,7 +13,7 @@ export default class DeletePacienteService {
     const paciente = await pacientesRepository.findById(idPaciente);
 
     if (!paciente) {
-      throw new AppError('Paciente not found.', 404);
+      throw new AppError('Paciente not found.');
     }
 
     await pacientesRepository.delete(idPaciente);

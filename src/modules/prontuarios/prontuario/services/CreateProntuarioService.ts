@@ -10,6 +10,13 @@ interface IRequest {
 export default class CreateProntuarioService {
   public async execute({ idPaciente }: IRequest): Promise<Prontuario> {
     const prontuarioRepository = getCustomRepository(ProntuarioRepository);
+
+    const prontuarioFound = await prontuarioRepository.findByPaciente(idPaciente);
+
+    if (!prontuarioFound) {
+      throw new AppError('Prontuário has been found for this Paciente.');
+    }
+
     const prontuario = prontuarioRepository.create({
       idPaciente,
       status: 'ativo', // Defina o status inicial aqui

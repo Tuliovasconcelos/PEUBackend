@@ -13,7 +13,7 @@ export default class DeletePatologiaService {
     const patologia = await patologiaRepository.findById(idPatologia);
 
     if (!patologia) {
-      throw new AppError('Especialidade not found');
+      throw new AppError('Patologia not found');
     }
 
     await patologiaRepository.remove(patologia);

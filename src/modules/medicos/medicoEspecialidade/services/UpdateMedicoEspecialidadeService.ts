@@ -16,7 +16,7 @@ export default class UpdateMedicoEspecialidadeService {
     const medicoEspecialidade = await medicoEspecialidadeRepository.findByMedicoAndEspecialidade(idMedicoEspecialidade);
 
     if (!medicoEspecialidade) {
-      throw new AppError('Associação não encontrada');
+      throw new AppError('MedicoEspecialidade not found.');
     }
 
     medicoEspecialidade.medico.idMedico = idMedico;
