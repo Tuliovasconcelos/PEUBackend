@@ -13,10 +13,10 @@ export default class TipoAgendamentoRepository extends Repository<TipoAgendament
     return tipoAgendamento || null;
   }
 
-  public async findById(id: number): Promise<TipoAgendamento | null> {
+  public async findById(idTipoAgendamento: number): Promise<TipoAgendamento | null> {
     const tipoAgendamento = await this.findOne({
       where: {
-        idTipoAgendamento: id,
+        idTipoAgendamento: idTipoAgendamento,
       },
     });
 

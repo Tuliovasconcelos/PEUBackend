@@ -4,7 +4,7 @@ import ProntuarioHistoricoSaude from '../typeorm/entities/ProntuarioHistoricoSau
 import ProntuarioHistoricoSaudeRepository from '../typeorm/repositories/ProntuarioHistoricoSaudeRepository';
 
 interface IRequest {
-  id: number;
+  idProntuarioHistoricoSaude: number;
   idProntuario: number;
   dataRegistro: Date;
   descricao: string;
@@ -13,7 +13,7 @@ interface IRequest {
 
 export default class UpdateProntuarioHistoricoSaudeService {
   public async execute({
-    id,
+    idProntuarioHistoricoSaude,
     idProntuario,
     dataRegistro,
     descricao,
@@ -21,7 +21,7 @@ export default class UpdateProntuarioHistoricoSaudeService {
   }: IRequest): Promise<ProntuarioHistoricoSaude> {
     const historicoRepository = getCustomRepository(ProntuarioHistoricoSaudeRepository);
 
-    const historico = await historicoRepository.findById(id);
+    const historico = await historicoRepository.findById(idProntuarioHistoricoSaude);
 
     if (!historico) {
       throw new AppError('Historico not found.');

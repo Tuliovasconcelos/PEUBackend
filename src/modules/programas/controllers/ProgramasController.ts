@@ -17,11 +17,9 @@ export default class ProgramasController {
 
   public async show(request: Request, response: Response): Promise<Response> {
 
-    const { idPrograma } = request.params;
-
     const showPrograma = new ShowProgramaService();
 
-    const programa = await showPrograma.execute({ idPrograma: Number(idPrograma) });
+    const programa = await showPrograma.execute({ idPrograma: Number(request.params.idPrograma) });
 
     return response.json(programa);
   }
@@ -52,11 +50,9 @@ export default class ProgramasController {
 
   public async delete(request: Request, response: Response): Promise<Response> {
 
-    const { idPrograma } = request.params;
-
     const deletePrograma = new DeleteProgramaService();
 
-    await deletePrograma.execute({ idPrograma: Number(idPrograma) });
+    await deletePrograma.execute({ idPrograma: Number(request.params.idPrograma) });
 
     return response.json([]);
   }

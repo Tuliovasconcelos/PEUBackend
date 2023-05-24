@@ -3,8 +3,8 @@ import Prontuario from '../entities/Prontuario';
 
 @EntityRepository(Prontuario)
 export default class ProntuarioRepository extends Repository<Prontuario> {
-  public async findById(id: number): Promise<Prontuario | null> {
-    const prontuario = await this.findOne({ where: { idProntuario: id } });
+  public async findById(idProntuario: number): Promise<Prontuario | null> {
+    const prontuario = await this.findOne({ where: { idProntuario: idProntuario } });
     return prontuario || null;
   }
 

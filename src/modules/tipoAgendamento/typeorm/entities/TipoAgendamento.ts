@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity('TipoAgendamento')
 export default class TipoAgendamento {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   idTipoAgendamento: number;
 
   @Column()

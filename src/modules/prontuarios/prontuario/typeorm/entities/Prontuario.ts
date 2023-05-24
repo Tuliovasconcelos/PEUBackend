@@ -9,7 +9,7 @@ import Paciente from '@modules/pacientes/paciente/typeorm/entities/Paciente';
 
 @Entity('Prontuario')
 export default class Prontuario {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   idProntuario: number;
 
   @Column()

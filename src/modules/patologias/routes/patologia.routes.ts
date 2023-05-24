@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import PatologiasController from '../controllers/EspecialidadesController';
+import PatologiasController from '../controllers/PatologiasController';
 import {
   createPatologiaValidation,
   updatePatologiaValidation,

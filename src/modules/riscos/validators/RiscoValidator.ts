@@ -9,7 +9,7 @@ export const createRiscoValidation = celebrate({
 
 export const updateRiscoValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idRisco: Joi.number().integer().required(),
   },
   [Segments.BODY]: {
     descricao: Joi.string(),
@@ -19,12 +19,12 @@ export const updateRiscoValidation = celebrate({
 
 export const showRiscoValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idRisco: Joi.number().integer().required(),
   },
 });
 
 export const deleteRiscoValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idRisco: Joi.number().integer().required(),
   },
 });

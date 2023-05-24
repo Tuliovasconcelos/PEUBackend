@@ -4,10 +4,10 @@ import PacienteConvenio from '../entities/PacienteConvenio';
 @EntityRepository(PacienteConvenio)
 export default class PacienteConvenioRepository extends Repository<PacienteConvenio> {
 
-  public async findById(id: number): Promise<PacienteConvenio | null> {
+  public async findById(idPacienteConvenio: number): Promise<PacienteConvenio | null> {
     const pacienteConvenio = await this.findOne({
       where: {
-        idPacienteConvenio: id,
+        idPacienteConvenio: idPacienteConvenio,
       },
     });
 

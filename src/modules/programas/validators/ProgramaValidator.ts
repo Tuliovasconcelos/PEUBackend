@@ -9,7 +9,7 @@ export const createProgramaValidation = celebrate({
 
 export const updateProgramaValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idPrograma: Joi.number().integer().required(),
   },
   [Segments.BODY]: {
     descricao: Joi.string(),
@@ -19,12 +19,12 @@ export const updateProgramaValidation = celebrate({
 
 export const showProgramaValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idPrograma: Joi.number().integer().required(),
   },
 });
 
 export const deleteProgramaValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idPrograma: Joi.number().integer().required(),
   },
 });

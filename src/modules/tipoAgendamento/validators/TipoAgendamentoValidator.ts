@@ -9,7 +9,7 @@ export const createTipoAgendamentoValidation = celebrate({
 
 export const updateTipoAgendamentoValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idTipoAgendamento: Joi.number().integer().required(),
   },
   [Segments.BODY]: {
     nome: Joi.string(),
@@ -19,12 +19,12 @@ export const updateTipoAgendamentoValidation = celebrate({
 
 export const showTipoAgendamentoValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idTipoAgendamento: Joi.number().integer().required(),
   },
 });
 
 export const deleteTipoAgendamentoValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idTipoAgendamento: Joi.number().integer().required(),
   },
 });

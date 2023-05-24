@@ -8,7 +8,7 @@ export const createProntuarioValidation = celebrate({
 
 export const updateProntuarioValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idProntuario: Joi.number().integer().required(),
   },
   [Segments.BODY]: {
     idPaciente: Joi.number().integer(),
@@ -17,12 +17,12 @@ export const updateProntuarioValidation = celebrate({
 
 export const showProntuarioValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idProntuario: Joi.number().integer().required(),
   },
 });
 
 export const deleteProntuarioValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idProntuario: Joi.number().integer().required(),
   },
 });

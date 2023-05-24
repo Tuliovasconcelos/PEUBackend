@@ -12,7 +12,7 @@ import Prontuario from '@modules/prontuarios/prontuario/typeorm/entities/Prontua
 
 @Entity('ProntuarioQueixaSaude')
 export default class ProntuarioQueixaSaude extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   idQueixaSaude: number;
 
   @Column()

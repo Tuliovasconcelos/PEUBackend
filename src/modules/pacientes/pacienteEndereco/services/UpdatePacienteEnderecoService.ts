@@ -5,7 +5,7 @@ import PacienteEnderecoRepository from '../typeorm/repositories/PacienteEndereco
 import PacienteRepository from '@modules/pacientes/paciente/typeorm/repositories/PacienteRepository';
 
 interface IRequest {
-  idEndereco: number;
+  idPacienteEndereco: number;
   idPaciente: number;
   endereco: string;
   cidade: string;
@@ -15,7 +15,7 @@ interface IRequest {
 
 export default class UpdatePacienteEnderecoService {
   public async execute({
-    idEndereco,
+    idPacienteEndereco,
     idPaciente,
     endereco,
     cidade,
@@ -27,7 +27,7 @@ export default class UpdatePacienteEnderecoService {
     );
     const pacienteRepository = getCustomRepository(PacienteRepository);
 
-    const PacienteEndereco = await pacienteEnderecoRepository.findById(idEndereco);
+    const PacienteEndereco = await pacienteEnderecoRepository.findById(idPacienteEndereco);
 
     if (!PacienteEndereco) {
       throw new AppError('Endereço do paciente não encontrado.');

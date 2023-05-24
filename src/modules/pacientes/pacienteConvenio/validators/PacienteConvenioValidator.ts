@@ -10,7 +10,7 @@ export const createPacienteConvenioValidation = celebrate({
 
 export const updatePacienteConvenioValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idPacienteConvenio: Joi.number().integer().required(),
   },
   [Segments.BODY]: {
     numeroCarteira: Joi.string().required(),
@@ -19,12 +19,12 @@ export const updatePacienteConvenioValidation = celebrate({
 
 export const showPacienteConvenioValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idPacienteConvenio: Joi.number().integer().required(),
   },
 });
 
 export const deletePacienteConvenioValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.number().integer().required(),
+    idPacienteConvenio: Joi.number().integer().required(),
   },
 });

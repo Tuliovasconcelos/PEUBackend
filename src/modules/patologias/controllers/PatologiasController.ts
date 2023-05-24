@@ -18,7 +18,7 @@ export default class PatologiasController {
 
     const showPatologia = new ShowPatologiaService();
 
-    const patologia = await showPatologia.execute({ idPatologia: Number(request.params.id) });
+    const patologia = await showPatologia.execute({ idPatologia: Number(request.params.idPatologia) });
 
     return response.json(patologia);
   }
@@ -42,7 +42,7 @@ export default class PatologiasController {
     const updatePatologia = new UpdatePatologiaService();
 
     const patologia = await updatePatologia.execute({
-      idPatologia: Number(request.params.id),
+      idPatologia: Number(request.params.idPatologia),
       descricao,
       status,
     });
@@ -54,7 +54,7 @@ export default class PatologiasController {
 
     const deletePatologia = new DeletePatologiaService();
 
-    await deletePatologia.execute({ idPatologia: Number(request.params.id) });
+    await deletePatologia.execute({ idPatologia: Number(request.params.idPatologia) });
 
     return response.json([]);
   }

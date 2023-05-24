@@ -12,7 +12,7 @@ export const createPacienteEnderecoValidation = celebrate({
 
 export const updatePacienteEnderecoValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.string().uuid().required(),
+    idPacienteEndereco: Joi.string().uuid().required(),
   },
   [Segments.BODY]: {
     pacienteId: Joi.number().required(),
@@ -25,12 +25,12 @@ export const updatePacienteEnderecoValidation = celebrate({
 
 export const deletePacienteEnderecoValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.string().uuid().required(),
+    idPacienteEndereco: Joi.string().uuid().required(),
   },
 });
 
 export const showPacienteEnderecoValidation = celebrate({
   [Segments.PARAMS]: {
-    id: Joi.string().uuid().required(),
+    idPacienteEndereco: Joi.string().uuid().required(),
   },
 });

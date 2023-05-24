@@ -17,7 +17,7 @@ export default class PacienteEnderecoController {
   public async show(request: Request, response: Response): Promise<Response> {
     const showPacienteEndereco = new ShowPacienteEnderecoService();
 
-    const endereco = await showPacienteEndereco.execute({ idEndereco: Number(request.params.id) });
+    const endereco = await showPacienteEndereco.execute({ idPacienteEndereco: Number(request.params.idPacienteEndereco) });
 
     return response.json(endereco);
   }
@@ -44,7 +44,7 @@ export default class PacienteEnderecoController {
     const updatePacienteEndereco = new UpdatePacienteEnderecoService();
 
     const PacienteEndereco = await updatePacienteEndereco.execute({
-      idEndereco: Number(request.params.id),
+      idPacienteEndereco: Number(request.params.idPacienteEndereco),
       idPaciente,
       endereco,
       cidade,
@@ -56,11 +56,10 @@ export default class PacienteEnderecoController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
 
     const deletePacienteEndereco = new DeletePacienteEnderecoService();
 
-    await deletePacienteEndereco.execute({ id: Number(request.params.id) });
+    await deletePacienteEndereco.execute({ idPacienteEndereco: Number(request.params.idPacienteEndereco) });
 
     return response.json([]);
   }
