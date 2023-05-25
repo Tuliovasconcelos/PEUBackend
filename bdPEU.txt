@@ -83,9 +83,9 @@ CREATE TABLE PacientePatologiaRisco (
   idPatologia INT,
   idRisco INT,
   PRIMARY KEY (idPaciente , idPatologia, idRisco),
-  FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente ),
-  FOREIGN KEY (idPatologia) REFERENCES Patologia(ID),
-  FOREIGN KEY (idRisco) REFERENCES Riscos(ID)
+  FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente),
+  FOREIGN KEY (idPatologia) REFERENCES Patologia(idPatologia),
+  FOREIGN KEY (idRisco) REFERENCES Riscos(idPatologia)
 );
 
 -- Tabela Especialidade
@@ -198,7 +198,7 @@ idMedico INT,
 idProntuario INT,
 idClinica INT,
 idAgendamentoTipo INT,
-id_Programa INT,
+idPrograma INT,
 dataAtendimento DATE NOT NULL,
 horaAtendimento TIME NOT NULL,
 conclusao TEXT NOT NULL,
@@ -209,7 +209,7 @@ FOREIGN KEY (idMedico) REFERENCES Medico(idMedico),
 FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario),
 FOREIGN KEY (idClinica) REFERENCES Clinicas(idClinica),
 FOREIGN KEY (idAgendamentoTipo) REFERENCES TiposAgendamentos(idAgendamentoTipo)
-FOREIGN KEY (id_Programa) REFERENCES Programas(idPrograma)
+FOREIGN KEY (idPrograma) REFERENCES Programas(idPrograma)
 );
 
 -- Tabela Procedimentos

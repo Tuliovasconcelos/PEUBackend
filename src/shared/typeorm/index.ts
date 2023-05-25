@@ -2,7 +2,6 @@ import { createConnections } from 'typeorm';
 
 createConnections().then(connections => {
 
-    const mysqlConnection = connections.find(connection => connection.name === 'mysql');
-    const oracleConnection = connections.find(connection => connection.name === 'oracle');
+  const mysqlConnection = connections.find(connection => connection.name === 'mysql');
 
 }).catch(error => console.log(error));
