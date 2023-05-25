@@ -5,11 +5,13 @@ import AtendimentoProcedimentoRepository from '../typeorm/repositories/Atendimen
 
 interface IRequest {
   idAtendimentoProcedimento: number;
+  idAtendimento: number;
+  idProcedimento: number;
   status: 'ativo' | 'inativo';
 }
 
 export default class UpdateAtendimentoProcedimentoService {
-  public async execute({ idAtendimentoProcedimento, status }: IRequest): Promise<AtendimentoProcedimento> {
+  public async execute({ idAtendimentoProcedimento, ...data }: IRequest): Promise<AtendimentoProcedimento> {
     const atendimentoProcedimentoRepository = getCustomRepository(AtendimentoProcedimentoRepository);
 
     const atendimentoProcedimento = await atendimentoProcedimentoRepository.findByIdAtendimentoProcedimento(
@@ -20,10 +22,7 @@ export default class UpdateAtendimentoProcedimentoService {
       throw new AppError('AtendimentoProcedimento not found.');
     }
 
-    atendimentoProcedimento.status = status;
-    atendimentoProcedimento.dataAlteracao = new Date();
-
-    await atendimentoProcedimentoRepository.save(atendimentoProcedimento);
+    await atendimentoProcedimentoRepository.save(data);
 
     return atendimentoProcedimento;
   }
