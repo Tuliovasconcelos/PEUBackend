@@ -197,7 +197,7 @@ idPaciente INT,
 idMedico INT,
 idProntuario INT,
 idClinica INT,
-idTipoAgendamento INT,
+idAgendamentoTipo INT,
 id_Programa INT,
 dataAtendimento DATE NOT NULL,
 horaAtendimento TIME NOT NULL,
@@ -208,7 +208,7 @@ FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente),
 FOREIGN KEY (idMedico) REFERENCES Medico(idMedico),
 FOREIGN KEY (idProntuario) REFERENCES Prontuario(idProntuario),
 FOREIGN KEY (idClinica) REFERENCES Clinicas(idClinica),
-FOREIGN KEY (idTipoAgendamento) REFERENCES TiposAgendamentos(idTipoAgendamento)
+FOREIGN KEY (idAgendamentoTipo) REFERENCES TiposAgendamentos(idAgendamentoTipo)
 FOREIGN KEY (id_Programa) REFERENCES Programas(idPrograma)
 );
 
@@ -256,7 +256,7 @@ idAgendamento INT PRIMARY KEY AUTO_INCREMENT,
 idPaciente INT,
 idMedico INT,
 idClinica INT,
-idTipoAgendamento INT,
+idAgendamentoTipo INT,
 dataAgendamento DATE NOT NULL,
 horaAgendamento TIME NOT NULL,
 status ENUM('ativo', 'inativo') NOT NULL,
@@ -264,12 +264,12 @@ dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 FOREIGN KEY (idPaciente) REFERENCES Paciente(idPaciente),
 FOREIGN KEY (idMedico) REFERENCES Medico(idMedico),
 FOREIGN KEY (idClinica) REFERENCES Clinicas(idClinica),
-FOREIGN KEY (idTipoAgendamento) REFERENCES TiposAgendamentos(idTipoAgendamento)
+FOREIGN KEY (idAgendamentoTipo) REFERENCES TiposAgendamentos(idAgendamentoTipo)
 );
 
--- Tabela TipoAgendamento
-CREATE TABLE TipoAgendamento (
-idTipoAgendamento INT PRIMARY KEY AUTO_INCREMENT,
+-- Tabela AgendamentoTipo
+CREATE TABLE AgendamentoTipo (
+idAgendamentoTipo INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(100) NOT NULL,
 status ENUM('ativo', 'inativo') NOT NULL,
 dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
