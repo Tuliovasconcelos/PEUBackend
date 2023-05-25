@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import CreateMedicoClinicaService from '../services/createMedicoClinicaService';
+import CreateMedicoClinicaService from '../services/CreateMedicoClinicaService';
 import DeleteMedicoClinicaService from '../services/DeleteMedicoClinicaService';
 import ListMedicoClinicaService from '../services/ListMedicoClinicaService';
 import ShowMedicoClinicaService from '../services/ShowMedicoClinicaService';
@@ -17,7 +17,7 @@ export default class MedicoClinicaController {
   public async show(request: Request, response: Response): Promise<Response> {
     const showMedicoClinica = new ShowMedicoClinicaService();
 
-    const medicoClinica = await showMedicoClinica.execute(Number(request.params.idMedicoClinica));
+    const medicoClinica = await showMedicoClinica.execute({ idMedicoClinica: Number(request.params.idMedicoClinica) });
 
     return response.json(medicoClinica);
   }
@@ -50,7 +50,7 @@ export default class MedicoClinicaController {
   public async delete(request: Request, response: Response): Promise<Response> {
     const deleteMedicoClinica = new DeleteMedicoClinicaService();
 
-    await deleteMedicoClinica.execute(Number(request.params.idMedicoClinica));
+    await deleteMedicoClinica.execute({ idMedicoClinica: Number(request.params.idMedicoClinica) });
 
     return response.json([]);
   }
