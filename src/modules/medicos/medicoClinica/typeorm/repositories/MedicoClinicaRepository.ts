@@ -5,7 +5,7 @@ import MedicoClinica from '../entities/MedicoClinica';
 export default class MedicoClinicaRepository extends Repository<MedicoClinica> {
 
   public async findByIdMedicoClinica(idMedicoClinica: number): Promise<MedicoClinica | null> {
-    const medicoClinica = await this.findOne(idMedicoClinica);
+    const medicoClinica = await this.findOne({ where: { idMedicoClinica: idMedicoClinica } });
     return medicoClinica || null;
   }
 

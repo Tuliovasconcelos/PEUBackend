@@ -235,11 +235,11 @@ FOREIGN KEY (idProcedimento) REFERENCES Procedimentos(idProcedimento)
 CREATE TABLE DocumentoMedico (
 idDocumentoMedico INT PRIMARY KEY AUTO_INCREMENT,
 idAtendimento INT,
-idTipoDocumento INT,
+idDocumentoTipo INT,
 status ENUM('ativo', 'inativo') NOT NULL,
 dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 FOREIGN KEY (idAtendimento) REFERENCES Atendimento(idAtendimento),
-FOREIGN KEY (idTipoDocumento) REFERENCES TiposDocumentos(idTipoDocumento)
+FOREIGN KEY (idDocumentoTipo) REFERENCES DocumentoTipo(idDocumentoTipo)
 );
 
 -- Tabela DocumentoTipo
@@ -297,7 +297,7 @@ FOREIGN KEY (idClinica) REFERENCES Clinicas(idClinica)
 );
 
 -- Tabela Solicitacoes
-CREATE TABLE Solicitacoes (
+CREATE TABLE solicitacao (
 idSolicitacao INT PRIMARY KEY AUTO_INCREMENT,
 idPaciente INT,
 idMedico INT,
@@ -310,8 +310,8 @@ FOREIGN KEY (idMedico) REFERENCES Medico(idMedico),
 FOREIGN KEY (idClinica) REFERENCES Clinicas(idClinica)
 );
 
--- Tabela ItensSolicitacao
-CREATE TABLE ItensSolicitacao (
+-- Tabela solicitacaoItem
+CREATE TABLE solicitacaoItem (
 idItemSolicitacao INT PRIMARY KEY AUTO_INCREMENT,
 idSolicitacao INT,
 descricao TEXT NOT NULL,
