@@ -4,7 +4,7 @@ import DocumentoTipo from '@modules/documentos/documentoTipo/typeorm/entities/Do
 
 @Entity('DocumentoMedico')
 export default class DocumentoMedico {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   idDocumentoMedico: number;
 
   @Column()

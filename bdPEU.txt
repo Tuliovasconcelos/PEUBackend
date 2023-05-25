@@ -287,7 +287,7 @@ dataAlteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 
 -- Tabela MedicoClinica
 CREATE TABLE MedicoClinica (
-idRelacaoMedicoClinica INT PRIMARY KEY AUTO_INCREMENT,
+idMedicoClinica INT PRIMARY KEY AUTO_INCREMENT,
 idMedico INT,
 idClinica INT,
 status ENUM('ativo', 'inativo') NOT NULL,
