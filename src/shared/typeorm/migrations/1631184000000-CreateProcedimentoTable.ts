@@ -4,7 +4,7 @@ export class CreateProcedimentoTable1631184000000 implements MigrationInterface 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'Procedimento',
+        name: 'procedimento',
         columns: [
           {
             name: 'idProcedimento',
@@ -36,9 +36,11 @@ export class CreateProcedimentoTable1631184000000 implements MigrationInterface 
       }),
       true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
     );
+    await queryRunner.createPrimaryKey('procedimento', ['idProcedimento']);
+
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('Procedimento');
+    await queryRunner.dropTable('procedimento');
   }
 }

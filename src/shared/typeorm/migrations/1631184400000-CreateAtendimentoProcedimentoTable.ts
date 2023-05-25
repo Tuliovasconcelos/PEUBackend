@@ -4,7 +4,7 @@ export class CreateAtendimentoProcedimentoTable1631180399950 implements Migratio
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'AtendimentoProcedimento',
+        name: 'atendimentoProcedimento',
         columns: [
           {
             name: 'idAtendimentoProcedimento',
@@ -39,32 +39,36 @@ export class CreateAtendimentoProcedimentoTable1631180399950 implements Migratio
       true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
     );
 
-    const table = await queryRunner.getTable('AtendimentoProcedimento');
+    const table = await queryRunner.getTable('atendimentoProcedimento');
 
     if (table) {
       await queryRunner.createForeignKey(
-        'AtendimentoProcedimento',
+        'atendimentoProcedimento',
         new TableForeignKey({
           columnNames: ['idAtendimento'],
           referencedColumnNames: ['idAtendimento'],
-          referencedTableName: 'Atendimento',
+          referencedTableName: 'atendimento',
           onDelete: 'CASCADE',
         })
       );
 
       await queryRunner.createForeignKey(
-        'AtendimentoProcedimento',
+        'atendimentoProcedimento',
         new TableForeignKey({
           columnNames: ['idProcedimento'],
           referencedColumnNames: ['idProcedimento'],
-          referencedTableName: 'Procedimentos',
+          referencedTableName: 'procedimento',
           onDelete: 'CASCADE',
         })
       );
     }
+    await queryRunner.createPrimaryKey('atendimentoProcedimento', ['idAtendimentoProcedimento']);
+
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('AtendimentoProcedimento');
+    await queryRunner.dropForeignKey('atendimentoProcedimento', 'FK_atendimentoProcedimento_idAtendimento');
+    await queryRunner.dropForeignKey('atendimentoProcedimento', 'FK_atendimentoProcedimento_idProcedimento');
+    await queryRunner.dropTable('atendimentoProcedimento');
   }
 }

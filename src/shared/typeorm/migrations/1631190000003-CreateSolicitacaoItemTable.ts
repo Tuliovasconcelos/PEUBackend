@@ -40,6 +40,7 @@ export class CreateSolicitacaoItemTable1631190000003 implements MigrationInterfa
       }),
       true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
     );
+    await queryRunner.createPrimaryKey('solicitacaoItem', ['idItemSolicitacao']);
 
     await queryRunner.createForeignKey(
       'solicitacaoItem',
@@ -53,6 +54,7 @@ export class CreateSolicitacaoItemTable1631190000003 implements MigrationInterfa
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropForeignKey('solicitacaoItem', 'FK_solicitacaoItem_idSolicitacao');
     await queryRunner.dropTable('solicitacaoItem');
   }
 }

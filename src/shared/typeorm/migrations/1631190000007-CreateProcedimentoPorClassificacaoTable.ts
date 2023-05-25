@@ -4,7 +4,7 @@ export class CreateProcedimentoPorClassificacaoTable1631190000007 implements Mig
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'ProcedimentoPorClassificacao',
+        name: 'procedimentoPorClassificacao',
         columns: [
           {
             name: 'idPrograma',
@@ -30,25 +30,25 @@ export class CreateProcedimentoPorClassificacaoTable1631190000007 implements Mig
         foreignKeys: [
           new TableForeignKey({
             columnNames: ['idPrograma'],
-            referencedTableName: 'Programa',
+            referencedTableName: 'programa',
             referencedColumnNames: ['idPrograma'],
             onDelete: 'CASCADE',
           }),
           new TableForeignKey({
             columnNames: ['idPatologia'],
-            referencedTableName: 'Patologia',
-            referencedColumnNames: ['ID'],
+            referencedTableName: 'patologia',
+            referencedColumnNames: ['idPatologia'],
             onDelete: 'CASCADE',
           }),
           new TableForeignKey({
             columnNames: ['idRisco'],
-            referencedTableName: 'Riscos',
-            referencedColumnNames: ['ID'],
+            referencedTableName: 'risco',
+            referencedColumnNames: ['idRisco'],
             onDelete: 'CASCADE',
           }),
           new TableForeignKey({
             columnNames: ['idProcedimento'],
-            referencedTableName: 'Procedimento',
+            referencedTableName: 'procedimento',
             referencedColumnNames: ['idProcedimento'],
             onDelete: 'CASCADE',
           }),
@@ -56,10 +56,14 @@ export class CreateProcedimentoPorClassificacaoTable1631190000007 implements Mig
       })
     );
 
-    await queryRunner.createPrimaryKey('ProcedimentoPorClassificacao', ['idPrograma', 'idPatologia', 'idRisco', 'idProcedimento']);
+    await queryRunner.createPrimaryKey('procedimentoPorClassificacao', ['idPrograma', 'idPatologia', 'idRisco', 'idProcedimento']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropForeignKey('procedimentoPorClassificacao', 'FK_procedimentoPorClassificacao_idPrograma');
+    await queryRunner.dropForeignKey('procedimentoPorClassificacao', 'FK_procedimentoPorClassificacao_idPatologia');
+    await queryRunner.dropForeignKey('procedimentoPorClassificacao', 'FK_procedimentoPorClassificacao_idRisco');
+    await queryRunner.dropForeignKey('procedimentoPorClassificacao', 'FK_procedimentoPorClassificacao_idProcedimento');
     await queryRunner.dropTable('ProcedimentoPorClassificacao');
   }
 }

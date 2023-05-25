@@ -4,7 +4,7 @@ export class CreateProgramaTable1631190000004 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'Programa',
+        name: 'programa',
         columns: [
           {
             name: 'idPrograma',
@@ -35,9 +35,11 @@ export class CreateProgramaTable1631190000004 implements MigrationInterface {
       }),
       true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
     );
+    await queryRunner.createPrimaryKey('programa', ['idPrograma']);
+
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('Programa');
+    await queryRunner.dropTable('programa');
   }
 }

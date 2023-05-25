@@ -4,7 +4,7 @@ export class CreatePacienteProgramaTable1631190000006 implements MigrationInterf
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'PacientePrograma',
+        name: 'pacientePrograma',
         columns: [
           {
             name: 'idPacientePrograma',
@@ -41,29 +41,31 @@ export class CreatePacienteProgramaTable1631190000006 implements MigrationInterf
     );
 
     await queryRunner.createForeignKey(
-      'PacientePrograma',
+      'pacientePrograma',
       new TableForeignKey({
         columnNames: ['idPaciente'],
-        referencedTableName: 'Paciente',
+        referencedTableName: 'paciente',
         referencedColumnNames: ['idPaciente'],
         onDelete: 'CASCADE',
       })
     );
 
     await queryRunner.createForeignKey(
-      'PacientePrograma',
+      'pacientePrograma',
       new TableForeignKey({
         columnNames: ['idPrograma'],
-        referencedTableName: 'Programa',
+        referencedTableName: 'programa',
         referencedColumnNames: ['idPrograma'],
         onDelete: 'CASCADE',
       })
     );
+
+    await queryRunner.createPrimaryKey('pacientePrograma', ['pacientePrograma']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('PacientePrograma', 'FK_PacientePrograma_idPaciente');
-    await queryRunner.dropForeignKey('PacientePrograma', 'FK_PacientePrograma_idPrograma');
-    await queryRunner.dropTable('PacientePrograma');
+    await queryRunner.dropForeignKey('pacientePrograma', 'FK_pacientePrograma_idPaciente');
+    await queryRunner.dropForeignKey('pacientePrograma', 'FK_pacientePrograma_idPrograma');
+    await queryRunner.dropTable('pacientePrograma');
   }
 }

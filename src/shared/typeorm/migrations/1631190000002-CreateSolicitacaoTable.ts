@@ -55,7 +55,7 @@ export class CreateSolicitacaoTable1631190000002 implements MigrationInterface {
       'solicitacao',
       new TableForeignKey({
         columnNames: ['idPaciente'],
-        referencedTableName: 'Paciente',
+        referencedTableName: 'paciente',
         referencedColumnNames: ['idPaciente'],
         onDelete: 'CASCADE',
       })
@@ -65,7 +65,7 @@ export class CreateSolicitacaoTable1631190000002 implements MigrationInterface {
       'solicitacao',
       new TableForeignKey({
         columnNames: ['idMedico'],
-        referencedTableName: 'Medico',
+        referencedTableName: 'medico',
         referencedColumnNames: ['idMedico'],
         onDelete: 'CASCADE',
       })
@@ -75,14 +75,19 @@ export class CreateSolicitacaoTable1631190000002 implements MigrationInterface {
       'solicitacao',
       new TableForeignKey({
         columnNames: ['idClinica'],
-        referencedTableName: 'Clinica',
+        referencedTableName: 'clinica',
         referencedColumnNames: ['idClinica'],
         onDelete: 'CASCADE',
       })
     );
+    await queryRunner.createPrimaryKey('solicitacao', ['idSolicitacao']);
+
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropForeignKey('solicitacao', 'FK_solicitacao_idPaciente');
+    await queryRunner.dropForeignKey('solicitacao', 'FK_solicitacao_idMedico');
+    await queryRunner.dropForeignKey('solicitacao', 'FK_solicitacao_idClinica');
     await queryRunner.dropTable('solicitacao');
   }
 }

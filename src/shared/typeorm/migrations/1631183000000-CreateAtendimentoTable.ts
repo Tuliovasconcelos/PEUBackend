@@ -4,7 +4,7 @@ export class CreateAtendimentoTable1631183000000 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'Atendimento',
+        name: 'atendimento',
         columns: [
           {
             name: 'idAtendimento',
@@ -77,67 +77,75 @@ export class CreateAtendimentoTable1631183000000 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'Atendimento',
+      'atendimento',
       new TableForeignKey({
         columnNames: ['idPaciente'],
         referencedColumnNames: ['idPaciente'],
-        referencedTableName: 'Paciente',
+        referencedTableName: 'paciente',
         onDelete: 'CASCADE',
       })
     );
 
     await queryRunner.createForeignKey(
-      'Atendimento',
+      'atendimento',
       new TableForeignKey({
         columnNames: ['idMedico'],
         referencedColumnNames: ['idMedico'],
-        referencedTableName: 'Medico',
+        referencedTableName: 'medico',
         onDelete: 'CASCADE',
       })
     );
 
     await queryRunner.createForeignKey(
-      'Atendimento',
+      'atendimento',
       new TableForeignKey({
         columnNames: ['idProntuario'],
         referencedColumnNames: ['idProntuario'],
-        referencedTableName: 'Prontuario',
+        referencedTableName: 'prontuario',
         onDelete: 'CASCADE',
       })
     );
 
     await queryRunner.createForeignKey(
-      'Atendimento',
+      'atendimento',
       new TableForeignKey({
         columnNames: ['idClinica'],
         referencedColumnNames: ['idClinica'],
-        referencedTableName: 'Clinicas',
+        referencedTableName: 'clinica',
         onDelete: 'CASCADE',
       })
     );
 
     await queryRunner.createForeignKey(
-      'Atendimento',
+      'atendimento',
       new TableForeignKey({
         columnNames: ['idAgendamentoTipo'],
         referencedColumnNames: ['idAgendamentoTipo'],
-        referencedTableName: 'TiposAgendamentos',
+        referencedTableName: 'tipoAgendamento',
         onDelete: 'CASCADE',
       })
     );
 
     await queryRunner.createForeignKey(
-      'Atendimento',
+      'atendimento',
       new TableForeignKey({
         columnNames: ['idPrograma'],
         referencedColumnNames: ['idPrograma'],
-        referencedTableName: 'Programas',
+        referencedTableName: 'programa',
         onDelete: 'CASCADE',
       })
     );
+    await queryRunner.createPrimaryKey('atendimento', ['idAtendimento']);
+
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('Atendimento');
+    await queryRunner.dropForeignKey('atendimento', 'FK_atendimento_idPaciente');
+    await queryRunner.dropForeignKey('atendimento', 'FK_atendimento_idMedico');
+    await queryRunner.dropForeignKey('atendimento', 'FK_atendimento_idProntuario');
+    await queryRunner.dropForeignKey('atendimento', 'FK_atendimento_idClinica');
+    await queryRunner.dropForeignKey('atendimento', 'FK_atendimento_idAgendamentoTipo');
+    await queryRunner.dropForeignKey('atendimento', 'FK_atendimento_idPrograma');
+    await queryRunner.dropTable('atendimento');
   }
 }
