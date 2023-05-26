@@ -6,7 +6,7 @@ import ConvenioRepository from '../typeorm/repositories/ConvenioRepository';
 interface IRequest {
   idConvenio: number;
   nome?: string;
-  status?: 'ativo' | 'inativo';
+  status?: 'A' | 'I';
 }
 
 export default class UpdateConvenioService {

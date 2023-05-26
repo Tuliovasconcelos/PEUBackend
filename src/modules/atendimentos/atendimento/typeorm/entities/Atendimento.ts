@@ -44,8 +44,8 @@ export default class Atendimento {
   conclusao: string;
 
   @Column({
-    enum: ['ativo', 'inativo'],
-    default: 'ativo',
+    enum: ['A', 'I'],
+    default: 'A',
   })
   status: string;
 

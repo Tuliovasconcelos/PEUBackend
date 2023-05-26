@@ -6,7 +6,7 @@ import AppError from '@shared/errors/AppError';
 interface IRequest {
   idPrograma: number;
   idClinica: number;
-  status: 'ativo' | 'inativo';
+  status: 'A' | 'I';
 }
 
 export default class CreateProgramaClinicaService {

@@ -9,7 +9,7 @@ interface IRequest {
   idMedico?: number;
   idClinica?: number;
   dataSolicitacao?: Date;
-  status?: 'ativo' | 'inativo';
+  status?: 'A' | 'I';
 }
 
 export default class UpdateSolicitacaoService {

@@ -14,8 +14,8 @@ export default class SolicitacaoItem {
   descricao: string;
 
   @Column({
-    enum: ['ativo', 'inativo'],
-    default: 'ativo'
+    enum: ['A', 'I'],
+    default: 'A'
   })
   status: string;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })

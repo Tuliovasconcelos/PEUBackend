@@ -6,7 +6,7 @@ import TipoAgendamentoRepository from '../typeorm/repositories/TipoAgendamentoRe
 interface IRequest {
   idTipoAgendamento: number;
   nome?: string;
-  status?: 'ativo' | 'inativo';
+  status?: 'A' | 'I';
 }
 
 export default class UpdateTipoAgendamentoService {

@@ -5,7 +5,7 @@ export const createClinicaValidation = celebrate({
     nome: Joi.string().required(),
     endereco: Joi.string().required(),
     telefone: Joi.string().required(),
-    status: Joi.string().valid('ativo', 'inativo').required(),
+    status: Joi.string().valid('A', 'I').required(),
   },
 });
 
@@ -17,7 +17,7 @@ export const updateClinicaValidation = celebrate({
     nome: Joi.string(),
     endereco: Joi.string(),
     telefone: Joi.string(),
-    status: Joi.string().valid('ativo', 'inativo'),
+    status: Joi.string().valid('A', 'I'),
   },
 });
 

@@ -27,8 +27,8 @@ export default class Usuario {
   senha: string;
 
   @Column({
-    enum: ['ativo', 'inativo'],
-    default: 'ativo',
+    enum: ['A', 'I'],
+    default: 'A',
   })
   status: string;
 

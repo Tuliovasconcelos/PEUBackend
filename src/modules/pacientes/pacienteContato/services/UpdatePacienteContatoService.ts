@@ -5,7 +5,7 @@ import PacienteContato from '../typeorm/entities/PacienteContato';
 
 interface IRequest {
   idPacienteContato: number;
-  tipoContato: 'telefone' | 'email' | 'outro';
+  tipoContato: 'telefone' | 'email' | 'O';
   valorContato: string;
 }
 

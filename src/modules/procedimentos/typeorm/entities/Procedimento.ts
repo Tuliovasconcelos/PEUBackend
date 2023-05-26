@@ -10,8 +10,8 @@ export default class Procedimento {
 
   @Column(
     {
-      enum: ['ativo', 'inativo'],
-      default: 'ativo'
+      enum: ['A', 'I'],
+      default: 'A'
     }
   )
   status: string;

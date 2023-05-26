@@ -7,7 +7,7 @@ interface IRequest {
   idAtendimentoProcedimento: number;
   idAtendimento: number;
   idProcedimento: number;
-  status: 'ativo' | 'inativo';
+  status: 'A' | 'I';
 }
 
 export default class UpdateAtendimentoProcedimentoService {

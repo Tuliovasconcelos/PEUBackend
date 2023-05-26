@@ -15,7 +15,7 @@ export default class ProgramaClinica {
   @JoinColumn({ name: 'idClinica' })
   clinica: Clinica;
 
-  @Column({ enum: ['ativo', 'inativo'], default: 'ativo' })
+  @Column({ enum: ['A', 'I'], default: 'A' })
   status: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })

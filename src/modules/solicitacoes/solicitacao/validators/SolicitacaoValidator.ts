@@ -6,7 +6,7 @@ export const createSolicitacaoValidation = celebrate({
     idMedico: Joi.number().required(),
     idClinica: Joi.number().required(),
     dataSolicitacao: Joi.date().required(),
-    status: Joi.string().valid('ativo', 'inativo').required(),
+    status: Joi.string().valid('A', 'I').required(),
   },
 });
 
@@ -19,7 +19,7 @@ export const updateSolicitacaoValidation = celebrate({
     idMedico: Joi.number(),
     idClinica: Joi.number(),
     dataSolicitacao: Joi.date(),
-    status: Joi.string().valid('ativo', 'inativo'),
+    status: Joi.string().valid('A', 'I'),
   },
 });
 

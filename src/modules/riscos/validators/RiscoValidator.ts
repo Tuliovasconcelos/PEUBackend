@@ -3,7 +3,7 @@ import { celebrate, Joi, Segments } from 'celebrate';
 export const createRiscoValidation = celebrate({
   [Segments.BODY]: {
     descricao: Joi.string().required(),
-    status: Joi.string().valid('ativo', 'inativo').required(),
+    status: Joi.string().valid('A', 'I').required(),
   },
 });
 
@@ -13,7 +13,7 @@ export const updateRiscoValidation = celebrate({
   },
   [Segments.BODY]: {
     descricao: Joi.string(),
-    status: Joi.string().valid('ativo', 'inativo'),
+    status: Joi.string().valid('A', 'I'),
   },
 });
 

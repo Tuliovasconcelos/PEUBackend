@@ -21,8 +21,8 @@ export class CreatePrograma1685123978808 implements MigrationInterface {
           {
             name: 'status',
             type: 'enum',
-            enum: ['ativo', 'inativo'],
-            default: "'ativo'",
+            enum: ['A', 'I'],
+            default: "'A'",
             isNullable: false,
           },
           {

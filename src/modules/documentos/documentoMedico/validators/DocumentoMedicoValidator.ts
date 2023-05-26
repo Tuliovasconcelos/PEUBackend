@@ -4,7 +4,7 @@ export const createDocumentoMedicoValidation = celebrate({
   [Segments.BODY]: {
     idAtendimento: Joi.number().integer().required(),
     idTipoDocumento: Joi.number().integer().required(),
-    status: Joi.string().valid('ativo', 'inativo').required(),
+    status: Joi.string().valid('A', 'I').required(),
   },
 });
 
@@ -15,7 +15,7 @@ export const updateDocumentoMedicoValidation = celebrate({
   [Segments.BODY]: {
     idAtendimento: Joi.number().integer(),
     idTipoDocumento: Joi.number().integer(),
-    status: Joi.string().valid('ativo', 'inativo'),
+    status: Joi.string().valid('A', 'I'),
   },
 });
 

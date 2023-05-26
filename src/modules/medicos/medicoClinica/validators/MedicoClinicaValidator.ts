@@ -4,13 +4,13 @@ export const createMedicoClinicaValidation = celebrate({
   [Segments.BODY]: {
     idMedico: Joi.number().required(),
     idClinica: Joi.number().required(),
-    status: Joi.string().valid('ativo', 'inativo').required(),
+    status: Joi.string().valid('A', 'I').required(),
   },
 });
 
 export const updateMedicoClinicaValidation = celebrate({
   [Segments.BODY]: {
-    status: Joi.string().valid('ativo', 'inativo').required(),
+    status: Joi.string().valid('A', 'I').required(),
   },
 });
 

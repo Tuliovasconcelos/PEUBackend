@@ -7,7 +7,7 @@ interface IRequest {
   nome: string;
   endereco: string;
   telefone: string;
-  status: 'ativo' | 'inativo';
+  status: 'A' | 'I';
 }
 
 export default class CreateClinicaService {

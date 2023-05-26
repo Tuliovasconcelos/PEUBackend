@@ -30,8 +30,8 @@ export default class ProntuarioQueixaSaude extends BaseEntity {
 
   @Column({
     type: 'enum',
-    enum: ['ativo', 'inativo'],
-    default: 'ativo',
+    enum: ['A', 'I'],
+    default: 'A',
   })
   status: string;
 

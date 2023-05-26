@@ -14,7 +14,7 @@ export default class CreateDocumentoMedicoService {
     const documentoMedico = documentoMedicoRepository.create({
       idAtendimento,
       idTipoDocumento,
-      status: 'ativo',
+      status: 'A',
       dataAlteracao: new Date(),
     });
 

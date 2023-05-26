@@ -15,8 +15,8 @@ export default class Clinica {
   telefone: string;
 
   @Column({
-    enum: ['ativo', 'inativo'],
-    default: 'ativo'
+    enum: ['A', 'I'],
+    default: 'A'
   })
   status: string;
 

@@ -6,7 +6,7 @@ import DocumentoTipoRepository from '../typeorm/repositories/DocumentoTipoReposi
 interface IRequest {
   idDocumentoTipo: number;
   nome?: string;
-  status?: 'ativo' | 'inativo';
+  status?: 'A' | 'I';
 }
 
 export default class UpdateDocumentoTipoService {

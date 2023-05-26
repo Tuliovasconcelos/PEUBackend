@@ -23,13 +23,13 @@ export default class Paciente {
 
   @Column({
     type: 'enum',
-    enum: ['masculino', 'feminino', 'outro'],
+    enum: ['M', 'F', 'O'],
   })
   genero: string;
 
   @Column({
     type: 'enum',
-    enum: ['ativo', 'inativo'],
+    enum: ['A', 'I'],
   })
   status: string;
 

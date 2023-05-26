@@ -8,7 +8,7 @@ export const createAgendamentoValidation = celebrate({
     idAgendamentoTipo: Joi.number().integer().required(),
     dataAgendamento: Joi.date().iso().required(),
     horaAgendamento: Joi.string().required(),
-    status: Joi.string().valid('ativo', 'inativo').required(),
+    status: Joi.string().valid('A', 'I').required(),
   },
 });
 
@@ -23,7 +23,7 @@ export const updateAgendamentoValidation = celebrate({
     idAgendamentoTipo: Joi.number().integer(),
     dataAgendamento: Joi.date().iso(),
     horaAgendamento: Joi.string(),
-    status: Joi.string().valid('ativo', 'inativo'),
+    status: Joi.string().valid('A', 'I'),
   },
 });
 

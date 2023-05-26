@@ -23,8 +23,8 @@ export default class ProntuarioHistoricoSaude {
 
   @Column({
     type: 'enum',
-    enum: ['ativo', 'inativo'],
-    default: 'ativo'
+    enum: ['A', 'I'],
+    default: 'A'
   })
   status: string;
 

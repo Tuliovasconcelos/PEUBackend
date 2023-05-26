@@ -11,7 +11,7 @@ interface IRequest {
   idAgendamentoTipo?: number;
   dataAgendamento?: Date;
   horaAgendamento?: string;
-  status?: 'ativo' | 'inativo';
+  status?: 'A' | 'I';
 }
 
 export default class UpdateAgendamentoService {

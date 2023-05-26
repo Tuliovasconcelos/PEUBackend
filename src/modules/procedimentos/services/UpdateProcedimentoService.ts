@@ -6,7 +6,7 @@ import ProcedimentoRepository from '../typeorm/repositories/ProcedimentoReposito
 interface IRequest {
   idProcedimento: number;
   nome?: string;
-  status?: 'ativo' | 'inativo';
+  status?: 'A' | 'I';
 }
 
 export default class UpdateProcedimentoService {

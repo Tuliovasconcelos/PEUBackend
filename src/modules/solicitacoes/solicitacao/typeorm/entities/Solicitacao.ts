@@ -24,8 +24,8 @@ export default class Solicitacao {
   dataSolicitacao: Date;
 
   @Column({
-    enum: ['ativo', 'inativo'],
-    default: 'ativo'
+    enum: ['A', 'I'],
+    default: 'A'
   })
   status: string;
 

@@ -5,7 +5,7 @@ import ConvenioRepository from '../typeorm/repositories/ConvenioRepository';
 
 interface IRequest {
   nome: string;
-  status: 'ativo' | 'inativo';
+  status: 'A' | 'I';
 }
 
 export default class CreateConvenioService {

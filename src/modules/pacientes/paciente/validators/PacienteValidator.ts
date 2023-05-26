@@ -4,7 +4,7 @@ export const createPacienteValidation = celebrate({
   [Segments.BODY]: {
     nome: Joi.string().required(),
     dataNascimento: Joi.date().iso().required(),
-    genero: Joi.string().valid('masculino', 'feminino', 'outro').required(),
+    genero: Joi.string().valid('M', 'F', 'O').required(),
   },
 });
 
@@ -15,7 +15,7 @@ export const updatePacienteValidation = celebrate({
   [Segments.BODY]: {
     nome: Joi.string().required(),
     dataNascimento: Joi.date().iso().required(),
-    genero: Joi.string().valid('masculino', 'feminino', 'outro').required(),
+    genero: Joi.string().valid('M', 'F', 'O').required(),
   },
 });
 

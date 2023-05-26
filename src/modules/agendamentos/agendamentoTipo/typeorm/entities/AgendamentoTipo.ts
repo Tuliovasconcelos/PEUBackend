@@ -8,7 +8,7 @@ export default class AgendamentoTipo {
   @Column()
   nome: string;
 
-  @Column({ enum: ['ativo', 'inativo'], default: 'ativo' })
+  @Column({ enum: ['A', 'I'], default: 'A' })
   status: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })

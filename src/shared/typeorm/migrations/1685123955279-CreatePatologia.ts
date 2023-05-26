@@ -22,8 +22,8 @@ export class CreatePatologia1685123955279 implements MigrationInterface {
           {
             name: 'status',
             type: 'enum',
-            enum: ['ativo', 'inativo'],
-            default: "'ativo'",
+            enum: ['A', 'I'],
+            default: "'A'",
             isNullable: false,
           },
           {

@@ -9,7 +9,7 @@ export default class Especialidade {
   nome: string;
 
   @Column({
-    enum: ['ativo', 'inativo'],
+    enum: ['A', 'I'],
   })
   status: string;
 

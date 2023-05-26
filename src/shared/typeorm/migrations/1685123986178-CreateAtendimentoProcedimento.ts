@@ -24,8 +24,8 @@ export class CreateAtendimentoProcedimento1685123986178 implements MigrationInte
           {
             name: 'status',
             type: 'enum',
-            enum: ['ativo', 'inativo'],
-            default: "'ativo'",
+            enum: ['A', 'I'],
+            default: "'A'",
             isNullable: false,
           },
           {

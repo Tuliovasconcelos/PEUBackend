@@ -4,7 +4,7 @@ export const createAtendimentoProcedimentoValidation = celebrate({
   [Segments.BODY]: {
     idAtendimento: Joi.number().integer().required(),
     idProcedimento: Joi.number().integer().required(),
-    status: Joi.string().valid('ativo', 'inativo').required(),
+    status: Joi.string().valid('A', 'I').required(),
   },
 });
 
@@ -15,7 +15,7 @@ export const updateAtendimentoProcedimentoValidation = celebrate({
   [Segments.BODY]: {
     idAtendimento: Joi.number().integer(),
     idProcedimento: Joi.number().integer(),
-    status: Joi.string().valid('ativo', 'inativo'),
+    status: Joi.string().valid('A', 'I'),
   },
 });
 

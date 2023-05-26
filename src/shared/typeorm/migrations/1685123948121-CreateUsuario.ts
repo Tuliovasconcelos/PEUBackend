@@ -39,8 +39,8 @@ export class CreateUsuario1685123948121 implements MigrationInterface {
           {
             name: 'status',
             type: 'enum',
-            enum: ['ativo', 'inativo'],
-            default: "'ativo'",
+            enum: ['A', 'I'],
+            default: "'A'",
             isNullable: false,
           },
           {

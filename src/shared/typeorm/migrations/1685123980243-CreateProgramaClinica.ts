@@ -26,8 +26,8 @@ export class CreateProgramaClinica1685123980243 implements MigrationInterface {
           {
             name: 'status',
             type: 'enum',
-            enum: ['ativo', 'inativo'],
-            default: "'ativo'",
+            enum: ['A', 'I'],
+            default: "'A'",
             isNullable: false,
           },
           {

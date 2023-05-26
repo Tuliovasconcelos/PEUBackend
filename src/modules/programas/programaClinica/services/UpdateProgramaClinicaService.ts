@@ -9,7 +9,7 @@ interface IRequest {
   idProgramaClinica: number;
   idPrograma?: number;
   idClinica?: number;
-  status?: 'ativo' | 'inativo';
+  status?: 'A' | 'I';
 }
 
 export default class UpdateProgramaClinicaService {

@@ -6,7 +6,7 @@ import SolicitacaoItemRepository from '../typeorm/repositories/SolicitacaoItemRe
 interface IRequest {
   idSolicitacao: number;
   descricao: string;
-  status: 'ativo' | 'inativo';
+  status: 'A' | 'I';
 }
 
 export default class CreateSolicitacaoItemService {

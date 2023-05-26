@@ -21,8 +21,8 @@ export class CreateDocumentoTipo1685123990735 implements MigrationInterface {
           {
             name: 'status',
             type: 'enum',
-            enum: ['ativo', 'inativo'],
-            default: "'ativo'",
+            enum: ['A', 'I'],
+            default: "'A'",
             isNullable: false,
           },
           {

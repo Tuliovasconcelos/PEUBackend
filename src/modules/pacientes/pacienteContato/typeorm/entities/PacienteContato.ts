@@ -9,7 +9,7 @@ export default class PacienteContato {
   @ManyToOne(() => Paciente, (paciente: Paciente) => paciente.idPaciente)
   paciente: Paciente;
 
-  @Column({ type: 'enum', enum: ['telefone', 'email', 'outro'] })
+  @Column({ type: 'enum', enum: ['telefone', 'email', 'O'] })
   tipoContato: 'telefone' | 'email' | 'outro';
 
   @Column()

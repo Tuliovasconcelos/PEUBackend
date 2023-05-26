@@ -5,7 +5,7 @@ export const createProntuarioHistoricoSaudeValidation = celebrate({
     idProntuario: Joi.number().integer().required(),
     dataRegistro: Joi.date().iso().required(),
     descricao: Joi.string().required(),
-    status: Joi.string().valid('ativo', 'inativo').required(),
+    status: Joi.string().valid('A', 'I').required(),
   },
 });
 
@@ -17,7 +17,7 @@ export const updateProntuarioHistoricoSaudeValidation = celebrate({
     idProntuario: Joi.number().integer(),
     dataRegistro: Joi.date().iso(),
     descricao: Joi.string(),
-    status: Joi.string().valid('ativo', 'inativo'),
+    status: Joi.string().valid('A', 'I'),
   },
 });
 

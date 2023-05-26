@@ -9,8 +9,8 @@ export default class TipoAgendamento {
   nome: string;
 
   @Column({
-    enum: ['ativo', 'inativo'],
-    default: 'ativo',
+    enum: ['A', 'I'],
+    default: 'A',
   })
   status: string;
 

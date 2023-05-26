@@ -8,7 +8,7 @@ interface IRequest {
   idProntuario: number;
   dataRegistro: Date;
   descricao: string;
-  status: 'ativo' | 'inativo';
+  status: 'A' | 'I';
 }
 
 export default class UpdateProntuarioHistoricoSaudeService {

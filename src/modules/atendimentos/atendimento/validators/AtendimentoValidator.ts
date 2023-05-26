@@ -11,7 +11,7 @@ export const createAtendimentoValidation = celebrate({
     dataAtendimento: Joi.date().required(),
     horaAtendimento: Joi.string().required(),
     conclusao: Joi.string().required(),
-    status: Joi.string().valid('ativo', 'inativo').required(),
+    status: Joi.string().valid('A', 'I').required(),
   },
 });
 
@@ -29,7 +29,7 @@ export const updateAtendimentoValidation = celebrate({
     dataAtendimento: Joi.date(),
     horaAtendimento: Joi.string(),
     conclusao: Joi.string(),
-    status: Joi.string().valid('ativo', 'inativo'),
+    status: Joi.string().valid('A', 'I'),
   },
 });
 

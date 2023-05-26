@@ -6,7 +6,7 @@ import AtendimentoProcedimentoRepository from '../typeorm/repositories/Atendimen
 interface IRequest {
   idAtendimento: number;
   idProcedimento: number;
-  status: 'ativo' | 'inativo';
+  status: 'A' | 'I';
 }
 
 export default class CreateAtendimentoProcedimentoService {

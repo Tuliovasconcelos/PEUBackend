@@ -33,5 +33,5 @@ export default class DocumentoMedicoRepository extends Repository<DocumentoMedic
     return documentoMedico || null;
   }
 
-  // Outros métodos de consulta podem ser implementados aqui, de acordo com suas necessidades
+  // Os métodos de consulta podem ser implementados aqui, de acordo com suas necessidades
 }

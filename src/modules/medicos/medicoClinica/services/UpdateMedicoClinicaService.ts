@@ -5,7 +5,7 @@ import MedicoClinicaRepository from '../typeorm/repositories/MedicoClinicaReposi
 
 interface IRequest {
   idMedicoClinica: number;
-  status: 'ativo' | 'inativo';
+  status: 'A' | 'I';
 }
 
 export default class UpdateMedicoClinicaService {

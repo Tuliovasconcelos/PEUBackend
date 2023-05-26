@@ -3,7 +3,7 @@ import { celebrate, Joi, Segments } from 'celebrate';
 export const createPacienteContatoValidation = celebrate({
   [Segments.BODY]: {
     idPaciente: Joi.number().required(),
-    tipoContato: Joi.string().valid('telefone', 'email', 'outro').required(),
+    tipoContato: Joi.string().valid('telefone', 'email', 'O').required(),
     valorContato: Joi.string().required(),
   },
 });

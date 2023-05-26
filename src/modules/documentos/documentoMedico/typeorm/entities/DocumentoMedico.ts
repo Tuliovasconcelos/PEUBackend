@@ -13,7 +13,7 @@ export default class DocumentoMedico {
   @Column()
   idTipoDocumento: number;
 
-  @Column({ enum: ['ativo', 'inativo'], default: 'ativo' })
+  @Column({ enum: ['A', 'I'], default: 'A' })
   status: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })

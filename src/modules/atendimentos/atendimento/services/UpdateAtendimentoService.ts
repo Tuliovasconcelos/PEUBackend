@@ -14,7 +14,7 @@ interface IRequest {
   dataAtendimento?: Date;
   horaAtendimento?: string;
   conclusao?: string;
-  status?: 'ativo' | 'inativo';
+  status?: 'A' | 'I';
 }
 
 export default class UpdateAtendimentoService {

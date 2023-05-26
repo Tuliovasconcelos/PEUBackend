@@ -27,13 +27,13 @@ export class CreatePaciente1685123946376 implements MigrationInterface {
           {
             name: 'genero',
             type: 'enum',
-            enum: ['masculino', 'feminino', 'outro'],
+            enum: ['M', 'F', 'O'],
             isNullable: false,
           },
           {
             name: 'status',
             type: 'enum',
-            enum: ['ativo', 'inativo'],
+            enum: ['A', 'I'],
             isNullable: false,
           },
           {

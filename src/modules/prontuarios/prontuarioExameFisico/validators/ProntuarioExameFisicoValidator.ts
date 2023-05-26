@@ -5,7 +5,7 @@ export const createProntuarioExameFisicoValidation = celebrate({
     idProntuario: Joi.number().integer().required(),
     dataRegistro: Joi.date().required(),
     descricao: Joi.string().required(),
-    status: Joi.string().valid('ativo', 'inativo').required(),
+    status: Joi.string().valid('A', 'I').required(),
   },
 });
 
@@ -16,7 +16,7 @@ export const updateProntuarioExameFisicoValidation = celebrate({
   [Segments.BODY]: {
     dataRegistro: Joi.date(),
     descricao: Joi.string(),
-    status: Joi.string().valid('ativo', 'inativo'),
+    status: Joi.string().valid('A', 'I'),
   },
 });
 

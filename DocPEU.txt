@@ -4,7 +4,7 @@ Tabela Usuario: Armazena informações básicas do usuário, como nome, email, s
 
 Tabela Paciente: Armazena informações específicas do paciente, como nome, data de nascimento, gênero e status. Possui uma chave estrangeira para a tabela Usuario para estabelecer a relação entre paciente e usuário.
 
-Tabela ContatoPaciente: Armazena os contatos do paciente, como telefone, e-mail ou outros tipos de contato. Possui uma chave estrangeira para a tabela Paciente.
+Tabela ContatoPaciente: Armazena os contatos do paciente, como telefone, e-mail ou Os tipos de contato. Possui uma chave estrangeira para a tabela Paciente.
 
 Tabela EnderecoPaciente: Armazena o endereço do paciente, incluindo informações como endereço, cidade, estado e CEP. Também possui uma chave estrangeira para a tabela Paciente.
 

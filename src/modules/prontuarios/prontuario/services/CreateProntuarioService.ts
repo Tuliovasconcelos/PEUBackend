@@ -19,7 +19,7 @@ export default class CreateProntuarioService {
 
     const prontuario = prontuarioRepository.create({
       idPaciente,
-      status: 'ativo', // Defina o status inicial aqui
+      status: 'A', // Defina o status inicial aqui
       dataAlteracao: new Date(), // Defina a data de alteração inicial aqui
     });
 

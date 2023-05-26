@@ -5,7 +5,7 @@ import ProgramaRepository from '../typeorm/repositories/ProgramaRepository';
 
 interface IRequest {
   descricao: string;
-  status: 'ativo' | 'inativo';
+  status: 'A' | 'I';
 }
 
 export default class CreateProgramaService {

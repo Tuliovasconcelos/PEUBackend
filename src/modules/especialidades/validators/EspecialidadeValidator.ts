@@ -3,7 +3,7 @@ import { celebrate, Joi, Segments } from 'celebrate';
 export const createEspecialidadeValidation = celebrate({
   [Segments.BODY]: {
     nome: Joi.string().required(),
-    status: Joi.string().valid('ativo', 'inativo').required(),
+    status: Joi.string().valid('A', 'I').required(),
   },
 });
 
@@ -13,7 +13,7 @@ export const updateEspecialidadeValidation = celebrate({
   },
   [Segments.BODY]: {
     nome: Joi.string(),
-    status: Joi.string().valid('ativo', 'inativo'),
+    status: Joi.string().valid('A', 'I'),
   },
 });
 

@@ -17,10 +17,10 @@ export default class AtendimentoProcedimento {
 
   @Column({
     type: 'enum',
-    enum: ['ativo', 'inativo'],
-    default: 'ativo',
+    enum: ['A', 'I'],
+    default: 'A',
   })
-  status: 'ativo' | 'inativo';
+  status: 'A' | 'I';
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
   dataAlteracao: Date;

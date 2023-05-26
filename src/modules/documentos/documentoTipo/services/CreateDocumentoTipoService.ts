@@ -5,7 +5,7 @@ import DocumentoTipoRepository from '../typeorm/repositories/DocumentoTipoReposi
 
 interface IRequest {
   nome: string;
-  status: 'ativo' | 'inativo';
+  status: 'A' | 'I';
 }
 
 export default class CreateDocumentoTipoService {

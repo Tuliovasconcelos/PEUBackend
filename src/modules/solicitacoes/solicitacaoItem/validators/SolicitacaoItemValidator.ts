@@ -4,7 +4,7 @@ export const createSolicitacaoItemValidation = celebrate({
   [Segments.BODY]: {
     idSolicitacao: Joi.number().required(),
     descricao: Joi.string().required(),
-    status: Joi.string().valid('ativo', 'inativo').required(),
+    status: Joi.string().valid('A', 'I').required(),
   },
 });
 
@@ -12,7 +12,7 @@ export const updateSolicitacaoItemValidation = celebrate({
   [Segments.BODY]: {
     idSolicitacaoItem: Joi.number().required(),
     descricao: Joi.string().required(),
-    status: Joi.string().valid('ativo', 'inativo').required(),
+    status: Joi.string().valid('A', 'I').required(),
   },
 });
 

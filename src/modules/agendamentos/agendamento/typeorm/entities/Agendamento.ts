@@ -43,7 +43,7 @@ export default class Agendamento {
   @Column()
   horaAgendamento: string;
 
-  @Column({ enum: ['ativo', 'inativo'] })
+  @Column({ enum: ['A', 'I'] })
   status: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
