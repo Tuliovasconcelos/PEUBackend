@@ -9,17 +9,17 @@ import {
   deletePacientePatologiaRiscoValidation,
 } from '../validators/PacientePatologiaRiscoValidator';
 
-const PacientePatologiaRiscoRouter = Router();
+const pacientePatologiaRiscoRouter = Router();
 const pacientePatologiaRiscoController = new PacientePatologiaRiscoController();
 
-PacientePatologiaRiscoRouter.get('/', pacientePatologiaRiscoController.index);
+pacientePatologiaRiscoRouter.get('/', pacientePatologiaRiscoController.index);
 
-PacientePatologiaRiscoRouter.get('/:id', showPacientePatologiaRiscoValidation, pacientePatologiaRiscoController.show);
+pacientePatologiaRiscoRouter.get('/:id', showPacientePatologiaRiscoValidation, pacientePatologiaRiscoController.show);
 
-PacientePatologiaRiscoRouter.post('/', createPacientePatologiaRiscoValidation, pacientePatologiaRiscoController.create);
+pacientePatologiaRiscoRouter.post('/', createPacientePatologiaRiscoValidation, pacientePatologiaRiscoController.create);
 
-PacientePatologiaRiscoRouter.put('/:id', updatePacientePatologiaRiscoValidation, pacientePatologiaRiscoController.update);
+pacientePatologiaRiscoRouter.put('/:id', updatePacientePatologiaRiscoValidation, pacientePatologiaRiscoController.update);
 
-PacientePatologiaRiscoRouter.delete('/:id', deletePacientePatologiaRiscoValidation, pacientePatologiaRiscoController.delete);
+pacientePatologiaRiscoRouter.delete('/:id', deletePacientePatologiaRiscoValidation, pacientePatologiaRiscoController.delete);
 
-export default PacientePatologiaRiscoRouter;
+export default pacientePatologiaRiscoRouter;

@@ -7,13 +7,13 @@ import {
   deleteDocumentoMedicoValidation,
 } from '../validators/DocumentoMedicoValidator';
 
-const DocumentoMedicoRouter = Router();
+const documentoMedicoRouter = Router();
 const documentoMedicoController = new DocumentoMedicoController();
 
-DocumentoMedicoRouter.get('/', documentoMedicoController.index);
-DocumentoMedicoRouter.get('/:idDocumentoMedico', showDocumentoMedicoValidation, documentoMedicoController.show);
-DocumentoMedicoRouter.post('/', createDocumentoMedicoValidation, documentoMedicoController.create);
-DocumentoMedicoRouter.put('/:idDocumentoMedico', updateDocumentoMedicoValidation, documentoMedicoController.update);
-DocumentoMedicoRouter.delete('/:idDocumentoMedico', deleteDocumentoMedicoValidation, documentoMedicoController.delete);
+documentoMedicoRouter.get('/', documentoMedicoController.index);
+documentoMedicoRouter.get('/:idDocumentoMedico', showDocumentoMedicoValidation, documentoMedicoController.show);
+documentoMedicoRouter.post('/', createDocumentoMedicoValidation, documentoMedicoController.create);
+documentoMedicoRouter.put('/:idDocumentoMedico', updateDocumentoMedicoValidation, documentoMedicoController.update);
+documentoMedicoRouter.delete('/:idDocumentoMedico', deleteDocumentoMedicoValidation, documentoMedicoController.delete);
 
-export default DocumentoMedicoRouter;
+export default documentoMedicoRouter;

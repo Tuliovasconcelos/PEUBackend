@@ -7,13 +7,13 @@ import {
   deleteRiscoValidation,
 } from '../validators/RiscoValidator';
 
-const RiscoRoutes = Router();
+const riscoRouter = Router();
 const RiscoController = new RiscosController();
 
-RiscoRoutes.get('/', RiscoController.index);
-RiscoRoutes.get('/:id', showRiscoValidation, RiscoController.show);
-RiscoRoutes.post('/', createRiscoValidation, RiscoController.create);
-RiscoRoutes.put('/:id', updateRiscoValidation, RiscoController.update);
-RiscoRoutes.delete('/:id', deleteRiscoValidation, RiscoController.delete);
+riscoRouter.get('/', RiscoController.index);
+riscoRouter.get('/:id', showRiscoValidation, RiscoController.show);
+riscoRouter.post('/', createRiscoValidation, RiscoController.create);
+riscoRouter.put('/:id', updateRiscoValidation, RiscoController.update);
+riscoRouter.delete('/:id', deleteRiscoValidation, RiscoController.delete);
 
-export default RiscoRoutes;
+export default riscoRouter;

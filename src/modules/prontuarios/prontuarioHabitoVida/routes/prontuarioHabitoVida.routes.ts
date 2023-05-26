@@ -7,13 +7,13 @@ import {
   deleteProntuarioHabitoVidaValidation,
 } from '../validators/ProntuarioHabitoVidaValidator';
 
-const prontuarioRoutes = Router();
+const prontuarioHabitoVidaRouter = Router();
 const prontuarioHabitoVidaController = new ProntuarioHabitoVidaController();
 
-prontuarioRoutes.get('/', prontuarioHabitoVidaController.index);
-prontuarioRoutes.get('/:id', showProntuarioHabitoVidaValidation, prontuarioHabitoVidaController.show);
-prontuarioRoutes.post('/', createProntuarioHabitoVidaValidation, prontuarioHabitoVidaController.create);
-prontuarioRoutes.put('/:id', updateProntuarioHabitoVidaValidation, prontuarioHabitoVidaController.update);
-prontuarioRoutes.delete('/:id', deleteProntuarioHabitoVidaValidation, prontuarioHabitoVidaController.delete);
+prontuarioHabitoVidaRouter.get('/', prontuarioHabitoVidaController.index);
+prontuarioHabitoVidaRouter.get('/:id', showProntuarioHabitoVidaValidation, prontuarioHabitoVidaController.show);
+prontuarioHabitoVidaRouter.post('/', createProntuarioHabitoVidaValidation, prontuarioHabitoVidaController.create);
+prontuarioHabitoVidaRouter.put('/:id', updateProntuarioHabitoVidaValidation, prontuarioHabitoVidaController.update);
+prontuarioHabitoVidaRouter.delete('/:id', deleteProntuarioHabitoVidaValidation, prontuarioHabitoVidaController.delete);
 
-export default prontuarioRoutes;
+export default prontuarioHabitoVidaRouter;

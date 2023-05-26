@@ -7,13 +7,13 @@ import {
   deleteAgendamentoValidation,
 } from '../validators/AgendamentoValidator';
 
-const AgendamentoRouter = Router();
+const agendamentoRouter = Router();
 const agendamentosController = new AgendamentosController();
 
-AgendamentoRouter.get('/', agendamentosController.index);
-AgendamentoRouter.get('/:idAgendamento', showAgendamentoValidation, agendamentosController.show);
-AgendamentoRouter.post('/', createAgendamentoValidation, agendamentosController.create);
-AgendamentoRouter.put('/:idAgendamento', updateAgendamentoValidation, agendamentosController.update);
-AgendamentoRouter.delete('/:idAgendamento', deleteAgendamentoValidation, agendamentosController.delete);
+agendamentoRouter.get('/', agendamentosController.index);
+agendamentoRouter.get('/:idAgendamento', showAgendamentoValidation, agendamentosController.show);
+agendamentoRouter.post('/', createAgendamentoValidation, agendamentosController.create);
+agendamentoRouter.put('/:idAgendamento', updateAgendamentoValidation, agendamentosController.update);
+agendamentoRouter.delete('/:idAgendamento', deleteAgendamentoValidation, agendamentosController.delete);
 
-export default AgendamentoRouter;
+export default agendamentoRouter;

@@ -7,13 +7,13 @@ import {
   deleteClinicaValidation,
 } from '../validators/ClinicaValidator';
 
-const ClinicaRouter = Router();
+const clinicaRouter = Router();
 const ClinicaController = new ClinicasController();
 
-ClinicaRouter.get('/', ClinicaController.index);
-ClinicaRouter.get('/:idClinica', showClinicaValidation, ClinicaController.show);
-ClinicaRouter.post('/', createClinicaValidation, ClinicaController.create);
-ClinicaRouter.put('/:idClinica', updateClinicaValidation, ClinicaController.update);
-ClinicaRouter.delete('/:idClinica', deleteClinicaValidation, ClinicaController.delete);
+clinicaRouter.get('/', ClinicaController.index);
+clinicaRouter.get('/:idClinica', showClinicaValidation, ClinicaController.show);
+clinicaRouter.post('/', createClinicaValidation, ClinicaController.create);
+clinicaRouter.put('/:idClinica', updateClinicaValidation, ClinicaController.update);
+clinicaRouter.delete('/:idClinica', deleteClinicaValidation, ClinicaController.delete);
 
-export default ClinicaRouter;
+export default clinicaRouter;

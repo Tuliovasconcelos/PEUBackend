@@ -7,13 +7,13 @@ import {
   deletePacienteEnderecoValidation,
 } from '../validators/PacienteEnderecoValidator';
 
-const PacienteEnderecoRouter = Router();
+const pacienteEnderecoRouter = Router();
 const pacienteEnderecoController = new PacienteEnderecoController();
 
-PacienteEnderecoRouter.get('/', pacienteEnderecoController.index);
-PacienteEnderecoRouter.get('/:id', showPacienteEnderecoValidation, pacienteEnderecoController.show);
-PacienteEnderecoRouter.post('/', createPacienteEnderecoValidation, pacienteEnderecoController.create);
-PacienteEnderecoRouter.put('/:id', updatePacienteEnderecoValidation, pacienteEnderecoController.update);
-PacienteEnderecoRouter.delete('/:id', deletePacienteEnderecoValidation, pacienteEnderecoController.delete);
+pacienteEnderecoRouter.get('/', pacienteEnderecoController.index);
+pacienteEnderecoRouter.get('/:id', showPacienteEnderecoValidation, pacienteEnderecoController.show);
+pacienteEnderecoRouter.post('/', createPacienteEnderecoValidation, pacienteEnderecoController.create);
+pacienteEnderecoRouter.put('/:id', updatePacienteEnderecoValidation, pacienteEnderecoController.update);
+pacienteEnderecoRouter.delete('/:id', deletePacienteEnderecoValidation, pacienteEnderecoController.delete);
 
-export default PacienteEnderecoRouter;
+export default pacienteEnderecoRouter;

@@ -7,13 +7,13 @@ import {
   deleteAtendimentoProcedimentoValidation,
 } from '../validators/AtendimentoProcedimentoValidator';
 
-const AtendimentoProcedimentoRouter = Router();
+const atendimentoProcedimentoRouter = Router();
 const controller = new AtendimentoProcedimentoController();
 
-AtendimentoProcedimentoRouter.get('/', controller.index);
-AtendimentoProcedimentoRouter.get('/:idAtendimentoProcedimento', showAtendimentoProcedimentoValidation, controller.show);
-AtendimentoProcedimentoRouter.post('/', createAtendimentoProcedimentoValidation, controller.create);
-AtendimentoProcedimentoRouter.put('/:idAtendimentoProcedimento', updateAtendimentoProcedimentoValidation, controller.update);
-AtendimentoProcedimentoRouter.delete('/:idAtendimentoProcedimento', deleteAtendimentoProcedimentoValidation, controller.delete);
+atendimentoProcedimentoRouter.get('/', controller.index);
+atendimentoProcedimentoRouter.get('/:idAtendimentoProcedimento', showAtendimentoProcedimentoValidation, controller.show);
+atendimentoProcedimentoRouter.post('/', createAtendimentoProcedimentoValidation, controller.create);
+atendimentoProcedimentoRouter.put('/:idAtendimentoProcedimento', updateAtendimentoProcedimentoValidation, controller.update);
+atendimentoProcedimentoRouter.delete('/:idAtendimentoProcedimento', deleteAtendimentoProcedimentoValidation, controller.delete);
 
-export default AtendimentoProcedimentoRouter;
+export default atendimentoProcedimentoRouter;

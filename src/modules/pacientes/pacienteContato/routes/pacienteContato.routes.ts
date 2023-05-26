@@ -7,17 +7,17 @@ import {
   deletePacienteContatoValidation,
 } from '../validators/PacienteContatoValidator';
 
-const PacienteContatoRouter = Router();
+const pacienteContatoRouter = Router();
 const pacienteContatoController = new PacienteContatoController();
 
-PacienteContatoRouter.get('/', pacienteContatoController.index);
+pacienteContatoRouter.get('/', pacienteContatoController.index);
 
-PacienteContatoRouter.get('/:id', showPacienteContatoValidation, pacienteContatoController.show);
+pacienteContatoRouter.get('/:id', showPacienteContatoValidation, pacienteContatoController.show);
 
-PacienteContatoRouter.post('/', createPacienteContatoValidation, pacienteContatoController.create);
+pacienteContatoRouter.post('/', createPacienteContatoValidation, pacienteContatoController.create);
 
-PacienteContatoRouter.put('/:id', updatePacienteContatoValidation, pacienteContatoController.update);
+pacienteContatoRouter.put('/:id', updatePacienteContatoValidation, pacienteContatoController.update);
 
-PacienteContatoRouter.delete('/:id', deletePacienteContatoValidation, pacienteContatoController.delete);
+pacienteContatoRouter.delete('/:id', deletePacienteContatoValidation, pacienteContatoController.delete);
 
-export default PacienteContatoRouter;
+export default pacienteContatoRouter;

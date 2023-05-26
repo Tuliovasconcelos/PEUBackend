@@ -7,17 +7,17 @@ import {
   deletePacienteConvenioValidation,
 } from '../validators/PacienteConvenioValidator';
 
-const PacienteConveniosRouter = Router();
+const pacienteConvenioRouter = Router();
 const pacienteConveniosController = new PacienteConvenioController();
 
-PacienteConveniosRouter.get('/', pacienteConveniosController.index);
+pacienteConvenioRouter.get('/', pacienteConveniosController.index);
 
-PacienteConveniosRouter.get('/:id', showPacienteConvenioValidation, pacienteConveniosController.show);
+pacienteConvenioRouter.get('/:id', showPacienteConvenioValidation, pacienteConveniosController.show);
 
-PacienteConveniosRouter.post('/', createPacienteConvenioValidation, pacienteConveniosController.create);
+pacienteConvenioRouter.post('/', createPacienteConvenioValidation, pacienteConveniosController.create);
 
-PacienteConveniosRouter.put('/:id', updatePacienteConvenioValidation, pacienteConveniosController.update);
+pacienteConvenioRouter.put('/:id', updatePacienteConvenioValidation, pacienteConveniosController.update);
 
-PacienteConveniosRouter.delete('/:id', deletePacienteConvenioValidation, pacienteConveniosController.delete);
+pacienteConvenioRouter.delete('/:id', deletePacienteConvenioValidation, pacienteConveniosController.delete);
 
-export default PacienteConveniosRouter;
+export default pacienteConvenioRouter;

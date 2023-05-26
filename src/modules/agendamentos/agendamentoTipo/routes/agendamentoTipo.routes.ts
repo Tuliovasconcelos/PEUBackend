@@ -7,13 +7,13 @@ import {
   deleteAgendamentoTipoValidation,
 } from '../validators/AgendamentoTipoValidator';
 
-const AgendamentoTipoRouter = Router();
+const agendamentoTipoRouter = Router();
 const agendamentoTipoController = new AgendamentoTipoController();
 
-AgendamentoTipoRouter.get('/', agendamentoTipoController.index);
-AgendamentoTipoRouter.get('/:id', showAgendamentoTipoValidation, agendamentoTipoController.show);
-AgendamentoTipoRouter.post('/', createAgendamentoTipoValidation, agendamentoTipoController.create);
-AgendamentoTipoRouter.put('/:id', updateAgendamentoTipoValidation, agendamentoTipoController.update);
-AgendamentoTipoRouter.delete('/:id', deleteAgendamentoTipoValidation, agendamentoTipoController.delete);
+agendamentoTipoRouter.get('/', agendamentoTipoController.index);
+agendamentoTipoRouter.get('/:id', showAgendamentoTipoValidation, agendamentoTipoController.show);
+agendamentoTipoRouter.post('/', createAgendamentoTipoValidation, agendamentoTipoController.create);
+agendamentoTipoRouter.put('/:id', updateAgendamentoTipoValidation, agendamentoTipoController.update);
+agendamentoTipoRouter.delete('/:id', deleteAgendamentoTipoValidation, agendamentoTipoController.delete);
 
-export default AgendamentoTipoRouter;
+export default agendamentoTipoRouter;

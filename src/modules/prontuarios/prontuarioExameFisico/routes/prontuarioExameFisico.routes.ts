@@ -7,13 +7,13 @@ import {
   deleteProntuarioExameFisicoValidation,
 } from '../validators/ProntuarioExameFisicoValidator';
 
-const prontuarioRoutes = Router();
+const prontuarioExameFisicoRouter = Router();
 const prontuarioExameFisicoController = new ProntuarioExameFisicoController();
 
-prontuarioRoutes.get('/', prontuarioExameFisicoController.index);
-prontuarioRoutes.get('/:id', showProntuarioExameFisicoValidation, prontuarioExameFisicoController.show);
-prontuarioRoutes.post('/', createProntuarioExameFisicoValidation, prontuarioExameFisicoController.create);
-prontuarioRoutes.put('/:id', updateProntuarioExameFisicoValidation, prontuarioExameFisicoController.update);
-prontuarioRoutes.delete('/:id', deleteProntuarioExameFisicoValidation, prontuarioExameFisicoController.delete);
+prontuarioExameFisicoRouter.get('/', prontuarioExameFisicoController.index);
+prontuarioExameFisicoRouter.get('/:id', showProntuarioExameFisicoValidation, prontuarioExameFisicoController.show);
+prontuarioExameFisicoRouter.post('/', createProntuarioExameFisicoValidation, prontuarioExameFisicoController.create);
+prontuarioExameFisicoRouter.put('/:id', updateProntuarioExameFisicoValidation, prontuarioExameFisicoController.update);
+prontuarioExameFisicoRouter.delete('/:id', deleteProntuarioExameFisicoValidation, prontuarioExameFisicoController.delete);
 
-export default prontuarioRoutes;
+export default prontuarioExameFisicoRouter;

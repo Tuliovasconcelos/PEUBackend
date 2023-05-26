@@ -7,13 +7,13 @@ import {
   deleteProntuarioQueixaSaudeValidation,
 } from '../validators/ProntuarioQueixaSaudeValidator';
 
-const prontuarioRoutes = Router();
+const prontuarioQueixaSaudeRouter = Router();
 const prontuarioQueixaSaudeController = new ProntuarioQueixaSaudeController();
 
-prontuarioRoutes.get('/', prontuarioQueixaSaudeController.index);
-prontuarioRoutes.get('/:id', showProntuarioQueixaSaudeValidation, prontuarioQueixaSaudeController.show);
-prontuarioRoutes.post('/', createProntuarioQueixaSaudeValidation, prontuarioQueixaSaudeController.create);
-prontuarioRoutes.put('/:id', updateProntuarioQueixaSaudeValidation, prontuarioQueixaSaudeController.update);
-prontuarioRoutes.delete('/:id', deleteProntuarioQueixaSaudeValidation, prontuarioQueixaSaudeController.delete);
+prontuarioQueixaSaudeRouter.get('/', prontuarioQueixaSaudeController.index);
+prontuarioQueixaSaudeRouter.get('/:id', showProntuarioQueixaSaudeValidation, prontuarioQueixaSaudeController.show);
+prontuarioQueixaSaudeRouter.post('/', createProntuarioQueixaSaudeValidation, prontuarioQueixaSaudeController.create);
+prontuarioQueixaSaudeRouter.put('/:id', updateProntuarioQueixaSaudeValidation, prontuarioQueixaSaudeController.update);
+prontuarioQueixaSaudeRouter.delete('/:id', deleteProntuarioQueixaSaudeValidation, prontuarioQueixaSaudeController.delete);
 
-export default prontuarioRoutes;
+export default prontuarioQueixaSaudeRouter;
