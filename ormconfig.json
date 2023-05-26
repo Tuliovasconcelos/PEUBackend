@@ -1,15 +1,14 @@
 {
   "type": "mysql",
   "host": "localhost",
-  "port": 5432,
+  "port": 3306,
   "username": "root",
   "password": "",
   "database": "peu",
-  "entities": ["./dist/modules/**/typeorm/entities/*.js","./dist/modules/**/**/typeorm/entities/*.js"],
   "migrations": [
-    "./dist/shared/typeorm/migrations/*.js"
+    "./src/shared/typeorm/migrations/*.ts"
   ],
   "cli": {
-    "migrationsDir": "./dist/shared/typeorm/migrations"
+    "migrationsDir": "./src/shared/typeorm/migrations"
   }
 }
