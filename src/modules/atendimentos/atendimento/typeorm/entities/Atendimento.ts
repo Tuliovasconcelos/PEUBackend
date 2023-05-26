@@ -4,8 +4,7 @@ import Medico from '@modules/medicos/medico/typeorm/entities/Medico';
 import Prontuario from '@modules/prontuarios/prontuario/typeorm/entities/Prontuario';
 import Clinica from '@modules/clinicas/typeorm/entities/Clinica';
 import TipoAgendamento from '@modules/tipoAgendamento/typeorm/entities/TipoAgendamento';
-import Programa from '@modules/programas/typeorm/entities/Programa';
-
+import Programa from '@modules/programas/programa/typeorm/entities/Programa';
 @Entity('Atendimento')
 export default class Atendimento {
   @PrimaryGeneratedColumn('increment')
