@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table, TableColumn, TableForeignKey } from 'typeorm';
 
-export class CreatePaciente1685123950961 implements MigrationInterface {
+export class CreatePaciente1685123946376 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -12,11 +12,6 @@ export class CreatePaciente1685123950961 implements MigrationInterface {
             isPrimary: true,
             isGenerated: true,
             generationStrategy: 'increment',
-          },
-          {
-            name: 'idUsuario',
-            type: 'int',
-            isNullable: false,
           },
           {
             name: 'nome',
@@ -48,21 +43,12 @@ export class CreatePaciente1685123950961 implements MigrationInterface {
             onUpdate: 'CURRENT_TIMESTAMP',
           },
         ],
-        foreignKeys: [
-          new TableForeignKey({
-            columnNames: ['idUsuario'],
-            referencedColumnNames: ['idUsuario'],
-            referencedTableName: 'usuario',
-            onDelete: 'CASCADE',
-          })
-        ],
       }),
       true,
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('paciente', 'FK_paciente_idUsuario');
     await queryRunner.dropTable('paciente');
   }
 }

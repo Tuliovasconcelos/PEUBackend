@@ -14,6 +14,11 @@ export class CreateUsuario1685123948121 implements MigrationInterface {
             generationStrategy: 'increment',
           },
           {
+            name: 'idPaciente',
+            type: 'int',
+            isNullable: false,
+          },
+          {
             name: 'nome',
             type: 'varchar',
             length: '100',
@@ -68,6 +73,12 @@ export class CreateUsuario1685123948121 implements MigrationInterface {
             referencedColumnNames: ['idTipoUsuario'],
             referencedTableName: 'tipoUsuario',
             onDelete: 'CASCADE',
+          }),
+          new TableForeignKey({
+            columnNames: ['idPaciente'],
+            referencedColumnNames: ['idPaciente'],
+            referencedTableName: 'paciente',
+            onDelete: 'CASCADE',
           })
         ],
 
@@ -78,6 +89,7 @@ export class CreateUsuario1685123948121 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey('usuario', 'FK_usuario_idTipoUsuario');
+    await queryRunner.dropForeignKey('usuario', 'FK_usuario_idPaciente');
     await queryRunner.dropTable('usuario');
   }
 }
