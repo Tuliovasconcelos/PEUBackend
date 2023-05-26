@@ -4,7 +4,7 @@ export class CreateConvenioTable1631181382579 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'Convenio',
+        name: 'convenio',
         columns: [
           {
             name: 'idConvenio',
@@ -34,11 +34,13 @@ export class CreateConvenioTable1631181382579 implements MigrationInterface {
           },
         ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
+    await queryRunner.createPrimaryKey('convenio', ['idConvenio']);
+
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('Convenio');
+    await queryRunner.dropTable('convenio');
   }
 }

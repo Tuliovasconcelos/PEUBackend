@@ -4,7 +4,7 @@ export class CreateProntuarioTable1631181382578 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'Prontuario',
+        name: 'prontuario',
         columns: [
           {
             name: 'idProntuario',
@@ -36,16 +36,19 @@ export class CreateProntuarioTable1631181382578 implements MigrationInterface {
           new TableForeignKey({
             columnNames: ['idPaciente'],
             referencedColumnNames: ['idPaciente'],
-            referencedTableName: 'Paciente',
+            referencedTableName: 'paciente',
             onDelete: 'CASCADE',
           }),
         ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
+    await queryRunner.createPrimaryKey('prontuario', ['idProntuario']);
+
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('Prontuario');
+    await queryRunner.dropForeignKey('prontuario', 'FK_prontuario_idPaciente');
+    await queryRunner.dropTable('prontuario');
   }
 }

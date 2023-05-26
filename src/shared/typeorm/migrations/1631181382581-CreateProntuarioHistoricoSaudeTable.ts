@@ -4,7 +4,7 @@ export class CreateProntuarioHistoricoSaudeTable1631181382581 implements Migrati
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'ProntuarioHistoricoSaude',
+        name: 'prontuarioHistoricoSaude',
         columns: [
           {
             name: 'idProntuarioHistoricoSaude',
@@ -46,16 +46,19 @@ export class CreateProntuarioHistoricoSaudeTable1631181382581 implements Migrati
           new TableForeignKey({
             columnNames: ['idProntuario'],
             referencedColumnNames: ['idProntuario'],
-            referencedTableName: 'Prontuario',
+            referencedTableName: 'prontuario',
             onDelete: 'CASCADE',
           }),
         ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
+    await queryRunner.createPrimaryKey('prontuarioHistoricoSaude', ['idProntuarioHistoricoSaude']);
+
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('ProntuarioHistoricoSaude');
+    await queryRunner.dropForeignKey('prontuarioHistoricoSaude', 'FK_prontuarioHistoricoSaude_idProntuario');
+    await queryRunner.dropTable('prontuarioHistoricoSaude');
   }
 }

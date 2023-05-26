@@ -37,30 +37,23 @@ export class CreatePacienteProgramaTable1631190000006 implements MigrationInterf
             onUpdate: 'CURRENT_TIMESTAMP',
           },
         ],
+        foreignKeys: [
+          new TableForeignKey({
+            columnNames: ['idPaciente'],
+            referencedTableName: 'paciente',
+            referencedColumnNames: ['idPaciente'],
+            onDelete: 'CASCADE',
+          }),
+          new TableForeignKey({
+            columnNames: ['idPrograma'],
+            referencedTableName: 'programa',
+            referencedColumnNames: ['idPrograma'],
+            onDelete: 'CASCADE',
+          })
+        ]
       })
     );
-
-    await queryRunner.createForeignKey(
-      'pacientePrograma',
-      new TableForeignKey({
-        columnNames: ['idPaciente'],
-        referencedTableName: 'paciente',
-        referencedColumnNames: ['idPaciente'],
-        onDelete: 'CASCADE',
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'pacientePrograma',
-      new TableForeignKey({
-        columnNames: ['idPrograma'],
-        referencedTableName: 'programa',
-        referencedColumnNames: ['idPrograma'],
-        onDelete: 'CASCADE',
-      })
-    );
-
-    await queryRunner.createPrimaryKey('pacientePrograma', ['pacientePrograma']);
+    await queryRunner.createPrimaryKey('pacientePrograma', ['idPacientePrograma']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

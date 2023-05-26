@@ -33,10 +33,9 @@ export class CreateProgramaTable1631190000004 implements MigrationInterface {
           },
         ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
     await queryRunner.createPrimaryKey('programa', ['idPrograma']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

@@ -37,20 +37,18 @@ export class CreateSolicitacaoItemTable1631190000003 implements MigrationInterfa
             onUpdate: 'CURRENT_TIMESTAMP',
           },
         ],
+        foreignKeys: [
+          new TableForeignKey({
+            columnNames: ['idSolicitacao'],
+            referencedTableName: 'solicitacao',
+            referencedColumnNames: ['idSolicitacao'],
+            onDelete: 'CASCADE',
+          })
+        ]
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
     await queryRunner.createPrimaryKey('solicitacaoItem', ['idItemSolicitacao']);
-
-    await queryRunner.createForeignKey(
-      'solicitacaoItem',
-      new TableForeignKey({
-        columnNames: ['idSolicitacao'],
-        referencedTableName: 'solicitacao',
-        referencedColumnNames: ['idSolicitacao'],
-        onDelete: 'CASCADE',
-      })
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

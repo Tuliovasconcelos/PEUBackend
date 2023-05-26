@@ -34,7 +34,7 @@ export class CreateProcedimentoTable1631184000000 implements MigrationInterface 
           },
         ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
     await queryRunner.createPrimaryKey('procedimento', ['idProcedimento']);
 

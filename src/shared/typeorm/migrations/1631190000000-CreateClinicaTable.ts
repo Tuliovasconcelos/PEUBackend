@@ -43,7 +43,7 @@ export class CreateClinicaTable1631190000000 implements MigrationInterface {
           },
         ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
     await queryRunner.createPrimaryKey('clinica', ['idClinica']);
 

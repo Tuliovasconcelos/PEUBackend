@@ -4,7 +4,7 @@ export class CreateDocumentoMedicoTable1631180400000 implements MigrationInterfa
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'DocumentoMedico',
+        name: 'documentoMedico',
         columns: [
           {
             name: 'idDocumentoMedico',
@@ -35,32 +35,29 @@ export class CreateDocumentoMedicoTable1631180400000 implements MigrationInterfa
             onUpdate: 'CURRENT_TIMESTAMP',
           },
         ],
+        foreignKeys: [
+          new TableForeignKey({
+            columnNames: ['idAtendimento'],
+            referencedColumnNames: ['idAtendimento'],
+            referencedTableName: 'atendimento',
+            onDelete: 'CASCADE',
+          }),
+          new TableForeignKey({
+            columnNames: ['idDocumentoTipo'],
+            referencedColumnNames: ['idDocumentoTipo'],
+            referencedTableName: 'documentoTipo',
+            onDelete: 'CASCADE',
+          })
+        ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
-
-    await queryRunner.createForeignKey(
-      'DocumentoMedico',
-      new TableForeignKey({
-        columnNames: ['idAtendimento'],
-        referencedColumnNames: ['idAtendimento'],
-        referencedTableName: 'Atendimento',
-        onDelete: 'CASCADE',
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'DocumentoMedico',
-      new TableForeignKey({
-        columnNames: ['idDocumentoTipo'],
-        referencedColumnNames: ['idDocumentoTipo'],
-        referencedTableName: 'DocumentoTipo',
-        onDelete: 'CASCADE',
-      })
-    );
+    await queryRunner.createPrimaryKey('documentoMedico', ['idDocumentoMedico']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('DocumentoMedico');
+    await queryRunner.dropForeignKey('documentoMedico', 'FK_documentoMedico_idAtendimento');
+    await queryRunner.dropForeignKey('documentoMedico', 'FK_documentoMedico_idDocumentoTipo');
+    await queryRunner.dropTable('documentoMedico');
   }
 }

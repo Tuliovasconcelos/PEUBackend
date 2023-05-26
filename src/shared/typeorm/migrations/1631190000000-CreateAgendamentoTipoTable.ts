@@ -33,7 +33,7 @@ export class CreateAgendamentoTipoTable1631190000000 implements MigrationInterfa
           },
         ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
     await queryRunner.createPrimaryKey('agendamentoTipo', ['idAgendamentoTipo']);
   }

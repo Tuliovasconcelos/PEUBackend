@@ -37,38 +37,29 @@ export class CreateMedicoClinicaTable1631190000001 implements MigrationInterface
             onUpdate: 'CURRENT_TIMESTAMP',
           },
         ],
+        foreignKeys: [
+          new TableForeignKey({
+            columnNames: ['idMedico'],
+            referencedTableName: 'medico',
+            referencedColumnNames: ['idMedico'],
+            onDelete: 'CASCADE',
+          }),
+          new TableForeignKey({
+            columnNames: ['idClinica'],
+            referencedTableName: 'clinica',
+            referencedColumnNames: ['idClinica'],
+            onDelete: 'CASCADE',
+          })
+        ]
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
-
-    await queryRunner.createForeignKey(
-      'medicoClinica',
-      new TableForeignKey({
-        columnNames: ['idMedico'],
-        referencedTableName: 'm edico',
-        referencedColumnNames: ['idMedico'],
-        onDelete: 'CASCADE',
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'medicoClinica',
-      new TableForeignKey({
-        columnNames: ['idClinica'],
-        referencedTableName: 'clinica',
-        referencedColumnNames: ['idClinica'],
-        onDelete: 'CASCADE',
-      })
-    );
-
     await queryRunner.createPrimaryKey('medicoClinica', ['idMedicoClinica']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey('medicoClinica', 'FK_medicoClinica_idMedico');
-    await queryRunner.dropForeignKey('medicoClinica', 'FK_medicoClinica_idMedico');
-    await queryRunner.dropForeignKey('medicoClinica', 'FK_medicoClinica_idMedico');
+    await queryRunner.dropForeignKey('medicoClinica', 'FK_medicoClinica_idClinica');
     await queryRunner.dropTable('medicoClinica');
   }
 }

@@ -4,7 +4,7 @@ export class CreateProntuarioHabitoVidaTable1631181937427 implements MigrationIn
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'ProntuarioHabitoVida',
+        name: 'prontuarioHabitoVida',
         columns: [
           {
             name: 'idHabitoVida',
@@ -46,16 +46,19 @@ export class CreateProntuarioHabitoVidaTable1631181937427 implements MigrationIn
           new TableForeignKey({
             columnNames: ['idProntuario'],
             referencedColumnNames: ['idProntuario'],
-            referencedTableName: 'Prontuario',
+            referencedTableName: 'prontuario',
             onDelete: 'CASCADE',
           }),
         ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
+    await queryRunner.createPrimaryKey('prontuarioHabitoVida', ['idHabitoVida']);
+
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('ProntuarioHabitoVida');
+    await queryRunner.dropForeignKey('prontuarioHabitoVida', 'FK_prontuarioHabitoVida_idProntuario');
+    await queryRunner.dropTable('prontuarioHabitoVida');
   }
 }

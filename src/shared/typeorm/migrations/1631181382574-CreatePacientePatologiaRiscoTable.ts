@@ -4,8 +4,15 @@ export class CreatePacientePatologiaRiscoTable1631181382574 implements Migration
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'PacientePatologiaRisco',
+        name: 'pacientePatologiaRisco',
         columns: [
+          {
+            name: 'idPacientePatologiaRisco',
+            type: 'int',
+            isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
+          },
           {
             name: 'idPaciente',
             type: 'int',
@@ -26,19 +33,19 @@ export class CreatePacientePatologiaRiscoTable1631181382574 implements Migration
           new TableForeignKey({
             columnNames: ['idPaciente'],
             referencedColumnNames: ['idPaciente'],
-            referencedTableName: 'Paciente',
+            referencedTableName: 'paciente',
             onDelete: 'CASCADE',
           }),
           new TableForeignKey({
             columnNames: ['idPatologia'],
             referencedColumnNames: ['idPatologia'],
-            referencedTableName: 'Patologia',
+            referencedTableName: 'patologia',
             onDelete: 'CASCADE',
           }),
           new TableForeignKey({
             columnNames: ['idRisco'],
             referencedColumnNames: ['idRisco'],
-            referencedTableName: 'Risco',
+            referencedTableName: 'risco',
             onDelete: 'CASCADE',
           }),
         ],
@@ -49,11 +56,15 @@ export class CreatePacientePatologiaRiscoTable1631181382574 implements Migration
           },
         ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
+    await queryRunner.createPrimaryKey('pacientePatologiaRisco', ['idPacientePatologiaRisco']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('PacientePatologiaRisco');
+    await queryRunner.dropForeignKey('pacientePatologiaRisco', 'FK_pacientePatologiaRisco_idPaciente');
+    await queryRunner.dropForeignKey('pacientePatologiaRisco', 'FK_pacientePatologiaRisco_idPatologia');
+    await queryRunner.dropForeignKey('pacientePatologiaRisco', 'FK_pacientePatologiaRisco_idRisco');
+    await queryRunner.dropTable('pacientePatologiaRisco');
   }
 }

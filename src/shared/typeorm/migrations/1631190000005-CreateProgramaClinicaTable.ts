@@ -37,30 +37,23 @@ export class CreateProgramaClinicaTable1631190000005 implements MigrationInterfa
             onUpdate: 'CURRENT_TIMESTAMP',
           },
         ],
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'programaClinica',
-      new TableForeignKey({
-        columnNames: ['idPrograma'],
-        referencedTableName: 'programa',
-        referencedColumnNames: ['idPrograma'],
-        onDelete: 'CASCADE',
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'programaClinica',
-      new TableForeignKey({
-        columnNames: ['idClinica'],
-        referencedTableName: 'clinica',
-        referencedColumnNames: ['idClinica'],
-        onDelete: 'CASCADE',
+        foreignKeys: [
+          new TableForeignKey({
+            columnNames: ['idPrograma'],
+            referencedTableName: 'programa',
+            referencedColumnNames: ['idPrograma'],
+            onDelete: 'CASCADE',
+          }),
+          new TableForeignKey({
+            columnNames: ['idClinica'],
+            referencedTableName: 'clinica',
+            referencedColumnNames: ['idClinica'],
+            onDelete: 'CASCADE',
+          })
+        ]
       })
     );
     await queryRunner.createPrimaryKey('programaClinica', ['idProgramaClinica']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

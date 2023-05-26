@@ -35,35 +35,24 @@ export class CreateAtendimentoProcedimentoTable1631180399950 implements Migratio
             onUpdate: 'CURRENT_TIMESTAMP',
           },
         ],
+        foreignKeys: [
+          new TableForeignKey({
+            columnNames: ['idProcedimento'],
+            referencedTableName: 'procedimento',
+            referencedColumnNames: ['idProcedimento'],
+            onDelete: 'CASCADE',
+          }),
+          new TableForeignKey({
+            columnNames: ['idAtendimento'],
+            referencedTableName: 'atendimento',
+            referencedColumnNames: ['idAtendimento'],
+            onDelete: 'CASCADE',
+          })
+        ]
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
-
-    const table = await queryRunner.getTable('atendimentoProcedimento');
-
-    if (table) {
-      await queryRunner.createForeignKey(
-        'atendimentoProcedimento',
-        new TableForeignKey({
-          columnNames: ['idAtendimento'],
-          referencedColumnNames: ['idAtendimento'],
-          referencedTableName: 'atendimento',
-          onDelete: 'CASCADE',
-        })
-      );
-
-      await queryRunner.createForeignKey(
-        'atendimentoProcedimento',
-        new TableForeignKey({
-          columnNames: ['idProcedimento'],
-          referencedColumnNames: ['idProcedimento'],
-          referencedTableName: 'procedimento',
-          onDelete: 'CASCADE',
-        })
-      );
-    }
     await queryRunner.createPrimaryKey('atendimentoProcedimento', ['idAtendimentoProcedimento']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

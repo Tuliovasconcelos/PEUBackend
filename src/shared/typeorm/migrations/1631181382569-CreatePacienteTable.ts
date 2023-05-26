@@ -4,7 +4,7 @@ export class CreatePacienteTable1631181382569 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'Paciente',
+        name: 'paciente',
         columns: [
           {
             name: 'idPaciente',
@@ -48,37 +48,22 @@ export class CreatePacienteTable1631181382569 implements MigrationInterface {
             onUpdate: 'CURRENT_TIMESTAMP',
           },
         ],
+        foreignKeys: [
+          new TableForeignKey({
+            columnNames: ['idUsuario'],
+            referencedColumnNames: ['idUsuario'],
+            referencedTableName: 'usuario',
+            onDelete: 'CASCADE',
+          })
+        ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
-
-    await queryRunner.addColumn(
-      'Paciente',
-      new TableColumn({
-        name: 'idUsuario',
-        type: 'int',
-        isNullable: false,
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'Paciente',
-      new TableForeignKey({
-        columnNames: ['idUsuario'],
-        referencedColumnNames: ['idUsuario'],
-        referencedTableName: 'Usuario',
-        onDelete: 'CASCADE',
-      })
-    );
+    await queryRunner.createPrimaryKey('paciente', ['idPaciente']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    const table = await queryRunner.getTable('Paciente');
-    const foreignKey = table?.foreignKeys.find((fk) => fk.columnNames.indexOf('idUsuario') !== -1);
-    if (foreignKey) {
-      await queryRunner.dropForeignKey('Paciente', foreignKey);
-    }
-    await queryRunner.dropColumn('Paciente', 'idUsuario');
-    await queryRunner.dropTable('Paciente');
+    await queryRunner.dropForeignKey('paciente', 'FK_paciente_idUsuario');
+    await queryRunner.dropTable('paciente');
   }
 }

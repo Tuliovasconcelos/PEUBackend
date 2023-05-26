@@ -4,7 +4,7 @@ export class CreateContatoPacienteTable1631181382570 implements MigrationInterfa
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'ContatoPaciente',
+        name: 'contatoPaciente',
         columns: [
           {
             name: 'idPacienteContato',
@@ -31,27 +31,22 @@ export class CreateContatoPacienteTable1631181382570 implements MigrationInterfa
             isNullable: false,
           },
         ],
+        foreignKeys: [
+          new TableForeignKey({
+            columnNames: ['idPaciente'],
+            referencedColumnNames: ['idPaciente'],
+            referencedTableName: 'paciente',
+            onDelete: 'CASCADE',
+          })
+        ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
-
-    await queryRunner.createForeignKey(
-      'ContatoPaciente',
-      new TableForeignKey({
-        columnNames: ['idPaciente'],
-        referencedColumnNames: ['idPaciente'],
-        referencedTableName: 'Paciente',
-        onDelete: 'CASCADE',
-      })
-    );
+    await queryRunner.createPrimaryKey('contatoPaciente', ['idPacienteContato']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    const table = await queryRunner.getTable('ContatoPaciente');
-    const foreignKey = table?.foreignKeys.find((fk) => fk.columnNames.indexOf('idPaciente') !== -1);
-    if (foreignKey) {
-      await queryRunner.dropForeignKey('ContatoPaciente', foreignKey);
-    }
-    await queryRunner.dropTable('ContatoPaciente');
+    await queryRunner.dropForeignKey('contatoPaciente', 'FK_contatoPaciente_idPaciente');
+    await queryRunner.dropTable('contatoPaciente');
   }
 }

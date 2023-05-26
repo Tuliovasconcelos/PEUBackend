@@ -7,6 +7,13 @@ export class CreateProcedimentoPorClassificacaoTable1631190000007 implements Mig
         name: 'procedimentoPorClassificacao',
         columns: [
           {
+            name: 'idProcedimentoPorClassificacao',
+            type: 'int',
+            isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
+          },
+          {
             name: 'idPrograma',
             type: 'int',
             isNullable: false,
@@ -55,8 +62,7 @@ export class CreateProcedimentoPorClassificacaoTable1631190000007 implements Mig
         ],
       })
     );
-
-    await queryRunner.createPrimaryKey('procedimentoPorClassificacao', ['idPrograma', 'idPatologia', 'idRisco', 'idProcedimento']);
+    await queryRunner.createPrimaryKey('procedimentoPorClassificacao', ['idProcedimentoPorClassificacao']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

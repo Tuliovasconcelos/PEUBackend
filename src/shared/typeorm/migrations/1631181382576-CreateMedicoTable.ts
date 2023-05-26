@@ -4,7 +4,7 @@ export class CreateMedicoTable1631181382576 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'Medico',
+        name: 'medico',
         columns: [
           {
             name: 'idMedico',
@@ -48,22 +48,19 @@ export class CreateMedicoTable1631181382576 implements MigrationInterface {
           new TableForeignKey({
             columnNames: ['idUsuario'],
             referencedColumnNames: ['idUsuario'],
-            referencedTableName: 'Usuario',
-            onDelete: 'CASCADE',
-          }),
-          new TableForeignKey({
-            columnNames: ['especialidade_id'],
-            referencedColumnNames: ['idEspecialidade'],
-            referencedTableName: 'Especialidade',
+            referencedTableName: 'usuario',
             onDelete: 'CASCADE',
           }),
         ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
+    await queryRunner.createPrimaryKey('medico', ['idMedico']);
+
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('Medico');
+    await queryRunner.dropForeignKey('medico', 'FK_medico_idUsuario');
+    await queryRunner.dropTable('medico');
   }
 }

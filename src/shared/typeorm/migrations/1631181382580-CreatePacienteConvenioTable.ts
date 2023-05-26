@@ -4,7 +4,7 @@ export class CreatePacienteConvenioTable1631181382580 implements MigrationInterf
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'PacienteConvenio',
+        name: 'pacienteConvenio',
         columns: [
           {
             name: 'idPacienteConvenio',
@@ -47,22 +47,26 @@ export class CreatePacienteConvenioTable1631181382580 implements MigrationInterf
           new TableForeignKey({
             columnNames: ['idPaciente'],
             referencedColumnNames: ['idPaciente'],
-            referencedTableName: 'Paciente',
+            referencedTableName: 'paciente',
             onDelete: 'CASCADE',
           }),
           new TableForeignKey({
             columnNames: ['idConvenio'],
             referencedColumnNames: ['idConvenio'],
-            referencedTableName: 'Convenio',
+            referencedTableName: 'convenio',
             onDelete: 'CASCADE',
           }),
         ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
+    await queryRunner.createPrimaryKey('pacienteConvenio', ['idPacienteConvenio']);
+
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('PacienteConvenio');
+    await queryRunner.dropForeignKey('pacienteConvenio', 'FK_pacienteConvenio_idPaciente');
+    await queryRunner.dropForeignKey('pacienteConvenio', 'FK_pacienteConvenio_idConvenio');
+    await queryRunner.dropTable('pacienteConvenio');
   }
 }

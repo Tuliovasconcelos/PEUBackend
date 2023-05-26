@@ -4,7 +4,7 @@ export class CreateMedicoEspecialidadeTable1631181382577 implements MigrationInt
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'MedicoEspecialidade',
+        name: 'medicoEspecialidade',
         columns: [
           {
             name: 'idMedicoEspecialidade',
@@ -28,22 +28,26 @@ export class CreateMedicoEspecialidadeTable1631181382577 implements MigrationInt
           new TableForeignKey({
             columnNames: ['idMedico'],
             referencedColumnNames: ['idMedico'],
-            referencedTableName: 'Medico',
+            referencedTableName: 'medico',
             onDelete: 'CASCADE',
           }),
           new TableForeignKey({
             columnNames: ['idEspecialidade'],
             referencedColumnNames: ['idEspecialidade'],
-            referencedTableName: 'Especialidade',
+            referencedTableName: 'especialidade',
             onDelete: 'CASCADE',
           }),
         ],
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
+    await queryRunner.createPrimaryKey('medicoEspecialidade', ['idMedicoEspecialidade']);
+
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('MedicoEspecialidade');
+    await queryRunner.dropForeignKey('medicoEspecialidade', 'FK_medicoEspecialidade_idMedico');
+    await queryRunner.dropForeignKey('medicoEspecialidade', 'FK_medicoEspecialidade_idEspecialidade');
+    await queryRunner.dropTable('medicoEspecialidade');
   }
 }

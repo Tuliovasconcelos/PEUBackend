@@ -4,7 +4,7 @@ export class CreateAgendamentosTable1631181200000 implements MigrationInterface 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'Agendamentos',
+        name: 'agendamento',
         columns: [
           {
             name: 'idAgendamento',
@@ -57,66 +57,51 @@ export class CreateAgendamentosTable1631181200000 implements MigrationInterface 
             onUpdate: 'CURRENT_TIMESTAMP',
           },
         ],
+        foreignKeys: [
+          new TableForeignKey({
+            columnNames: ['idPaciente'],
+            referencedColumnNames: ['idPaciente'],
+            referencedTableName: 'paciente',
+            onDelete: 'CASCADE',
+          }),
+          new TableForeignKey({
+            columnNames: ['idMedico'],
+            referencedColumnNames: ['idMedico'],
+            referencedTableName: 'medico',
+            onDelete: 'CASCADE',
+          }),
+          new TableForeignKey({
+            columnNames: ['idClinica'],
+            referencedColumnNames: ['idClinica'],
+            referencedTableName: 'clinica',
+            onDelete: 'CASCADE',
+          }),
+          new TableForeignKey({
+            columnNames: ['idAgendamentoTipo'],
+            referencedColumnNames: ['idAgendamentoTipo'],
+            referencedTableName: 'agendamentoTipo',
+            onDelete: 'CASCADE',
+          }),
+          new TableForeignKey({
+            columnNames: ['idPrograma'],
+            referencedColumnNames: ['idPrograma'],
+            referencedTableName: 'programa',
+            onDelete: 'CASCADE',
+          })
+        ],
+
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
+      true
     );
-
-    await queryRunner.addColumn(
-      'Agendamentos',
-      new TableColumn({
-        name: 'idPrograma',
-        type: 'int',
-        isNullable: true,
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'Agendamentos',
-      new TableForeignKey({
-        columnNames: ['idPaciente'],
-        referencedTableName: 'Paciente',
-        referencedColumnNames: ['idPaciente'],
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'Agendamentos',
-      new TableForeignKey({
-        columnNames: ['idMedico'],
-        referencedTableName: 'Medico',
-        referencedColumnNames: ['idMedico'],
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'Agendamentos',
-      new TableForeignKey({
-        columnNames: ['idClinica'],
-        referencedTableName: 'Clinicas',
-        referencedColumnNames: ['idClinica'],
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'Agendamentos',
-      new TableForeignKey({
-        columnNames: ['idAgendamentoTipo'],
-        referencedTableName: 'TiposAgendamentos',
-        referencedColumnNames: ['idAgendamentoTipo'],
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'Agendamentos',
-      new TableForeignKey({
-        columnNames: ['idPrograma'],
-        referencedTableName: 'Programas',
-        referencedColumnNames: ['idPrograma'],
-      })
-    );
+    await queryRunner.createPrimaryKey('agendamento', ['idAgendamento']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('Agendamentos');
+    await queryRunner.dropForeignKey('agendamento', 'FK_agendamento_idPaciente');
+    await queryRunner.dropForeignKey('agendamento', 'FK_agendamento_idMedico');
+    await queryRunner.dropForeignKey('agendamento', 'FK_agendamento_idClinica');
+    await queryRunner.dropForeignKey('agendamento', 'FK_agendamento_idAgendamentoTipo');
+    await queryRunner.dropForeignKey('agendamento', 'FK_agendamento_idPrograma');
+    await queryRunner.dropTable('agendamento');
   }
 }

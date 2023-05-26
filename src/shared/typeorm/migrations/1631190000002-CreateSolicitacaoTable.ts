@@ -47,41 +47,30 @@ export class CreateSolicitacaoTable1631190000002 implements MigrationInterface {
             onUpdate: 'CURRENT_TIMESTAMP',
           },
         ],
+        foreignKeys: [
+          new TableForeignKey({
+            columnNames: ['idPaciente'],
+            referencedTableName: 'paciente',
+            referencedColumnNames: ['idPaciente'],
+            onDelete: 'CASCADE',
+          }),
+          new TableForeignKey({
+            columnNames: ['idMedico'],
+            referencedTableName: 'medico',
+            referencedColumnNames: ['idMedico'],
+            onDelete: 'CASCADE',
+          }),
+          new TableForeignKey({
+            columnNames: ['idClinica'],
+            referencedTableName: 'clinica',
+            referencedColumnNames: ['idClinica'],
+            onDelete: 'CASCADE',
+          })
+        ]
       }),
-      true // Indica que a tabela deve ser criada com a opção "IF NOT EXISTS"
-    );
-
-    await queryRunner.createForeignKey(
-      'solicitacao',
-      new TableForeignKey({
-        columnNames: ['idPaciente'],
-        referencedTableName: 'paciente',
-        referencedColumnNames: ['idPaciente'],
-        onDelete: 'CASCADE',
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'solicitacao',
-      new TableForeignKey({
-        columnNames: ['idMedico'],
-        referencedTableName: 'medico',
-        referencedColumnNames: ['idMedico'],
-        onDelete: 'CASCADE',
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'solicitacao',
-      new TableForeignKey({
-        columnNames: ['idClinica'],
-        referencedTableName: 'clinica',
-        referencedColumnNames: ['idClinica'],
-        onDelete: 'CASCADE',
-      })
+      true
     );
     await queryRunner.createPrimaryKey('solicitacao', ['idSolicitacao']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
