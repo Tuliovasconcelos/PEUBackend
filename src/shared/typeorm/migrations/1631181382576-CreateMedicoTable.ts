@@ -53,10 +53,8 @@ export class CreateMedicoTable1631181382576 implements MigrationInterface {
           }),
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('medico', ['idMedico']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

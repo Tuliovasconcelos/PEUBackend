@@ -39,10 +39,8 @@ export class CreateMedicoEspecialidadeTable1631181382577 implements MigrationInt
           }),
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('medicoEspecialidade', ['idMedicoEspecialidade']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

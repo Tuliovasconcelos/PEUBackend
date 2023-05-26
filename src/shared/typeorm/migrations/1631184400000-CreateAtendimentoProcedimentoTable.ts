@@ -50,9 +50,8 @@ export class CreateAtendimentoProcedimentoTable1631180399950 implements Migratio
           })
         ]
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('atendimentoProcedimento', ['idAtendimentoProcedimento']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

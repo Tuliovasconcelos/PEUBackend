@@ -52,9 +52,8 @@ export class CreateMedicoClinicaTable1631190000001 implements MigrationInterface
           })
         ]
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('medicoClinica', ['idMedicoClinica']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

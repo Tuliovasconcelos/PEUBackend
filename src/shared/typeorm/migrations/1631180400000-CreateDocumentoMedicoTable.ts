@@ -50,9 +50,8 @@ export class CreateDocumentoMedicoTable1631180400000 implements MigrationInterfa
           })
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('documentoMedico', ['idDocumentoMedico']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

@@ -21,9 +21,8 @@ export class CreateTipoUsuarioTable1631179577700 implements MigrationInterface {
           },
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('tipoUsuario', ['idTipoUsuario']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

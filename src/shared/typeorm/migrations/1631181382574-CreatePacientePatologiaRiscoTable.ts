@@ -56,9 +56,8 @@ export class CreatePacientePatologiaRiscoTable1631181382574 implements Migration
           },
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('pacientePatologiaRisco', ['idPacientePatologiaRisco']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

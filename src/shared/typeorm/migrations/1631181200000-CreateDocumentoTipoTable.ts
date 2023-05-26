@@ -33,9 +33,8 @@ export class CreateDocumentoTipoTable1631181200000 implements MigrationInterface
           },
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('documentoTipo', ['idDocumentoTipo']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

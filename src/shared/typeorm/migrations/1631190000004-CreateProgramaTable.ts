@@ -33,9 +33,8 @@ export class CreateProgramaTable1631190000004 implements MigrationInterface {
           },
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('programa', ['idPrograma']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

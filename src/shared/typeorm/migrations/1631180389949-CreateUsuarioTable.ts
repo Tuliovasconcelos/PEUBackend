@@ -72,9 +72,8 @@ export class CreateUsuarioTable1631180389949 implements MigrationInterface {
         ],
 
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('usuario', ['idUsuario']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

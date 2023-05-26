@@ -43,10 +43,8 @@ export class CreateClinicaTable1631190000000 implements MigrationInterface {
           },
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('clinica', ['idClinica']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

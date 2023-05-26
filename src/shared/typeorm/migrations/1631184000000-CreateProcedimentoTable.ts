@@ -34,10 +34,8 @@ export class CreateProcedimentoTable1631184000000 implements MigrationInterface 
           },
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('procedimento', ['idProcedimento']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

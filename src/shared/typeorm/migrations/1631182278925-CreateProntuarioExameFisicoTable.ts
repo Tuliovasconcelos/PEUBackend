@@ -53,9 +53,6 @@ export class CreateProntuarioExameFisicoTable1631182278925 implements MigrationI
       }),
       true
     );
-
-    await queryRunner.createPrimaryKey('prontuarioExameFisico', ['idDadoExameFisico']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

@@ -49,11 +49,11 @@ export class CreateProgramaClinicaTable1631190000005 implements MigrationInterfa
             referencedTableName: 'clinica',
             referencedColumnNames: ['idClinica'],
             onDelete: 'CASCADE',
-          })
-        ]
-      })
+          }),
+        ],
+      }),
+      true,
     );
-    await queryRunner.createPrimaryKey('programaClinica', ['idProgramaClinica']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

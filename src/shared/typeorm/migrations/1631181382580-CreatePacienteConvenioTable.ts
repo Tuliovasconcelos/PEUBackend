@@ -58,10 +58,8 @@ export class CreatePacienteConvenioTable1631181382580 implements MigrationInterf
           }),
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('pacienteConvenio', ['idPacienteConvenio']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

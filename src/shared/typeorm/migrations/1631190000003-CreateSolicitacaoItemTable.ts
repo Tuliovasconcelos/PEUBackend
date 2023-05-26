@@ -46,9 +46,8 @@ export class CreateSolicitacaoItemTable1631190000003 implements MigrationInterfa
           })
         ]
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('solicitacaoItem', ['idItemSolicitacao']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

@@ -44,10 +44,8 @@ export class CreateUserTokensTable1631181382568 implements MigrationInterface {
           })
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('userTokens', ['id']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

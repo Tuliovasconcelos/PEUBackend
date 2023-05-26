@@ -51,9 +51,9 @@ export class CreatePacienteProgramaTable1631190000006 implements MigrationInterf
             onDelete: 'CASCADE',
           })
         ]
-      })
+      }),
+      true,
     );
-    await queryRunner.createPrimaryKey('pacientePrograma', ['idPacientePrograma']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

@@ -51,10 +51,8 @@ export class CreateProntuarioHabitoVidaTable1631181937427 implements MigrationIn
           }),
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('prontuarioHabitoVida', ['idHabitoVida']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

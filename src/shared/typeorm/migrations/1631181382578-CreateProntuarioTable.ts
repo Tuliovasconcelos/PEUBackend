@@ -41,10 +41,8 @@ export class CreateProntuarioTable1631181382578 implements MigrationInterface {
           }),
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('prontuario', ['idProntuario']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

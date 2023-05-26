@@ -51,10 +51,8 @@ export class CreateProntuarioHistoricoSaudeTable1631181382581 implements Migrati
           }),
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('prontuarioHistoricoSaude', ['idProntuarioHistoricoSaude']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

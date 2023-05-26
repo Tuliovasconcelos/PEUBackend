@@ -57,7 +57,7 @@ export class CreatePacienteTable1631181382569 implements MigrationInterface {
           })
         ],
       }),
-      true
+      true,
     );
     await queryRunner.createPrimaryKey('paciente', ['idPaciente']);
   }

@@ -34,9 +34,8 @@ export class CreateRiscoTable1631181382573 implements MigrationInterface {
           },
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('risco', ['idRisco']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

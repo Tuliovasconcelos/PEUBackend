@@ -34,9 +34,8 @@ export class CreateEspecialidadeTable1631181382575 implements MigrationInterface
           },
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('especialidade', ['idEspecialidade']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

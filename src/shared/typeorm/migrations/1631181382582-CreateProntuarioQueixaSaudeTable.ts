@@ -51,10 +51,8 @@ export class CreateProntuarioQueixaSaudeTable1631181382582 implements MigrationI
           }),
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('prontuarioQueixaSaude', ['idQueixaSaude']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

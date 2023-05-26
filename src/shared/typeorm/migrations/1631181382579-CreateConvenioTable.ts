@@ -34,10 +34,8 @@ export class CreateConvenioTable1631181382579 implements MigrationInterface {
           },
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('convenio', ['idConvenio']);
-
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

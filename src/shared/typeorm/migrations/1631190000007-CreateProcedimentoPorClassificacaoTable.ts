@@ -60,9 +60,9 @@ export class CreateProcedimentoPorClassificacaoTable1631190000007 implements Mig
             onDelete: 'CASCADE',
           }),
         ],
-      })
+      }),
+      true,
     );
-    await queryRunner.createPrimaryKey('procedimentoPorClassificacao', ['idProcedimentoPorClassificacao']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

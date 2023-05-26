@@ -108,12 +108,11 @@ export class CreateAtendimentoTable1631183000000 implements MigrationInterface {
             referencedTableName: 'programa',
             referencedColumnNames: ['idPrograma'],
             onDelete: 'CASCADE',
-          })
-        ]
+          }),
+        ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('atendimento', ['idAtendimento']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

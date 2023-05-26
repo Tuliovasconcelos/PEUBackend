@@ -52,10 +52,8 @@ export class CreateEnderecoPacienteTable1631181382571 implements MigrationInterf
           })
         ],
       }),
-      true
-
+      true,
     );
-    await queryRunner.createPrimaryKey('enderecoPaciente', ['idEnderecoPaciente']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

@@ -40,9 +40,8 @@ export class CreateContatoPacienteTable1631181382570 implements MigrationInterfa
           })
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('contatoPaciente', ['idPacienteContato']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

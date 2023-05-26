@@ -34,9 +34,8 @@ export class CreatePatologiaTable1631181382572 implements MigrationInterface {
           },
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('patologia', ['idPatologia']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

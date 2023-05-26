@@ -68,9 +68,8 @@ export class CreateSolicitacaoTable1631190000002 implements MigrationInterface {
           })
         ]
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('solicitacao', ['idSolicitacao']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

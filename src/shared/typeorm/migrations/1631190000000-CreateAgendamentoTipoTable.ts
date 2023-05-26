@@ -33,9 +33,8 @@ export class CreateAgendamentoTipoTable1631190000000 implements MigrationInterfa
           },
         ],
       }),
-      true
+      true,
     );
-    await queryRunner.createPrimaryKey('agendamentoTipo', ['idAgendamentoTipo']);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
