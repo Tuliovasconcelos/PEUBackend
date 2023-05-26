@@ -7,6 +7,7 @@ import UpdateAgendamentoService from '../services/UpdateAgendamentoService';
 
 export default class AgendamentosController {
   public async index(request: Request, response: Response): Promise<Response> {
+
     const listAgendamento = new ListAgendamentoService();
 
     const agendamentos = await listAgendamento.execute();
@@ -15,16 +16,16 @@ export default class AgendamentosController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { idAgendamento } = request.params;
 
     const showAgendamento = new ShowAgendamentoService();
 
-    const agendamento = await showAgendamento.execute({ idAgendamento: Number(idAgendamento) });
+    const agendamento = await showAgendamento.execute({ idAgendamento: Number(request.params.idAgendamento) });
 
     return response.json(agendamento);
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
+
     const {
       idPaciente,
       idMedico,
@@ -51,7 +52,6 @@ export default class AgendamentosController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { idAgendamento } = request.params;
     const {
       idPaciente,
       idMedico,
@@ -65,7 +65,7 @@ export default class AgendamentosController {
     const updateAgendamento = new UpdateAgendamentoService();
 
     const agendamento = await updateAgendamento.execute({
-      idAgendamento: Number(idAgendamento),
+      idAgendamento: Number(request.params.idAgendamento),
       idPaciente,
       idMedico,
       idClinica,
@@ -79,11 +79,10 @@ export default class AgendamentosController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { idAgendamento } = request.params;
 
     const deleteAgendamento = new DeleteAgendamentoService();
 
-    await deleteAgendamento.execute({ idAgendamento: Number(idAgendamento) });
+    await deleteAgendamento.execute({ idAgendamento: Number(request.params.idAgendamento) });
 
     return response.json([]);
   }

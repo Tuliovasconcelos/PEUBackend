@@ -2,9 +2,9 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 't
 import Paciente from '@modules/pacientes/paciente/typeorm/entities/Paciente';
 import Medico from '@modules/medicos/medico/typeorm/entities/Medico';
 import Clinica from '@modules/clinicas/typeorm/entities/Clinica';
-import AgendamentoTipo from '@modules/agendamentos/agendamentoTipo/typeorm/entities/agendamentoTipo';
+import AgendamentoTipo from '@modules/agendamentos/agendamentoTipo/typeorm/entities/AgendamentoTipo';
 
-@Entity('Agendamento')
+@Entity('agendamento')
 export default class Agendamento {
   @PrimaryGeneratedColumn('increment')
   idAgendamento: number;
